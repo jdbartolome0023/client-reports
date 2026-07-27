@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenny Fuels Profitability Update: Jul 1-25 vs Jun 1-25, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --black: #243B98;
+            --red: #E6211E;
+            --ink: #1a1f2e;
+            --paper: #fbfaf8;
+            --paper-alt: #f3f1ec;
+            --line: #e4e1da;
+            --muted: #6b7280;
+            --green: #1f7a4d;
+            --amber: #b45309;
+            --purple: #6b3fa0;
+            --font-display: 'Lato', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-display); background: var(--paper); color: var(--ink); font-size: 15px; }
+
+        nav { position: sticky; top: 0; z-index: 100; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; }
+        nav .logo img { height: 34px; width: auto; display: block; }
+        nav ul { display: flex; gap: 28px; list-style: none; }
+        nav ul a { color: rgba(255,255,255,0.68); text-decoration: none; font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.15s; }
+        nav ul a:hover { color: #fff; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .report-date { color: rgba(255,255,255,0.5); font-family: var(--font-mono); font-size: 11px; }
+        .btn-pdf { background: var(--red); color: white; border: none; padding: 7px 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; letter-spacing: 0.3px; }
+
+        .hero { padding: 56px 40px 44px; border-bottom: 1px solid var(--line); max-width: 1080px; margin: 0 auto; }
+        .period-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); background: var(--paper-alt); padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; color: var(--muted); margin-bottom: 20px; letter-spacing: 0.3px; }
+        .period-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+        .hero h1 { font-family: var(--font-display); font-weight: 900; font-size: 52px; line-height: 1.02; letter-spacing: 0.2px; margin-bottom: 6px; }
+        .hero h1 span { color: var(--red); display: block; font-size: 26px; font-weight: 700; margin-top: 4px; }
+        .hero p { font-size: 15px; color: var(--muted); max-width: 640px; margin-top: 16px; line-height: 1.6; }
+
+        section { max-width: 1080px; margin: 0 auto; padding: 44px 40px; border-bottom: 1px solid var(--line); }
+        section.alt { background: var(--paper-alt); }
+
+        .eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+        .section-title { font-family: var(--font-display); font-weight: 900; font-size: 30px; letter-spacing: 0.2px; margin-bottom: 6px; text-wrap: balance; }
+        .section-desc { color: var(--muted); font-size: 13.5px; margin-bottom: 20px; line-height: 1.55; max-width: 680px; }
+        .section-commentary { font-size: 14px; color: var(--ink); line-height: 1.7; max-width: 720px; margin-bottom: 32px; padding-left: 14px; border-left: 3px solid var(--red); }
+
+        .notes-list { list-style: none; display: flex; flex-direction: column; gap: 14px; max-width: 720px; }
+        .notes-list li { display: flex; gap: 12px; align-items: baseline; }
+        .notes-list .dot { font-family: var(--font-mono); color: var(--red); font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+        .notes-list .txt { font-size: 14px; line-height: 1.65; color: var(--ink); }
+        .notes-list .txt b { font-weight: 700; }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+        .metric-card { background: var(--paper); padding: 20px 20px; }
+        .metric-label { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+        .metric-value { font-family: var(--font-display); font-weight: 900; font-size: 34px; letter-spacing: 0.2px; line-height: 1; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+        .metric-value.small { font-size: 26px; }
+        .metric-comparisons { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-mono); font-size: 11px; }
+        .comp-label { color: var(--muted); }
+        .up { color: var(--green); font-weight: 600; }
+        .down { color: var(--red); font-weight: 600; }
+        .neutral { color: var(--muted); font-weight: 600; }
+
+        .source-tag { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.3px; color: var(--muted); margin-bottom: 16px; }
+        .tag-google { display: inline-block; background: #e8eefb; color: var(--black); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .tag-woo { display: inline-block; background: #e5f2ea; color: var(--green); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .tag-meta { display: inline-block; background: #f1e9f7; color: var(--purple); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+
+        .gap-compare { display: flex; align-items: center; gap: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: var(--paper); }
+        .gap-side { flex: 1; padding: 22px 26px; }
+        .gap-side.left { border-right: 1px solid var(--line); }
+        .gap-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+        .gap-num-row { display: flex; align-items: baseline; gap: 8px; }
+        .gap-num { font-family: var(--font-display); font-weight: 900; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
+        .gap-num.google-val { color: var(--black); }
+        .gap-num.woo-val { color: var(--green); }
+        .gap-num-caption { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+        .gap-mid { background: var(--ink); color: #fff; padding: 16px 20px; text-align: center; flex-shrink: 0; }
+        .gap-mid .x { font-family: var(--font-mono); font-weight: 600; font-size: 18px; }
+        .gap-mid .l { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; }
+
+        .table-card { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 24px; background: var(--paper); }
+        .table-card-header { padding: 16px 20px; border-bottom: 1px solid var(--line); }
+        .table-card-header h3 { font-size: 14.5px; font-weight: 700; }
+        .table-card-header p { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+
+        table { width: 100%; border-collapse: collapse; }
+        thead th { background: var(--ink); color: #fff; padding: 9px 20px; text-align: left; font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.6px; text-transform: uppercase; }
+        tbody tr { border-bottom: 1px solid var(--line); }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:nth-child(even) { background: var(--paper-alt); }
+        tbody td { padding: 11px 20px; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+        tbody td:first-child { font-weight: 500; font-variant-numeric: normal; }
+
+        .chart-container { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin-top: 24px; }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+        .chart-title { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); }
+        .chart-legend { display: flex; gap: 14px; font-family: var(--font-mono); font-size: 10.5px; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
+
+        .next-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+        .next-card { background: var(--paper); padding: 20px 22px; }
+        .next-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .next-card p { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+        .priority-tag { display: inline-block; font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
+        .priority-high { background: #fdeceb; color: var(--red); }
+        .priority-medium { background: #fdf2e2; color: var(--amber); }
+        .priority-low { background: #e5f2ea; color: var(--green); }
+
+        .note-strip { display: flex; gap: 10px; align-items: flex-start; padding: 14px 16px; background: var(--paper-alt); border-radius: 8px; margin-bottom: 16px; font-size: 12.5px; line-height: 1.55; color: var(--ink); }
+        .note-strip b { font-weight: 700; }
+        .note-strip .ic { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+        .note-strip ul { padding-left: 18px; margin-top: 6px; }
+        .note-strip li { margin-bottom: 4px; }
+
+        footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 22px 40px; font-family: var(--font-mono); font-size: 11px; }
+        footer strong { color: rgba(255,255,255,0.72); }
+
+        @media (max-width: 768px) {
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .next-grid { grid-template-columns: 1fr; }
+            .gap-compare { flex-direction: column; }
+            .gap-side.left { border-right: none; border-bottom: 1px solid var(--line); }
+            .hero h1 { font-size: 38px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><img src="https://www.kennyfuels.ie/wp-content/uploads/2023/11/kenny-logo.png" alt="Kenny Fuels"></div>
+    <ul>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#month">This Month</a></li>
+        <li><a href="#google">Google Ads</a></li>
+        <li><a href="#meta">Meta Ads</a></li>
+        <li><a href="#next">What's Next</a></li>
+    </ul>
+    <div class="nav-right">
+        <span class="report-date">JUL 1&ndash;25 VS JUN 1&ndash;25, 2026</span>
+        <button class="btn-pdf" onclick="window.print()">DOWNLOAD PDF</button>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="period-badge">JUL 1&ndash;25 VS JUN 1&ndash;25, 2026 &nbsp;&middot;&nbsp; SPECIAL UPDATE, NOT A REGULAR WEEKLY/MONTHLY REPORT</div>
+    <h1>Kenny Fuels<span>Profitability Update</span></h1>
+    <p>A deeper look at real, verified revenue and profit across Google Ads and Meta Ads together, checked against what each platform's own dashboard reports for the same two periods. All figures in EUR, sourced from your actual WooCommerce orders.</p>
+</div>
+
+<section id="notes" class="alt">
+    <div class="section-title">Headline Notes</div>
+    <ul class="notes-list">
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Real revenue is up 91% and real profit is up 53% month over month.</b> €152,125 in verified revenue for Jul 1&ndash;25 vs €79,665 for the same 25 days in June, with real profit (after your category margins) growing from roughly €17,450 to €26,660.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Google Ads' reporting accuracy improved a lot this month.</b> The gap between what Google's dashboard reports and what real orders confirm nearly halved, from Google overstating by 2.32x in June to just 1.32x in July. That's the UTM tracking fix from July 8 doing its job.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Meta's dashboard still significantly overstates real results.</b> This is a known, structural limitation (visitors who decline marketing cookies can't be tracked by any method currently in place), not a bug being chased. It means Meta's own reported ROAS shouldn't be used to judge performance until CAPI (in progress with Graphedia) is live.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Combined, the business swung from roughly breakeven to solidly profitable</b> on a real, verified basis, driven mainly by Google Ads.</span></li>
+    </ul>
+</section>
+
+<section id="month">
+    <div class="eyebrow">This Month</div>
+    <div class="section-title">Real Revenue &amp; Profit</div>
+    <p class="section-desc">Jul 1&ndash;25, 2026 vs. the same 25-day window in June, 2026. Figures below are verified against your actual WooCommerce orders, not either platform's own dashboard.</p>
+    <p class="section-commentary">Revenue nearly doubled (+91.0%) while profit grew more slowly (+52.8%). That's expected, not a red flag: more of July's growth landed in Heating Oil and Hardware, which carry thinner margins (10&ndash;15%) than Firewood and Sand+Stones (25%). Growth is real either way, just not evenly profitable across every product line.</p>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">Real Revenue</div>
+            <div class="metric-value">&euro;152,125</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Jun 1&ndash;25</span> <span class="up">&#9650; &euro;79,665 (+91.0%)</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Real Profit</div>
+            <div class="metric-value">&euro;26,660</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Jun 1&ndash;25</span> <span class="up">&#9650; &euro;17,450 (+52.8%)</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Orders</div>
+            <div class="metric-value">390</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Jun 1&ndash;25</span> <span class="up">&#9650; 285 (+36.8%)</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Avg Order Value</div>
+            <div class="metric-value small">&euro;390.06</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Jun 1&ndash;25</span> <span class="up">&#9650; &euro;279.53 (+39.5%)</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-header">
+            <span class="chart-title">Real Revenue vs Real Profit, Month over Month</span>
+            <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#243B98"></div><span>Jun 1&ndash;25</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#E6211E"></div><span>Jul 1&ndash;25</span></div>
+            </div>
+        </div>
+        <canvas id="monthChart" height="90"></canvas>
+        <p style="padding: 10px 4px 0; font-size: 11px; color: var(--muted);">Profit uses your confirmed category margins (Heating Oil 10%, Gas 20%, Hardware 15%, Sand &amp; Stones 25%, Firewood 25%, Compost 25%, Solar 10%). Both figures are drawn from real order data, not either platform's own reporting.</p>
+    </div>
+</section>
+
+<section id="google" class="alt">
+    <div class="eyebrow">Google Ads</div>
+    <div class="section-title">Reporting Accuracy Is Improving</div>
+    <p class="section-desc">Comparing what Google Ads reports as conversion value against what real orders confirm (excluding Kenergy Solar, whose value is a manual estimate agreed with you, not an observed sale, and shown on its own).</p>
+
+    <div class="gap-compare">
+        <div class="gap-side left">
+            <div class="gap-eyebrow">Jun 1&ndash;25 <span class="tag-google" style="margin-left:6px;">SELF-REPORTED</span></div>
+            <div class="gap-num-row"><div class="gap-num google-val">&euro;56,276</div><div class="gap-num-caption">reported vs. &euro;24,282 real</div></div>
+        </div>
+        <div class="gap-mid">
+            <div class="x">2.32x</div>
+            <div class="l">overstated</div>
+        </div>
+        <div class="gap-side">
+            <div class="gap-eyebrow">Jul 1&ndash;25 <span class="tag-google" style="margin-left:6px;">SELF-REPORTED</span></div>
+            <div class="gap-num-row"><div class="gap-num google-val">&euro;71,001</div><div class="gap-num-caption">reported vs. &euro;53,623 real</div></div>
+        </div>
+    </div>
+    <div class="source-tag">GAP NEARLY HALVED IN ONE MONTH &nbsp;&middot;&nbsp; EXPECTED TO KEEP NARROWING</div>
+
+    <div class="note-strip">
+        <span class="ic">&#128295;</span>
+        <div>
+            <div class="head">Why this gap is closing, and why it's a fixable configuration issue, not a legal tracking limit</div>
+            <ul>
+                <li>The July 8 fix added proper tracking tags to every campaign so real orders can be matched back to Google Ads cleanly. This month is the first full month of that fix maturing.</li>
+                <li>The remaining gap mostly reflects orders still landing in a generic "Google" bucket in WooCommerce without a clear product on the order, which is a separate, ongoing project to resolve, not a tracking failure.</li>
+                <li>Expect this multiple to keep shrinking over the next few reports as more post-fix orders accumulate.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="meta">
+    <div class="eyebrow">Meta Ads</div>
+    <div class="section-title">A Real, Known Reporting Gap</div>
+    <p class="section-desc">Comparing what Meta's own dashboard reports as purchase value against what real orders confirm.</p>
+
+    <div class="gap-compare">
+        <div class="gap-side left">
+            <div class="gap-eyebrow">Jun 1&ndash;25 <span class="tag-meta" style="margin-left:6px;">SELF-REPORTED</span></div>
+            <div class="gap-num-row"><div class="gap-num google-val">&euro;15,084</div><div class="gap-num-caption">reported vs. &euro;89 real</div></div>
+        </div>
+        <div class="gap-mid">
+            <div class="x">~170x</div>
+            <div class="l">overstated</div>
+        </div>
+        <div class="gap-side">
+            <div class="gap-eyebrow">Jul 1&ndash;25 <span class="tag-meta" style="margin-left:6px;">SELF-REPORTED</span></div>
+            <div class="gap-num-row"><div class="gap-num google-val">&euro;40,013</div><div class="gap-num-caption">reported vs. &euro;3,791 real</div></div>
+        </div>
+    </div>
+    <div class="source-tag">STRUCTURAL, ONGOING LIMITATION &nbsp;&middot;&nbsp; NOT EXPECTED TO CLOSE ON ITS OWN</div>
+
+    <div class="note-strip">
+        <span class="ic">&#9888;&#65039;</span>
+        <div>
+            <div class="head">Why this gap exists, and what fixes it</div>
+            <ul>
+                <li>This is privacy-driven: visitors who decline marketing cookies can't be tracked by Meta's pixel at all, by design, under GDPR. It's the same limitation across the industry, not something specific to your account.</li>
+                <li>June's ~170x reading is a very small sample (just 1 confirmed real order that month) so treat the exact multiple loosely, but the direction is the same both months: Meta's own dashboard cannot be trusted for budget or creative decisions right now.</li>
+                <li><b>The fix is Conversions API (CAPI)</b>, a server-side tracking method that doesn't rely on the visitor's browser. This is in progress with Graphedia (your web developer); we'll flag as soon as it's live and this gap starts closing.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="next">
+    <div class="eyebrow">What's Next</div>
+    <div class="section-title">Where This Leaves Us</div>
+    <p class="section-desc">What this update changes about how we read each platform, and what's still in progress.</p>
+
+    <div class="next-grid">
+        <div class="next-card">
+            <span class="priority-tag priority-low">Ongoing</span>
+            <h4>Google Ads: Keep Trusting the Improving Trend</h4>
+            <p>No action needed. The July 8 fix is working as intended, expect the reporting gap to keep narrowing in future reports.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-high">Waiting on Graphedia</span>
+            <h4>Meta Ads: CAPI Is the Priority Fix</h4>
+            <p>Until CAPI is live, we're making Meta budget and creative decisions off real order data, not Meta's own dashboard. We'll keep pushing on the timeline.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-medium">Next Update</span>
+            <h4>Real Profit Trend</h4>
+            <p>We'll keep tracking real profit, not just revenue or platform ROAS, so spend decisions are grounded in what the business actually keeps.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-low">In Progress</span>
+            <h4>Order Data Detail</h4>
+            <p>Working with your team on getting a clearer product breakdown on more orders, which will sharpen future category-level profit reporting.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <strong>Kenny Fuels Profitability Update</strong> &nbsp;|&nbsp; Prepared by Josette &nbsp;|&nbsp; Confidential
+</footer>
+
+<script>
+    const ctx = document.getElementById('monthChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Real Revenue', 'Real Profit'],
+            datasets: [
+                { label: 'Jun 1-25', data: [79665, 17452], backgroundColor: '#243B98', borderRadius: 3 },
+                { label: 'Jul 1-25', data: [152125, 26660], backgroundColor: '#E6211E', borderRadius: 3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': €' + context.parsed.y.toLocaleString(); } } }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { family: 'IBM Plex Mono', size: 10 }, callback: function(value) { return '€' + value.toLocaleString(); } } },
+                x: { grid: { display: false }, ticks: { font: { family: 'IBM Plex Mono', size: 10 } } }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
