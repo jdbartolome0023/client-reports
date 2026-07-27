@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenny Fuels Google Ads Report: Jul 1-26, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --black: #243B98;
+            --red: #E6211E;
+            --ink: #1a1f2e;
+            --paper: #fbfaf8;
+            --paper-alt: #f3f1ec;
+            --line: #e4e1da;
+            --muted: #6b7280;
+            --green: #1f7a4d;
+            --amber: #b45309;
+            --purple: #6b3fa0;
+            --font-display: 'Lato', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-display); background: var(--paper); color: var(--ink); font-size: 15px; }
+
+        nav { position: sticky; top: 0; z-index: 100; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; }
+        nav .logo img { height: 34px; width: auto; display: block; }
+        nav ul { display: flex; gap: 28px; list-style: none; }
+        nav ul a { color: rgba(255,255,255,0.68); text-decoration: none; font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.15s; }
+        nav ul a:hover { color: #fff; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .report-date { color: rgba(255,255,255,0.5); font-family: var(--font-mono); font-size: 11px; }
+        .btn-pdf { background: var(--red); color: white; border: none; padding: 7px 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; letter-spacing: 0.3px; }
+
+        .hero { padding: 56px 40px 44px; border-bottom: 1px solid var(--line); max-width: 1080px; margin: 0 auto; }
+        .period-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); background: var(--paper-alt); padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; color: var(--muted); margin-bottom: 20px; letter-spacing: 0.3px; }
+        .period-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+        .hero h1 { font-family: var(--font-display); font-weight: 900; font-size: 52px; line-height: 1.02; letter-spacing: 0.2px; margin-bottom: 6px; }
+        .hero h1 span { color: var(--red); display: block; font-size: 26px; font-weight: 700; margin-top: 4px; }
+        .hero p { font-size: 15px; color: var(--muted); max-width: 560px; margin-top: 16px; line-height: 1.6; }
+
+        section { max-width: 1080px; margin: 0 auto; padding: 44px 40px; border-bottom: 1px solid var(--line); }
+        section.alt { background: var(--paper-alt); }
+
+        .eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+        .section-title { font-family: var(--font-display); font-weight: 900; font-size: 30px; letter-spacing: 0.2px; margin-bottom: 6px; text-wrap: balance; }
+        .section-desc { color: var(--muted); font-size: 13.5px; margin-bottom: 20px; line-height: 1.55; max-width: 680px; }
+        .section-commentary { font-size: 14px; color: var(--ink); line-height: 1.7; max-width: 720px; margin-bottom: 32px; padding-left: 14px; border-left: 3px solid var(--red); }
+
+        .notes-list { list-style: none; display: flex; flex-direction: column; gap: 14px; max-width: 720px; }
+        .notes-list li { display: flex; gap: 12px; align-items: baseline; }
+        .notes-list .dot { font-family: var(--font-mono); color: var(--red); font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+        .notes-list .txt { font-size: 14px; line-height: 1.65; color: var(--ink); }
+        .notes-list .txt b { font-weight: 700; }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+        .metric-card { background: var(--paper); padding: 20px 20px; }
+        .metric-label { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+        .metric-value { font-family: var(--font-display); font-weight: 900; font-size: 34px; letter-spacing: 0.2px; line-height: 1; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+        .metric-value.small { font-size: 26px; }
+        .metric-comparisons { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-mono); font-size: 11px; }
+        .comp-label { color: var(--muted); }
+        .up { color: var(--green); font-weight: 600; }
+        .down { color: var(--red); font-weight: 600; }
+        .neutral { color: var(--muted); font-weight: 600; }
+
+        .source-tag { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.3px; color: var(--muted); margin-bottom: 16px; }
+        .tag-google { display: inline-block; background: #e8eefb; color: var(--black); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .tag-woo { display: inline-block; background: #e5f2ea; color: var(--green); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .tag-warn { display: inline-block; background: #fdeceb; color: var(--red); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+
+        .gap-compare { display: flex; align-items: center; gap: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: var(--paper); }
+        .gap-side { flex: 1; padding: 22px 26px; }
+        .gap-side.google { border-right: 1px solid var(--line); }
+        .gap-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+        .gap-num-row { display: flex; align-items: baseline; gap: 8px; }
+        .gap-num { font-family: var(--font-display); font-weight: 900; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
+        .gap-num.google-val { color: var(--black); }
+        .gap-num.woo-val { color: var(--green); }
+        .gap-num-caption { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+        .gap-mid { background: var(--ink); color: #fff; padding: 16px 20px; text-align: center; flex-shrink: 0; }
+        .gap-mid .x { font-family: var(--font-mono); font-weight: 600; font-size: 18px; }
+        .gap-mid .l { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; }
+
+        .table-card { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 24px; background: var(--paper); }
+        .table-card-header { padding: 16px 20px; border-bottom: 1px solid var(--line); }
+        .table-card-header h3 { font-size: 14.5px; font-weight: 700; }
+        .table-card-header p { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+
+        table { width: 100%; border-collapse: collapse; }
+        thead th { background: var(--ink); color: #fff; padding: 9px 20px; text-align: left; font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.6px; text-transform: uppercase; }
+        tbody tr { border-bottom: 1px solid var(--line); }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:nth-child(even) { background: var(--paper-alt); }
+        tbody td { padding: 11px 20px; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+        tbody td:first-child { font-weight: 500; font-variant-numeric: normal; }
+
+        .campaign-name { font-weight: 700; font-size: 13.5px; color: var(--ink); }
+        .adgroup-label { margin-top: 3px; font-family: var(--font-mono); font-size: 10.5px; font-weight: 400; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .campaign-note td { padding: 6px 20px 10px 20px; font-size: 12px; color: var(--muted); background: var(--paper-alt); border-bottom: 1px solid var(--line); }
+
+        .status-active { display: inline-block; background: #e5f2ea; color: var(--green); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .status-learning { display: inline-block; background: #e8eefb; color: var(--black); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
+        .status-new { display: inline-block; background: #f1e9f7; color: var(--purple); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
+        .status-peak { display: inline-block; background: #e5f2ea; color: var(--green); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .status-fixed { display: inline-block; background: #fdf2e2; color: var(--amber); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+
+        .chart-container { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin-top: 24px; }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+        .chart-title { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); }
+        .chart-legend { display: flex; gap: 14px; font-family: var(--font-mono); font-size: 10.5px; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
+
+        .changes-list { display: flex; flex-direction: column; gap: 0; }
+        .change-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+        .change-item:last-child { border-bottom: none; }
+        .change-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+        .icon-done { background: #e5f2ea; }
+        .icon-new { background: #f1e9f7; }
+        .icon-warn { background: #fdeceb; }
+        .change-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .change-content p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+        .next-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+        .next-card { background: var(--paper); padding: 20px 22px; }
+        .next-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .next-card p { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+        .priority-tag { display: inline-block; font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
+        .priority-high { background: #fdeceb; color: var(--red); }
+        .priority-medium { background: #fdf2e2; color: var(--amber); }
+        .priority-low { background: #e5f2ea; color: var(--green); }
+
+        .note-strip { display: flex; gap: 10px; align-items: flex-start; padding: 14px 16px; background: var(--paper-alt); border-radius: 8px; margin-bottom: 16px; font-size: 12.5px; line-height: 1.55; color: var(--ink); }
+        .note-strip b { font-weight: 700; }
+        .note-strip .ic { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+        .note-strip.warn { background: #fdeceb; }
+        .note-strip ul { margin-left: 4px; padding-left: 16px; margin-top: 6px; }
+        .note-strip li { margin-bottom: 4px; }
+
+        footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 22px 40px; font-family: var(--font-mono); font-size: 11px; }
+        footer strong { color: rgba(255,255,255,0.72); }
+
+        @media (max-width: 768px) {
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .next-grid { grid-template-columns: 1fr; }
+            .gap-compare { flex-direction: column; }
+            .gap-side.google { border-right: none; border-bottom: 1px solid var(--line); }
+            .hero h1 { font-size: 38px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><img src="https://www.kennyfuels.ie/wp-content/uploads/2023/11/kenny-logo.png" alt="Kenny Fuels"></div>
+    <ul>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#metrics">This Period</a></li>
+        <li><a href="#campaigns">Campaigns</a></li>
+        <li><a href="#attribution">Real Picture</a></li>
+        <li><a href="#changes">What We Did</a></li>
+        <li><a href="#next">What's Next</a></li>
+    </ul>
+    <div class="nav-right">
+        <span class="report-date">JUL 01&ndash;26 2026</span>
+        <button class="btn-pdf" onclick="window.print()">DOWNLOAD PDF</button>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="period-badge">JUL 1&ndash;26, 2026 &nbsp;&middot;&nbsp; MONTH-TO-DATE PERIOD</div>
+    <h1>Kenny Fuels<span>Google Ads: Monthly Update</span></h1>
+    <p>Wed Jul 1 through Sun Jul 26 (26 days). Cumulative month-to-date, same convention as the Jul 1-12 and Jul 1-19 reports. All figures in EUR.</p>
+</div>
+
+<section id="notes" class="alt">
+    <div class="section-title">This Period's Notes</div>
+    <ul class="notes-list">
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Real profit is up 52.8% month over month, and the attribution gap keeps closing.</b> Comparing this period against the same 26 days in June: real revenue is up 108.8% and real net swung from a roughly breakeven range (-&euro;2,732 to +&euro;678) to a clearly positive one (+&euro;3.50 to +&euro;7,370). The gap between what Google reports and what real orders confirm narrowed from 44.9% to 75.4% of platform-reported value.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Composite Decking: regression caught and fixed.</b> After a strong first week (7.3x ROAS), the campaign had zero conversions the following week under its 700% tROAS target, with impression share stuck near 10% both weeks. Switched to Maximize Conversions (uncapped) Jul 27 to rebuild real conversion volume before reintroducing a value target, same approach already working on Firewood and HHO.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Hardware confirms a real loss for the third period running (&minus;&euro;928.26).</b> Worth considering whether the same margin-adjusted scrutiny that triggered the Composite Decking split should extend to the rest of Hardware.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>GA4 purchase tracking: the Jul 24 fix hasn't worked.</b> Checked the two days after the fix specifically (Jul 25-26, as instructed): real orders were 13 and 7 that day respectively, against 0.06 and 0.34 tracked conversions. Re-escalated to Graphedia Jul 27.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>New ad group live: Superser Radiant Heater.</b> A long-open action item, built this period in the Hardware campaign, pending Google's standard ad review.</span></li>
+    </ul>
+</section>
+
+<section id="metrics">
+    <div class="eyebrow">This Period</div>
+    <div class="section-title">Performance: Jul 1&ndash;26</div>
+    <p class="section-desc">26 days. Comparison period is Jun 1&ndash;26 (also 26 days), a matched span rather than the immediately preceding week, so every figure below compares directly without per-day normalization.</p>
+    <p class="section-commentary">337.0 conversions, &euro;5,904 spend, 30.3x blended ROAS. Excluding Kenergy Solar's synthetic lead value, spend was essentially flat vs. the same 26 days in June (-0.3%), while conversions and platform conv. value both rose (conv. value +24.5%). On real, WooCommerce-verified numbers the story is stronger still: real revenue is up 108.8% and the account's real net swung from roughly breakeven to clearly profitable. Hardware remains a real loss once margin is applied, addressed in What We Did and What's Next below.</p>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">Conversions</div>
+            <div class="metric-value">337.0</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Ex-Solar vs Jun 1-26</span> <span class="up">&#9650; 328.0 vs 267.2 (+22.7%)</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Total Spend</div>
+            <div class="metric-value">&euro;5,904</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Ex-Solar vs Jun 1-26</span> <span class="neutral">&#9644; &euro;5,620 vs &euro;5,635 (-0.3%)</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Cost / Conversion</div>
+            <div class="metric-value">&euro;17.13</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Ex-Solar, Jun 1-26</span> <span class="up">&#9660; &euro;21.08 (-18.7%)</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Real Revenue (WooCommerce)</div>
+            <div class="metric-value small">&euro;53,623</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">vs Jun 1-26</span> <span class="up">&#9650; &euro;25,681 (+108.8%)</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>Period Breakdown</h3>
+            <p>All active campaigns combined. Both periods are 26 days, so this is a direct comparison, not per-day.</p>
+        </div>
+        <table>
+            <thead><tr><th>Period</th><th>Days</th><th>Spend</th><th>Clicks</th><th>Impressions</th><th>Conversions</th><th>ROAS</th></tr></thead>
+            <tbody>
+                <tr><td>Jun 1&ndash;26</td><td>26</td><td>&euro;5,711</td><td>6,720</td><td>47,904</td><td>219.2</td><td>10.0x*</td></tr>
+                <tr style="font-weight:600; background:var(--paper-alt);"><td>Jul 1&ndash;26 &larr; This Period</td><td>26</td><td>&euro;5,904</td><td>6,310</td><td>47,130</td><td>337.0</td><td>30.3x*</td></tr>
+            </tbody>
+        </table>
+        <p style="padding: 10px 20px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line);">*Both ROAS figures are heavily influenced by flat per-call conversion values and Kenergy Solar's synthetic value: see the ex-Solar comparison above, or the real WooCommerce-verified figures in Site Sales &amp; Attribution below, for the representative trend.</p>
+    </div>
+
+    <div class="table-card">
+        <div class="table-card-header"><h3>Daily Breakdown: Jul 1&ndash;26</h3></div>
+        <table>
+            <thead><tr><th>Date</th><th>Spend</th><th>Conversions</th><th>Tracked Value</th><th>ROAS</th></tr></thead>
+            <tbody>
+                <tr><td>Wed Jul 1</td><td>&euro;266.62</td><td>12.50</td><td>&euro;2,616.68</td><td>9.81x</td></tr>
+                <tr><td>Thu Jul 2</td><td>&euro;252.12</td><td>19.00</td><td>&euro;27,478.69</td><td>108.99x</td></tr>
+                <tr><td>Fri Jul 3</td><td>&euro;270.06</td><td>15.50</td><td>&euro;3,016.02</td><td>11.17x</td></tr>
+                <tr><td>Sat Jul 4</td><td>&euro;241.45</td><td>4.00</td><td>&euro;619.69</td><td>2.57x</td></tr>
+                <tr><td>Sun Jul 5</td><td>&euro;87.08</td><td>6.00</td><td>&euro;540.00</td><td>6.20x</td></tr>
+                <tr><td>Mon Jul 6</td><td>&euro;325.05</td><td>11.99</td><td>&euro;2,896.48</td><td>8.91x</td></tr>
+                <tr><td>Tue Jul 7</td><td>&euro;282.39</td><td>14.00</td><td>&euro;3,203.90</td><td>11.35x</td></tr>
+                <tr><td>Wed Jul 8</td><td>&euro;262.18</td><td>26.19</td><td>&euro;17,533.22</td><td>66.87x &nbsp;&middot;&nbsp; UTM fix applied</td></tr>
+                <tr><td>Thu Jul 9</td><td>&euro;269.06</td><td>30.68</td><td>&euro;17,611.43</td><td>65.46x</td></tr>
+                <tr><td>Fri Jul 10</td><td>&euro;252.35</td><td>20.82</td><td>&euro;4,964.65</td><td>19.67x</td></tr>
+                <tr><td>Sat Jul 11</td><td>&euro;225.53</td><td>10.00</td><td>&euro;1,938.60</td><td>8.60x</td></tr>
+                <tr><td>Sun Jul 12</td><td>&euro;104.66</td><td>4.00</td><td>&euro;360.00</td><td>3.44x</td></tr>
+                <tr><td>Mon Jul 13</td><td>&euro;291.07</td><td>17.98</td><td>&euro;27,900.83</td><td>95.86x &nbsp;&middot;&nbsp; Composite Decking launch</td></tr>
+                <tr><td>Tue Jul 14</td><td>&euro;279.95</td><td>11.00</td><td>&euro;2,026.80</td><td>7.24x</td></tr>
+                <tr><td>Wed Jul 15</td><td>&euro;264.84</td><td>20.23</td><td>&euro;4,704.77</td><td>17.76x</td></tr>
+                <tr><td>Thu Jul 16</td><td>&euro;230.19</td><td>8.75</td><td>&euro;25,612.80</td><td>111.27x</td></tr>
+                <tr><td>Fri Jul 17</td><td>&euro;213.96</td><td>13.06</td><td>&euro;2,910.01</td><td>13.60x &nbsp;&middot;&nbsp; GA4 Purchase tag published</td></tr>
+                <tr><td>Sat Jul 18</td><td>&euro;220.48</td><td>7.99</td><td>&euro;1,884.84</td><td>8.55x</td></tr>
+                <tr><td>Sun Jul 19</td><td>&euro;68.39</td><td>0.00</td><td>&euro;0.00</td><td>0.00x</td></tr>
+                <tr><td>Mon Jul 20</td><td>&euro;257.34</td><td>17.00</td><td>&euro;3,215.34</td><td>12.50x</td></tr>
+                <tr><td>Tue Jul 21</td><td>&euro;235.88</td><td>11.12</td><td>&euro;1,969.57</td><td>8.35x</td></tr>
+                <tr><td>Wed Jul 22</td><td>&euro;221.12</td><td>7.97</td><td>&euro;2,776.85</td><td>12.56x</td></tr>
+                <tr><td>Thu Jul 23</td><td>&euro;271.83</td><td>15.18</td><td>&euro;15,351.36</td><td>56.48x</td></tr>
+                <tr><td>Fri Jul 24</td><td>&euro;218.30</td><td>18.03</td><td>&euro;5,671.14</td><td>25.98x &nbsp;&middot;&nbsp; Niall's GA4 DataLayer fix applied</td></tr>
+                <tr><td>Sat Jul 25</td><td>&euro;219.84</td><td>3.06</td><td>&euro;419.55</td><td>1.91x &nbsp;&middot;&nbsp; 13 real orders vs. 0.06 tracked conv.</td></tr>
+                <tr><td>Sun Jul 26</td><td>&euro;73.17</td><td>1.34</td><td>&euro;147.86</td><td>2.02x &nbsp;&middot;&nbsp; 7 real orders vs. 0.34 tracked conv.</td></tr>
+                <tr style="font-weight:700; background: var(--paper-alt);"><td>Total</td><td>&euro;5,904.33</td><td>337.04</td><td>&euro;179,148.58</td><td>30.34x</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-header">
+            <span class="chart-title">Spend vs Revenue vs Profit by Campaign</span>
+            <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#243B98"></div><span>Spend</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#E6211E"></div><span>Revenue</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#1f7a4d"></div><span>Profit</span></div>
+            </div>
+        </div>
+        <canvas id="spendChart" height="90"></canvas>
+        <p style="padding: 10px 4px 0; font-size: 11px; color: var(--muted);">Profit = (revenue &times; category margin) &minus; spend, using the margins Ciaran supplied Jul 8, and each campaign's own platform-reported conversion value as revenue (WooCommerce can't currently attribute orders to individual campaigns - see the account-wide real figure below). <b>Brand Search's margin (14.6%) is an estimate</b>, derived from Google's own conversion-volume mix, not confirmed by Ciaran directly. Kenergy Solar excluded: its &euro;108,000 tracked value is a synthetic bidding proxy, not realized sales.</p>
+    </div>
+</section>
+
+<section id="campaigns" class="alt">
+    <div class="eyebrow">The Detail</div>
+    <div class="section-title">Active Campaigns</div>
+    <p class="section-desc">Jul 1&ndash;26, 2026, 26 days. <span class="tag-google">GOOGLE ADS, SELF-REPORTED</span></p>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>Kenny Fuels: All Active Campaigns</h3>
+            <p>Profit = (revenue &times; category margin) &minus; spend, revenue = platform-reported conv. value. *Brand Search margin (14.6%) is estimated, not confirmed by Ciaran. Kenergy Solar's profit isn't realized yet, its tracked value is a synthetic bidding proxy.</p>
+        </div>
+        <table>
+            <thead><tr><th>Campaign</th><th>Status</th><th>Spend</th><th>Clicks</th><th>Avg CPC</th><th>Conv / ROAS</th><th>Profit</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><div class="campaign-name">Brand Search*</div><div class="adgroup-label">tROAS 600% &nbsp;&middot;&nbsp; Budget: &euro;110/day &nbsp;&middot;&nbsp; Budget Lost: 41.5%</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;2,641</td><td>2,616</td><td>&euro;1.01</td><td>190.9 conv / 16.7x</td><td style="color: var(--green); font-weight:700;">+&euro;3,794</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Budget Lost IS at 41.5% (was 40.5% on Jul 1-19): still the account's strongest real-profit performer, still capped by budget rather than competitiveness. No headroom in the approved &euro;255/day envelope to raise without reallocating.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Home Heating Oil</div><div class="adgroup-label">Maximize Conversions &nbsp;&middot;&nbsp; Budget: &euro;25/day &nbsp;&middot;&nbsp; Mon-Sat only</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;597</td><td>548</td><td>&euro;1.09</td><td>56.2 conv / 33.1x</td><td style="color: var(--green); font-weight:700;">+&euro;1,378</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Strong off-season performance continuing.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Gas Bottle &amp; Cylinders</div><div class="adgroup-label">tROAS 200% &nbsp;&middot;&nbsp; Budget: &euro;10/day (of &euro;35 approved)</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;241</td><td>206</td><td>&euro;1.17</td><td>19.0 conv / 7.1x</td><td style="color: var(--green); font-weight:700;">+&euro;101</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Real profit, on the account's thinnest volume. A Quality Score gap on the landing page (stock confirmation, pricing, order mechanism) has been flagged to Graphedia.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Hardware</div><div class="adgroup-label">Maximize Clicks &nbsp;&middot;&nbsp; Budget: &euro;50/day (reduced from &euro;70) &nbsp;&middot;&nbsp; Peak season</div></td>
+                    <td><span class="status-peak">PEAK SEASON</span></td><td>&euro;1,567</td><td>2,496</td><td>&euro;0.63</td><td>47.0 conv / 2.7x</td><td style="color: var(--red); font-weight:700;">&minus;&euro;928</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7"><b>Confirmed real loss for the third period running.</b> New this period: the Superser Radiant Heater ad group launched inside this campaign - too new to have moved the numbers yet.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Kenergy Solar</div><div class="adgroup-label">tCPA &euro;40 &nbsp;&middot;&nbsp; Budget: &euro;15/day</div></td>
+                    <td><span class="status-new">LEARNING</span></td><td>&euro;285</td><td>54</td><td>&euro;5.27</td><td>9.0 conv / 379.4x*</td><td style="color: var(--muted);">n/a**</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">*Synthetic &euro;12,000/conversion bidding value, confirmed by Ciaran via WhatsApp. **Still not checked against any actual closed deal - worth doing now that 9 leads exist.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Firewood</div><div class="adgroup-label">No tCPA yet &nbsp;&middot;&nbsp; Budget: &euro;20/day</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;520</td><td>328</td><td>&euro;1.58</td><td>13.0 conv / 2.3x</td><td style="color: var(--red); font-weight:700;">&minus;&euro;227</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Still a loss on platform-reported numbers. Worth setting a tCPA target at the next review.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Composite Decking</div><div class="adgroup-label">Maximize Conversions (uncapped, switched Jul 27) &nbsp;&middot;&nbsp; Budget: &euro;20/day</div></td>
+                    <td><span class="status-fixed">STRATEGY CHANGED</span></td><td>&euro;54</td><td>66</td><td>&euro;0.81</td><td>2.0 conv / 3.4x</td><td style="color: var(--red); font-weight:700;">&minus;&euro;27</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7"><b>Regression, since fixed.</b> First week was 7.3x ROAS; second week had zero conversions with impression share stuck at ~90% rank-lost, unchanged. Keyword-level Quality Scores checked first (6-10, all healthy) to rule out a landing page cause before concluding the 700% tROAS target was too tight for the account's auction competitiveness. Switched to Maximize Conversions (uncapped) Jul 27 to rebuild volume. Next review ~Aug 10.</td></tr>
+
+                <tr style="font-weight:700; background: var(--paper-alt);">
+                    <td>Total (7 campaigns)</td><td></td><td>&euro;5,904</td><td>6,310</td><td>&euro;0.94</td><td>337.0 conv / 30.3x</td><td style="color: var(--green);">+&euro;4,091 (ex-Solar)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="attribution">
+    <div class="eyebrow">The Real Picture</div>
+    <div class="section-title">Site Sales &amp; Attribution</div>
+    <p class="section-desc">The campaign detail above shows what Google Ads reports. Here's how that compares to what actually happened on the site.</p>
+
+    <div class="source-tag">SOURCE: WOOCOMMERCE ORDER EXPORT (ALL 397 SITE-WIDE ORDERS, ALL CHANNELS, JUL 1&ndash;26)</div>
+    <p style="font-size: 12px; color: var(--muted); margin-bottom: 16px; max-width: 640px; line-height: 1.5;">This baseline is the whole business, every channel combined, so it's intentionally identical to the same section in the Meta Ads report for this period. What differs between the two reports is everything below this line.</p>
+    <div class="metrics-grid">
+        <div class="metric-card"><div class="metric-label">Site Orders</div><div class="metric-value">397</div></div>
+        <div class="metric-card"><div class="metric-label">Site Revenue</div><div class="metric-value">&euro;155,135</div></div>
+        <div class="metric-card"><div class="metric-label">New Customers</div><div class="metric-value">171</div><div class="metric-comparisons"><div><span class="comp-label">43.1% of orders</span></div></div></div>
+        <div class="metric-card"><div class="metric-label">Returning</div><div class="metric-value">226</div><div class="metric-comparisons"><div><span class="comp-label">56.9% of orders</span></div></div></div>
+    </div>
+
+    <div class="gap-compare">
+        <div class="gap-side google">
+            <div class="gap-eyebrow">Google Ads reports (ex-Solar) <span class="tag-google" style="margin-left:6px;">SELF-REPORTED</span></div>
+            <div class="gap-num-row"><div class="gap-num google-val">&euro;71,149</div><div class="gap-num-caption">conv. value</div></div>
+        </div>
+        <div class="gap-mid" style="background: var(--green);">
+            <div class="x">75.4%</div>
+            <div class="l">Real vs.<br>platform</div>
+        </div>
+        <div class="gap-side">
+            <div class="gap-eyebrow">WooCommerce confirms <span class="tag-woo" style="margin-left:6px;">VERIFIED REAL REVENUE</span></div>
+            <div class="gap-num-row"><div class="gap-num woo-val">&euro;53,623</div><div class="gap-num-caption">real revenue</div></div>
+        </div>
+    </div>
+    <div class="source-tag"><span class="tag-woo">IMPROVED VS. LAST PERIOD</span> &nbsp;&middot;&nbsp; UP FROM 44.9% (JUN 1-26 EQUIVALENT WINDOW) AND 82.5% (JUL 1-19, WHICH WAS ITSELF PARTLY INFLATED BY FLAT CALL-VALUE ASSUMPTIONS - SEE THE PRIOR REPORT).</div>
+    <p style="font-size: 12px; color: var(--muted); margin: 8px 0 16px; max-width: 640px; line-height: 1.5;"><b>For context, not part of the comparison above:</b> "Organic: Google" (unpaid search) accounts for a separate 102 orders, &euro;33,385.35 this period. Kept out of every figure above.</p>
+
+    <div class="note-strip warn">
+        <span class="ic">&#9888;&#65039;</span>
+        <div>
+            <div class="head"><b>GA4 purchase tracking: the Jul 24 fix hasn't worked</b></div>
+            <ul>
+                <li>Niall applied a DataLayer fix Jul 24 and asked us to check back Monday (Jul 27). We checked the two clean post-fix days specifically: Jul 25 had 13 real orders (&euro;5,875.22) against 0.06 tracked conversions (&euro;19.95); Jul 26 had 7 real orders (&euro;3,010.59) against 0.34 tracked conversions (&euro;57.86).</li>
+                <li>That's essentially the same gap as before the fix. Re-escalated to Graphedia Jul 27, combined with the still-unanswered Meta CAPI timeline question in one email.</li>
+                <li>Confirmed noise, excluded from both figures above: orders tagged "Source: Google" that are actually Sand+Stones (&euro;5,795.46) - Kenny Fuels runs zero Google Ads spend on this category. Standing exclusion since Jul 15/17.</li>
+                <li><b>Blank Product(s) resolution is worse this period (55.1% blank vs. 53% last period).</b> Only 14% of the "Source: Google" bucket by order count landed in a named category - more genuine price overlap between mid-size Firewood, Gas, and Heating Oil orders this run, not a methodology regression.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="changes" class="alt">
+    <div class="eyebrow">What We Did</div>
+    <div class="section-title">Actions This Period</div>
+    <p class="section-desc">Google Ads and account actions taken Jul 1&ndash;26, 2026.</p>
+
+    <div class="changes-list">
+        <div class="change-item">
+            <div class="change-icon icon-done">&#10003;</div>
+            <div class="change-content">
+                <h4>Composite Decking: Regression Caught, Bidding Strategy Switched</h4>
+                <p>A confirmed second-week regression (0 conversions, ROAS below breakeven) was diagnosed before acting: keyword-level Quality Scores checked first and found healthy (6-10), ruling out a landing page cause, pointing instead to the 700% tROAS target being too tight for the campaign's real auction competitiveness. Switched to Maximize Conversions (uncapped) via API, the same volume-rebuilding approach already used successfully on Firewood and HHO. Next review ~Aug 10.</p>
+            </div>
+        </div>
+        <div class="change-item">
+            <div class="change-icon icon-done">&#10003;</div>
+            <div class="change-content">
+                <h4>Superser Radiant Heater Ad Group Built</h4>
+                <p>A long-open action item. New ad group added to Hardware, 7 keywords, 1 responsive search ad, pointing to the confirmed-live product page. Pending Google's standard ad review.</p>
+            </div>
+        </div>
+        <div class="change-item">
+            <div class="change-icon icon-warn">&#9888;</div>
+            <div class="change-content">
+                <h4>GA4 Purchase Tracking: Fix Applied, Confirmed Not Working</h4>
+                <p>Niall applied a DataLayer fix Jul 24 and asked us to verify Monday. Checked with fresh data: the gap between real orders and tracked conversions hasn't moved. Re-escalated Jul 27.</p>
+            </div>
+        </div>
+        <div class="change-item">
+            <div class="change-icon icon-warn">&#9888;</div>
+            <div class="change-content">
+                <h4>Gas Bottle &amp; Cylinders Landing Page Flagged</h4>
+                <p>Refreshed a six-week-old Quality Score reading before flagging it: most high-volume keywords currently show no Quality Score at all, not just a low one. The underlying page gap (no stock confirmation, pricing, or order mechanism) is the same issue previously flagged. Draft sent to Graphedia.</p>
+            </div>
+        </div>
+        <div class="change-item">
+            <div class="change-icon icon-done">&#10003;</div>
+            <div class="change-content">
+                <h4>Composite Decking Landing Page Re-Verified Live</h4>
+                <p>Confirmed via a live browser check that delivery info and per-product pricing are genuinely visible on the category page. Two of the four original requests remain open: no Add to Cart directly on the category page, and the separate pricing landing page returns a 404.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="next">
+    <div class="eyebrow">What's Next</div>
+    <div class="section-title">Going Into Next Period</div>
+    <p class="section-desc">Two layers: where to focus based on real profit signal, and the operational checks already scheduled.</p>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>Recommendations: Ranked by Real Profit, Not ROAS</h3>
+            <p>Ranked by real profit this period, best to worst. Brand Search's margin is an estimate, flagged where it applies.</p>
+        </div>
+        <table>
+            <thead><tr><th>Campaign</th><th>Profit Signal</th><th>Recommendation</th></tr></thead>
+            <tbody>
+                <tr><td class="campaign-name">Brand Search*</td><td>+&euro;3,794 profit (14.6% est. margin), capped by budget</td><td>Best real profit in the account, budget-constrained not demand-constrained (41.5% lost to budget). No headroom in the approved &euro;255/day envelope without reallocating - worth a direct budget conversation.</td></tr>
+                <tr><td class="campaign-name">Home Heating Oil</td><td>+&euro;1,378 profit, 10% margin</td><td>Second-best real profit. Hold current budget through the off-season, revisit ahead of the September heating season.</td></tr>
+                <tr><td class="campaign-name">Gas Bottle &amp; Cylinders</td><td>+&euro;101 profit</td><td>Real profit, but the landing page Quality Score gap is likely capping volume. Flagged to Graphedia this period.</td></tr>
+                <tr><td class="campaign-name">Kenergy Solar</td><td>Not yet realized</td><td>9 leads now exist - worth checking what any have actually closed at, to sanity-check the &euro;12,000 average job value driving this campaign's entire bidding strategy.</td></tr>
+                <tr><td class="campaign-name">Composite Decking</td><td>&minus;&euro;27 loss, bidding strategy just changed</td><td>Just switched off tROAS to rebuild volume. Hold and let it accumulate real conversion data before judging - next review ~Aug 10.</td></tr>
+                <tr><td class="campaign-name">Firewood</td><td>&minus;&euro;227 loss</td><td>Worth setting a tCPA target at the next review rather than continuing to hold uncapped.</td></tr>
+                <tr><td class="campaign-name">Hardware</td><td>&minus;&euro;928 loss, third period running</td><td>Consider whether the same margin-adjusted scrutiny that triggered the Composite Decking split should extend to the rest of Hardware.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="next-grid" style="margin-top: 24px;">
+        <div class="next-card">
+            <span class="priority-tag priority-high">Now</span>
+            <h4>GA4 Purchase Tracking - Second Escalation</h4>
+            <p>Re-escalated to Graphedia Jul 27 after confirming the Jul 24 fix hasn't worked. Awaiting reply.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-high">~Aug 10</span>
+            <h4>Composite Decking Volume Rebuild Check</h4>
+            <p>Two weeks under Maximize Conversions (uncapped) before considering a value target again.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-medium">Monitor</span>
+            <h4>Brand Search Budget Constraint</h4>
+            <p>Budget Lost IS at 41.5% and holding high. Worth a direct conversation, though there's no headroom without reallocating.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-medium">Next Review</span>
+            <h4>Firewood tCPA Decision</h4>
+            <p>Clean data has had enough runway to set a target rather than continuing to hold uncapped.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-low">Aug 18</span>
+            <h4>Content API Shutdown - Shopping Migration</h4>
+            <p>Merchant API migration in progress ahead of Google's Content API v2.1 shutdown, needed before the Sep 1 Shopping launch.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-low">September 2026</span>
+            <h4>Google Shopping Launch Preparation</h4>
+            <p>Shipping rate table still needs rebuilding in GMC, alongside outstanding image and disapproval fixes with Graphedia, before the Sep 1 launch.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <strong>Kenny Fuels Google Ads Report</strong> &nbsp;|&nbsp; Generated by Josette &nbsp;|&nbsp; Confidential
+</footer>
+
+<script>
+    const ctx = document.getElementById('spendChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Brand Search*', 'Home Heating Oil', 'Gas Bottle', 'Hardware', 'Composite Decking', 'Firewood'],
+            datasets: [
+                { label: 'Spend (€)', data: [2641, 597, 241, 1567, 54, 520], backgroundColor: '#243B98', borderRadius: 3 },
+                { label: 'Revenue (€)', data: [44081, 19749, 1711, 4258, 180, 1170], backgroundColor: '#E6211E', borderRadius: 3 },
+                { label: 'Profit (€)', data: [3794, 1378, 101, -928, -27, -227], backgroundColor: '#1f7a4d', borderRadius: 3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': €' + context.parsed.y; } } }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { family: 'IBM Plex Mono', size: 10 }, callback: function(value) { return '€' + value; } } },
+                x: { grid: { display: false }, ticks: { font: { family: 'IBM Plex Mono', size: 10 } } }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

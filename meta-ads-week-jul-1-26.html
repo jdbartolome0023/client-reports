@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenny Fuels Meta Ads Report: Jul 1-26, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --black: #243B98;
+            --red: #E6211E;
+            --ink: #1a1f2e;
+            --paper: #fbfaf8;
+            --paper-alt: #f3f1ec;
+            --line: #e4e1da;
+            --muted: #6b7280;
+            --green: #1f7a4d;
+            --amber: #b45309;
+            --font-display: 'Lato', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-display); background: var(--paper); color: var(--ink); font-size: 15px; }
+
+        nav { position: sticky; top: 0; z-index: 100; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; }
+        nav .logo img { height: 34px; width: auto; display: block; }
+        nav ul { display: flex; gap: 24px; list-style: none; }
+        nav ul a { color: rgba(255,255,255,0.68); text-decoration: none; font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.15s; }
+        nav ul a:hover { color: #fff; }
+        nav ul a.method-link { color: #ffd166; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .report-date { color: rgba(255,255,255,0.5); font-family: var(--font-mono); font-size: 11px; }
+        .btn-pdf { background: var(--red); color: white; border: none; padding: 7px 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; letter-spacing: 0.3px; }
+
+        .hero { padding: 56px 40px 44px; border-bottom: 1px solid var(--line); max-width: 1080px; margin: 0 auto; }
+        .period-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); background: var(--paper-alt); padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.3px; }
+        .period-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+        .method-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); background: #fdf2e2; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--amber); margin-bottom: 20px; margin-left: 8px; letter-spacing: 0.3px; }
+        .hero h1 { font-family: var(--font-display); font-weight: 900; font-size: 52px; line-height: 1.02; letter-spacing: 0.2px; margin-bottom: 6px; }
+        .hero h1 span { color: var(--red); display: block; font-size: 26px; font-weight: 700; margin-top: 4px; }
+        .hero p { font-size: 15px; color: var(--muted); max-width: 600px; margin-top: 16px; line-height: 1.6; }
+        .hero p a { color: var(--black); }
+
+        section { max-width: 1080px; margin: 0 auto; padding: 44px 40px; border-bottom: 1px solid var(--line); }
+        section.alt { background: var(--paper-alt); }
+
+        .eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+        .section-title { font-family: var(--font-display); font-weight: 900; font-size: 30px; letter-spacing: 0.2px; margin-bottom: 6px; text-wrap: balance; }
+        .section-desc { color: var(--muted); font-size: 13.5px; margin-bottom: 20px; line-height: 1.55; max-width: 640px; }
+        .section-desc a { color: var(--black); }
+
+        .notes-list { list-style: none; display: flex; flex-direction: column; gap: 14px; max-width: 720px; }
+        .notes-list li { display: flex; gap: 12px; align-items: baseline; }
+        .notes-list .dot { font-family: var(--font-mono); color: var(--red); font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+        .notes-list .txt { font-size: 14px; line-height: 1.65; color: var(--ink); }
+        .notes-list .txt b { font-weight: 700; }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+        .metric-card { background: var(--paper); padding: 20px 20px; }
+        .metric-label { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+        .metric-value { font-family: var(--font-display); font-weight: 900; font-size: 34px; letter-spacing: 0.2px; line-height: 1; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+        .metric-value.small { font-size: 26px; }
+        .metric-comparisons { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-mono); font-size: 11px; }
+        .comp-label { color: var(--muted); }
+        .up { color: var(--green); font-weight: 600; }
+        .down { color: var(--red); font-weight: 600; }
+        .neutral { color: var(--muted); font-weight: 600; }
+
+        .range-bar { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); padding: 22px 26px; margin-bottom: 12px; gap: 22px; }
+        .range-end { text-align: center; flex-shrink: 0; min-width: 96px; }
+        .range-end .lbl { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+        .range-end .val { font-family: var(--font-display); font-weight: 900; font-size: 24px; }
+        .range-end.floor .val { color: var(--red); }
+        .range-end.ceiling .val { color: var(--green); }
+        .range-track { flex: 1; height: 6px; background: linear-gradient(90deg, var(--red), var(--amber), var(--green)); border-radius: 3px; position: relative; }
+        .range-track .qmark { position: absolute; top: -26px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: 9.5px; color: var(--muted); text-align: center; white-space: nowrap; }
+
+        .source-tag { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.3px; color: var(--muted); margin-bottom: 16px; }
+
+        .gap-compare { display: flex; align-items: center; gap: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: var(--paper); }
+        .gap-side { flex: 1; padding: 22px 26px; }
+        .gap-side.meta { border-right: 1px solid var(--line); }
+        .gap-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+        .gap-num-row { display: flex; align-items: baseline; gap: 8px; }
+        .gap-num { font-family: var(--font-display); font-weight: 900; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
+        .gap-num.meta-val { color: var(--red); }
+        .gap-num.woo-val { color: var(--green); }
+        .gap-num-caption { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+        .gap-mid { background: var(--ink); color: #fff; padding: 16px 20px; text-align: center; flex-shrink: 0; }
+        .gap-mid .x { font-family: var(--font-mono); font-weight: 600; font-size: 18px; }
+        .gap-mid .l { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; }
+
+        .table-card { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 24px; background: var(--paper); }
+        .table-card-header { padding: 16px 20px; border-bottom: 1px solid var(--line); }
+        .table-card-header h3 { font-size: 14.5px; font-weight: 700; }
+        .table-card-header p { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+
+        table { width: 100%; border-collapse: collapse; }
+        thead th { background: var(--ink); color: #fff; padding: 9px 20px; text-align: left; font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.6px; text-transform: uppercase; }
+        tbody tr { border-bottom: 1px solid var(--line); }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:nth-child(even) { background: var(--paper-alt); }
+        tbody td { padding: 11px 20px; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+        tbody td:first-child { font-weight: 500; font-variant-numeric: normal; }
+
+        .campaign-name { font-weight: 700; font-size: 13.5px; color: var(--ink); }
+        .adgroup-label { margin-top: 3px; font-family: var(--font-mono); font-size: 10.5px; font-weight: 400; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .campaign-note td { padding: 6px 20px 10px 20px; font-size: 12px; color: var(--muted); background: var(--paper-alt); border-bottom: 1px solid var(--line); }
+
+        .status-active { display: inline-block; background: #e5f2ea; color: var(--green); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .status-watch { display: inline-block; background: #fdeceb; color: var(--red); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
+        .status-fixed { display: inline-block; background: #fdf2e2; color: var(--amber); font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .tag-verified { display: inline-block; background: #e5f2ea; color: var(--green); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+        .tag-unverified { display: inline-block; background: #fdeceb; color: var(--red); font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.3px; }
+
+        .chart-container { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin-top: 24px; }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+        .chart-title { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); }
+        .chart-legend { display: flex; gap: 14px; font-family: var(--font-mono); font-size: 10.5px; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
+
+        .changes-list { display: flex; flex-direction: column; gap: 0; }
+        .change-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+        .change-item:last-child { border-bottom: none; }
+        .change-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+        .icon-done { background: #e5f2ea; }
+        .icon-updated { background: #e8eefb; }
+        .icon-warn { background: #fdeceb; }
+        .change-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .change-content p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+        .next-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+        .next-card { background: var(--paper); padding: 20px 22px; }
+        .next-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .next-card p { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+        .priority-tag { display: inline-block; font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
+        .priority-high { background: #fdeceb; color: var(--red); }
+        .priority-medium { background: #fdf2e2; color: var(--amber); }
+        .priority-low { background: #e5f2ea; color: var(--green); }
+
+        .note-strip { display: flex; gap: 10px; align-items: flex-start; padding: 14px 16px; background: var(--paper-alt); border-radius: 8px; margin-bottom: 16px; font-size: 12.5px; line-height: 1.55; color: var(--ink); }
+        .note-strip b { font-weight: 700; }
+        .note-strip .ic { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+        .note-strip a { color: var(--black); font-weight: 700; }
+
+        footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 22px 40px; font-family: var(--font-mono); font-size: 11px; }
+        footer strong { color: rgba(255,255,255,0.72); }
+        footer a { color: rgba(255,255,255,0.6); }
+
+        @media (max-width: 768px) {
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .next-grid { grid-template-columns: 1fr; }
+            .gap-compare, .range-bar { flex-direction: column; }
+            .gap-side.meta { border-right: none; border-bottom: 1px solid var(--line); }
+            .hero h1 { font-size: 38px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><img src="https://www.kennyfuels.ie/wp-content/uploads/2023/11/kenny-logo.png" alt="Kenny Fuels"></div>
+    <ul>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#metrics">This Period</a></li>
+        <li><a href="#campaigns">Campaigns</a></li>
+        <li><a href="#attribution">Real Picture</a></li>
+        <li><a href="#worth">What It's Worth</a></li>
+        <li><a href="#changes">What We Did</a></li>
+        <li><a href="#next">What's Next</a></li>
+        <li><a href="reporting-methodology.html" class="method-link">Method &rarr;</a></li>
+    </ul>
+    <div class="nav-right">
+        <span class="report-date">JUL 01&ndash;26 2026</span>
+        <button class="btn-pdf" onclick="window.print()">DOWNLOAD PDF</button>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="period-badge">JUL 1&ndash;26, 2026 &nbsp;&middot;&nbsp; MONTH-TO-DATE PERIOD</div>
+    <span class="method-badge">&#9889; RANGE METHOD</span>
+    <h1>Kenny Fuels<span>Meta Ads: Monthly Update</span></h1>
+    <p>Performance across all seven active campaigns for Jul 1&ndash;26 (26 days, cumulative month-to-date). All figures in EUR. Every uncertain figure is reported as a floor-to-ceiling range rather than a single number, see <a href="reporting-methodology.html">the methodology page</a> for why.</p>
+</div>
+
+<section id="notes" class="alt">
+    <div class="section-title">This Period's Notes</div>
+    <ul class="notes-list">
+        <li><span class="dot">&#9656;</span><span class="txt"><b>107 purchases, &euro;40,013 revenue (Meta's claim), 10.45x ROAS</b> on &euro;3,828 spend. Real WooCommerce order data confirms 13 orders (&euro;3,791) can actually be traced to Meta: the gap ratio (8.2x on purchases) keeps narrowing, but the real loss in euro terms is about the same size as last period, not smaller. Full detail in The Real Picture below.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>No new Meta-attributed orders landed on Jul 26 specifically.</b> This period's real revenue and profit figures are unchanged from a check run mid-session on Jul 1&ndash;25 data - only spend and Meta's own claimed figures extend the extra day.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Heating Oil's frequency is now elevated two periods running</b> (3.72 last period, 4.07 this period). Worth a closer look next period rather than continuing to assume it's settling in.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Firewood Mairead video: chase stopped.</b> Four distinct fix attempts (width, clean creative, faststart+audio, non-silent audio) all produced the identical error, a strong sign it's a stale/generic message rather than a live re-diagnosis each time. The ad delivers normally on Facebook; the error only blocks Instagram for this one creative. No further action planned.</span></li>
+        <li><span class="dot">&#9656;</span><span class="txt"><b>Meta attribution remains a permanent limit, not a bug being chased. CAPI is now well overdue.</b> No update since Niall's Jul 9 message. Chased again Jul 27 in a combined email alongside the Google Ads GA4 tracking issue.</span></li>
+    </ul>
+</section>
+
+<section id="metrics">
+    <div class="eyebrow">This Period</div>
+    <div class="section-title">Performance: Jul 1&ndash;26</div>
+    <p class="section-desc">26 days. Comparison period is Jun 1&ndash;26 (also 26 days), a matched span rather than the immediately preceding week.</p>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">Purchases <span class="tag-unverified" style="margin-left:4px;">META</span></div>
+            <div class="metric-value">107</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">vs Jun 1-26</span> <span class="up">&#9650; 57</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Total Spend</div>
+            <div class="metric-value small">&euro;3,828</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">vs Jun 1-26</span> <span class="down">&#9650; &euro;2,350 (+62.9%)</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Account ROAS <span class="tag-unverified" style="margin-left:4px;">META</span></div>
+            <div class="metric-value small">10.45x</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Real ROAS (verified)</span> <span class="down">0.99x</span></div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Verified Purchases <span class="tag-verified" style="margin-left:4px;">WOO</span></div>
+            <div class="metric-value small">13</div>
+            <div class="metric-comparisons">
+                <div><span class="comp-label">Basis for the floor CPA below</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="source-tag">COST PER PURCHASE, FLOOR TO CEILING</div>
+    <div class="range-bar">
+        <div class="range-end floor">
+            <div class="lbl">Floor (real cost)</div>
+            <div class="val">&euro;294.44</div>
+        </div>
+        <div class="range-track"><div class="qmark">spend &divide; WooCommerce-verified orders (13) vs Meta's own claimed purchases (107)</div></div>
+        <div class="range-end ceiling">
+            <div class="lbl">Ceiling (Meta's claim)</div>
+            <div class="val">&euro;35.77</div>
+        </div>
+    </div>
+    <p class="section-desc" style="margin-top: 4px;">The real cost per purchase this period is somewhere between these two, most likely closer to the floor since it's the only figure independently confirmed. See <a href="reporting-methodology.html">methodology</a> for why both ends matter.</p>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>Period Breakdown</h3>
+            <p>Account-level totals, Meta pixel-attributed data (unverified).</p>
+        </div>
+        <table>
+            <thead><tr><th>Period</th><th>Days</th><th>Spend</th><th>Purchases</th><th>Revenue</th><th>ROAS</th></tr></thead>
+            <tbody>
+                <tr><td>Jun 1&ndash;26</td><td>26</td><td>&euro;2,350</td><td>57</td><td>&euro;15,460</td><td>6.58x</td></tr>
+                <tr style="font-weight:600; background:var(--paper-alt);"><td>Jul 1&ndash;26 &larr; This Period</td><td>26</td><td>&euro;3,828</td><td>107</td><td>&euro;40,013</td><td>10.45x</td></tr>
+            </tbody>
+        </table>
+        <p style="padding: 10px 20px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line);">Jun 1-26 chosen as a matched 26-day span for direct comparison, not the immediately preceding week.</p>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-header">
+            <span class="chart-title">Spend vs Revenue vs Profit by Campaign (Meta-reported)</span>
+            <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#243B98"></div><span>Spend</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#E6211E"></div><span>Revenue</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#1f7a4d"></div><span>Profit</span></div>
+            </div>
+        </div>
+        <canvas id="spendChart" height="90"></canvas>
+        <p style="padding: 10px 4px 0; font-size: 11px; color: var(--muted);">Profit = (Meta-reported revenue &times; category margin) minus spend, still on Meta's own unverified per-campaign numbers. <b>BOF Retargeting's margin (22.5%) is an estimate</b>, not confirmed by Ciaran directly. See The Real Picture below for why this is Meta's claim, not a verified result.</p>
+    </div>
+</section>
+
+<section id="campaigns" class="alt">
+    <div class="eyebrow">The Detail</div>
+    <div class="section-title">Active Campaigns</div>
+    <p class="section-desc">Jul 1&ndash;26, 2026, 26 days. <span class="tag-unverified">META SELF-REPORTED</span> &nbsp;WooCommerce doesn't break attribution down by individual campaign, so this table is the only tool available for comparing campaigns against each other. See <a href="reporting-methodology.html">methodology</a>.</p>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>Kenny Fuels Meta Ads: All Campaigns</h3>
+            <p>Profit = (revenue &times; category margin) minus spend. *BOF Retargeting margin (22.5%) is estimated, not confirmed by Ciaran.</p>
+        </div>
+        <table>
+            <thead><tr><th>Campaign</th><th>Status</th><th>Spend</th><th>Purch.</th><th>Revenue</th><th>ROAS / CPA</th><th>Profit</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><div class="campaign-name">Gas Cylinders</div><div class="adgroup-label">&euro;30/day &nbsp;&middot;&nbsp; Freq 2.67</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;778</td><td>21</td><td>&euro;8,854</td><td>11.38x / &euro;37.04</td><td style="color: var(--green); font-weight:700;">+&euro;993</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Best claimed real profit in the account this period at gas's 20% margin.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Heating Oil</div><div class="adgroup-label">&euro;30/day &nbsp;&middot;&nbsp; Freq 4.07</div></td>
+                    <td><span class="status-watch">FREQUENCY WATCH</span></td><td>&euro;778</td><td>22</td><td>&euro;8,940</td><td>11.49x / &euro;35.36</td><td style="color: var(--green); font-weight:700;">+&euro;116</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Frequency now above 3.0 for two periods running (3.72, then 4.07). Real-evidence highlight: 1 of these 22 claimed purchases is independently verified in WooCommerce, see The Real Picture below.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Sand+Stones</div><div class="adgroup-label">&euro;20/day &nbsp;&middot;&nbsp; Freq 2.34</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;515</td><td>19</td><td>&euro;5,896</td><td>11.45x / &euro;27.10</td><td style="color: var(--green); font-weight:700;">+&euro;959</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Best-evidenced campaign this period: 5 of 19 claimed purchases independently verified.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Firewood B2B</div><div class="adgroup-label">&euro;12/day &nbsp;&middot;&nbsp; Freq 2.16</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;309</td><td>12</td><td>&euro;4,233</td><td>13.72x / &euro;25.71</td><td style="color: var(--green); font-weight:700;">+&euro;750</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Steady, year-round B2B demand.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">BOF Retargeting*</div><div class="adgroup-label">&euro;25/day &nbsp;&middot;&nbsp; Freq 7.39 full period, see note</div></td>
+                    <td><span class="status-watch">FREQUENCY WATCH</span></td><td>&euro;647</td><td>16</td><td>&euro;5,958</td><td>9.20x / &euro;40.47</td><td style="color: var(--green); font-weight:700;">+&euro;693</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Full-period frequency (7.39) still includes pre-Jul-17-fix days. WooCommerce's attribution data structurally can't tag a purchase to BOF Retargeting specifically (it reuses other campaigns' creative), so this campaign has zero directly-attributable verified orders, same limitation as Compost below.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Compost</div><div class="adgroup-label">&euro;15/day &nbsp;&middot;&nbsp; Freq 2.60</div></td>
+                    <td><span class="status-active">ACTIVE</span></td><td>&euro;410</td><td>12</td><td>&euro;3,208</td><td>7.82x / &euro;34.21</td><td style="color: var(--green); font-weight:700;">+&euro;391</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Delivery skew between its two ads is stabilizing (spend still ~80/20, purchases now balanced) - next check ~Jul 31.</td></tr>
+
+                <tr>
+                    <td><div class="campaign-name">Firewood B2C</div><div class="adgroup-label">&euro;15/day &nbsp;&middot;&nbsp; Overstock sale to ~Aug 1 &nbsp;&middot;&nbsp; Freq 1.82</div></td>
+                    <td><span class="status-fixed">CREATIVE ISSUE CLOSED</span></td><td>&euro;390</td><td>5</td><td>&euro;2,924</td><td>7.49x / &euro;78.09</td><td style="color: var(--green); font-weight:700;">+&euro;341</td>
+                </tr>
+                <tr class="campaign-note"><td colspan="7">Highest per-purchase cost in the account. Mairead video ad's SOFT_ERROR chase stopped Jul 23 after 4 fix attempts all produced the identical error; the ad delivers normally on Facebook regardless.</td></tr>
+
+                <tr style="font-weight:700; background: var(--paper-alt);">
+                    <td>Total (7 campaigns)</td><td></td><td>&euro;3,828</td><td>107</td><td>&euro;40,013</td><td>10.45x</td><td style="color: var(--green);">+&euro;4,243</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="attribution">
+    <div class="eyebrow">The Real Picture</div>
+    <div class="section-title">Site Sales &amp; Attribution</div>
+    <p class="section-desc">The campaign detail above is what Meta reports. Here's how that compares to what actually happened on the site.</p>
+
+    <div class="source-tag">SOURCE: WOOCOMMERCE ORDER EXPORT (ALL 397 SITE-WIDE ORDERS, ALL CHANNELS, JUL 1&ndash;26)</div>
+    <p style="font-size: 12px; color: var(--muted); margin-bottom: 16px; max-width: 640px; line-height: 1.5;">This baseline is the whole business, every channel combined, so it's intentionally identical to the same section in the Google Ads report for this period.</p>
+    <div class="metrics-grid">
+        <div class="metric-card"><div class="metric-label">Site Orders</div><div class="metric-value">397</div></div>
+        <div class="metric-card"><div class="metric-label">Site Revenue</div><div class="metric-value">&euro;155,135</div></div>
+        <div class="metric-card"><div class="metric-label">New Customers</div><div class="metric-value">171</div><div class="metric-comparisons"><div><span class="comp-label">43.1% of orders</span></div></div></div>
+        <div class="metric-card"><div class="metric-label">Returning</div><div class="metric-value">226</div><div class="metric-comparisons"><div><span class="comp-label">56.9% of orders</span></div></div></div>
+    </div>
+
+    <div class="gap-compare">
+        <div class="gap-side meta">
+            <div class="gap-eyebrow">Meta reports <span class="tag-unverified" style="margin-left:6px;">UNVERIFIED</span></div>
+            <div class="gap-num-row"><div class="gap-num meta-val">107</div><div class="gap-num-caption">purchases</div></div>
+        </div>
+        <div class="gap-mid">
+            <div class="x">8.2x</div>
+            <div class="l">Meta<br>overstates</div>
+        </div>
+        <div class="gap-side">
+            <div class="gap-eyebrow">WooCommerce confirms <span class="tag-verified" style="margin-left:6px;">VERIFIED</span></div>
+            <div class="gap-num-row"><div class="gap-num woo-val">13</div><div class="gap-num-caption">purchases</div></div>
+        </div>
+    </div>
+
+    <div class="source-tag">REVENUE, FLOOR TO CEILING (SAME UNDERLYING PURCHASES ABOVE)</div>
+    <div class="range-bar">
+        <div class="range-end floor">
+            <div class="lbl">Floor (WooCommerce)</div>
+            <div class="val">&euro;3,791</div>
+        </div>
+        <div class="range-track"><div class="qmark">true figure is somewhere in here, currently unknown</div></div>
+        <div class="range-end ceiling">
+            <div class="lbl">Ceiling (Meta's claim)</div>
+            <div class="val">&euro;40,013</div>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>Is Meta Actually Getting Better? Verified Check vs. Jun 1-26 (Matched 26-Day Span)</h3>
+            <p><span class="tag-verified">WOOCOMMERCE, VERIFIED</span> &nbsp;Comparison period is Jun 1-26, the same calendar span as this report.</p>
+        </div>
+        <table>
+            <thead><tr><th>Metric</th><th>Jun 1-26</th><th>Jul 1-26 (This Period)</th><th>Change</th></tr></thead>
+            <tbody>
+                <tr><td class="campaign-name">Verified orders</td><td>1</td><td>13</td><td>13.0x</td></tr>
+                <tr><td class="campaign-name">Verified revenue</td><td>&euro;89.00</td><td>&euro;3,791.49</td><td>42.6x</td></tr>
+                <tr><td class="campaign-name">Verified ROAS (revenue &divide; spend)</td><td>0.038x</td><td>0.990x</td><td>26.1x better</td></tr>
+                <tr><td class="campaign-name">Verified profit (real margin)</td><td style="color: var(--red); font-weight:700;">&minus;&euro;2,327.50 loss (exact)</td><td style="color: var(--red); font-weight:700;">&minus;&euro;2,928 to &minus;&euro;3,217 loss</td><td>loss held roughly steady, spend up 62.9%</td></tr>
+                <tr><td class="campaign-name">Meta's claimed purchases</td><td>57</td><td>107</td><td>1.9x</td></tr>
+                <tr><td class="campaign-name">Gap ratio (claimed vs. verified)</td><td>57.0x</td><td>8.2x</td><td>narrowing sharply</td></tr>
+            </tbody>
+        </table>
+        <p style="padding: 12px 20px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line);"><b>The honest, complete picture is mixed, not unambiguously good news.</b> Verified revenue grew over 40x and the claimed-vs-verified gap narrowed sharply (57.0x &rarr; 8.2x), real signs of measurement quality improving. But real net loss held roughly steady in absolute euros even as spend rose 62.9%, because real revenue, though up sharply in percentage terms, is still growing off a base of almost nothing. This directly matches the loss range in What It's Worth below.</p>
+    </div>
+
+    <div class="note-strip">
+        <span class="ic">&#128274;</span>
+        <span><b>Permanent, not a bug:</b> visitors who decline marketing cookies cannot legally be tracked for ad attribution under Irish ePrivacy/GDPR rules (Graphedia confirmed Jul 7). The gap above also isn't purely consent-decline, it includes unrelated non-Meta traffic too: only 13 of 397 total site orders this period carry any Meta or paid-social attribution tag at all. Full explanation on the <a href="reporting-methodology.html">methodology page</a>.</span>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-header">
+            <span class="chart-title">Spend vs Revenue vs Profit: Meta's Claim vs WooCommerce Verified</span>
+            <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#243B98"></div><span>Spend</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#E6211E"></div><span>Revenue</span></div>
+                <div class="legend-item"><div class="legend-dot" style="background:#1f7a4d"></div><span>Profit</span></div>
+            </div>
+        </div>
+        <canvas id="attributionChart" height="90"></canvas>
+        <p style="padding: 10px 4px 0; font-size: 11px; color: var(--muted);">Same &euro;3,828 spend, two very different pictures depending which revenue figure it's measured against. Ceiling profit (+&euro;4,243) sums each campaign's real margin, exact. Floor profit (&minus;&euro;2,928 to &minus;&euro;3,217) applies real category margins to the 13 WooCommerce-verified orders. See What It's Worth below.</p>
+    </div>
+</section>
+
+<section id="worth" class="alt">
+    <div class="eyebrow">What It's Worth</div>
+    <div class="section-title">Profitability Range</div>
+    <p class="section-desc">Real profit at both ends of the range below, not just revenue minus spend.</p>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>This Period: &euro;3,828 Spent, Against Two Very Different Revenue Pictures</h3>
+        </div>
+        <table>
+            <thead><tr><th>Scenario</th><th>Revenue</th><th>Margin Basis</th><th>Real Profit</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td class="campaign-name">Floor (WooCommerce-verified)</td>
+                    <td>&euro;3,791</td>
+                    <td>Real category margins on the 9 orders matched to a category (Sand+Stones, Heating Oil, Gas, Firewood), plus a 10-25% range on the 4 remaining orders</td>
+                    <td style="color: var(--red); font-weight:700;">&minus;&euro;2,928 to &minus;&euro;3,217 loss</td>
+                </tr>
+                <tr>
+                    <td class="campaign-name">Ceiling (Meta's claim)</td>
+                    <td>&euro;40,013</td>
+                    <td>Exact, sum of each campaign's own category margin (see Campaigns table above)</td>
+                    <td style="color: var(--green); font-weight:700;">+&euro;4,243 profit</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="padding: 12px 20px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line);">9 of the floor's 13 verified orders could be matched to a specific product category this period, with a range only on the 4 remaining orders. BOF Retargeting's 22.5% margin (used in the ceiling) is an estimate, not confirmed by Ciaran directly. See the <a href="reporting-methodology.html">methodology page</a> for the full worked example.</p>
+    </div>
+
+    <p class="section-desc">The honest answer to "was this period profitable" is: <b>on Meta's own claimed numbers, yes, comfortably, at &euro;4,243</b>; <b>on the only figures WooCommerce can independently verify, no, a &euro;2,928-&euro;3,217 loss</b>, about the same size as last period's despite the claimed-vs-verified gap narrowing sharply. The permanent attribution gap means this range can't be collapsed to one number, that part hasn't changed.</p>
+</section>
+
+<section id="changes">
+    <div class="eyebrow">What We Did</div>
+    <div class="section-title">Actions This Period</div>
+    <p class="section-desc">Meta Ads changes made Jul 1&ndash;26, 2026.</p>
+
+    <div class="changes-list">
+        <div class="change-item">
+            <div class="change-icon icon-done">&#10003;</div>
+            <div class="change-content">
+                <h4>Firewood Mairead Video: Chase Stopped</h4>
+                <p>Four distinct fix attempts (width upscale, clean single-video creative, faststart + audio presence, non-silent audio) all produced the identical SOFT_ERROR - strong evidence the message is stale/generic rather than a live re-diagnosis of the file each time. The ad delivers normally on Facebook; the error only blocks Instagram for this one creative. No further action planned.</p>
+            </div>
+        </div>
+        <div class="change-item">
+            <div class="change-icon icon-done">&#10003;</div>
+            <div class="change-content">
+                <h4>Compost Delivery Skew Reviewed</h4>
+                <p>Spend split between its two ads is still skewed (~80/20), but purchase count has balanced since the Jul 17 reactivation. Holding at current settings, next check ~Jul 31.</p>
+            </div>
+        </div>
+        <div class="change-item">
+            <div class="change-icon icon-updated">&#9998;</div>
+            <div class="change-content">
+                <h4>CAPI Follow-Up Sent Again, Combined With Google Ads Issue</h4>
+                <p>No update since Niall's Jul 9 message. Combined this chase with the Google Ads GA4 tracking issue (also unresolved) into a single email, per Ciaran's earlier feedback about batching Graphedia asks rather than sending multiple separate emails.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="next" class="alt">
+    <div class="eyebrow">What's Next</div>
+    <div class="section-title">Priorities for the Coming Period</div>
+    <p class="section-desc">Where to shift spend based on profit signal, then the operational checks already scheduled.</p>
+
+    <div class="note-strip" style="background: #fdf2e2;">
+        <span class="ic">&#9888;&#65039;</span>
+        <span><b>Same standing approach as every prior period:</b> rank by what WooCommerce can actually verify, not Meta's own claimed profit. This period, 4 of 7 campaigns have at least one independently-confirmed order (Sand+Stones, Heating Oil, Gas Cylinders, and Firewood - though WooCommerce can't currently distinguish B2B from B2C for Firewood specifically).</span>
+    </div>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>What's Actually Verified This Period</h3>
+            <p><span class="tag-verified">WOOCOMMERCE, PER-CATEGORY</span> &nbsp;4 of 7 campaigns have real evidence this period.</p>
+        </div>
+        <table>
+            <thead><tr><th>Campaign</th><th>Verified Orders</th><th>Verified Revenue</th><th>Spend</th><th>Note</th></tr></thead>
+            <tbody>
+                <tr><td class="campaign-name">Sand+Stones</td><td>5</td><td>&euro;685</td><td>&euro;515</td><td>Best-evidenced campaign in the account this period.</td></tr>
+                <tr><td class="campaign-name">Firewood (B2B or B2C, can't distinguish)</td><td>2</td><td>&euro;837</td><td>&euro;390-&euro;309 combined</td><td>WooCommerce's category data can't currently tell B2B and B2C apart for Firewood.</td></tr>
+                <tr><td class="campaign-name">Heating Oil</td><td>1</td><td>&euro;308</td><td>&euro;778</td><td>Only 1 of 22 claimed purchases independently confirmed - much thinner evidence than the raw claim suggests.</td></tr>
+                <tr><td class="campaign-name">Gas Cylinders</td><td>1</td><td>&euro;39</td><td>&euro;778</td><td>Meta claims 21 purchases/&euro;8,854, over 200x what's verified here.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h3>Meta's Claim Only, Zero Independent Verification This Period</h3>
+            <p><span class="tag-unverified">META SELF-REPORTED, UNVERIFIED</span> &nbsp;Not one order tagged to either of these 2 campaigns appears anywhere in this period's WooCommerce export.</p>
+        </div>
+        <table>
+            <thead><tr><th>Campaign</th><th>Meta's Claimed Profit</th><th>Recommendation</th></tr></thead>
+            <tbody>
+                <tr><td class="campaign-name">Compost</td><td>+&euro;391 claimed</td><td>No verified orders this period despite 12 claimed purchases. Hold current budget.</td></tr>
+                <tr><td class="campaign-name">BOF Retargeting*</td><td>+&euro;693 claimed</td><td>Structurally can't be verified with current attribution data (see Campaigns table note). Estimated margin on top of an unverified purchase count - lowest-confidence figure in the report. Hold.</td></tr>
+            </tbody>
+        </table>
+        <p style="padding: 12px 20px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line);">Neither campaign is recommended for a budget increase this period. Revisit once CAPI lands, currently the priority action below.</p>
+    </div>
+
+    <div class="next-grid" style="margin-top: 24px;">
+        <div class="next-card">
+            <span class="priority-tag priority-high">Now</span>
+            <h4>CAPI Follow-Up</h4>
+            <p>No update since Niall's Jul 9 message. Chased again Jul 27, combined with the Google Ads tracking issue in one email.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-medium">Ongoing</span>
+            <h4>Conversions API Gateway Decision</h4>
+            <p>Cloudflare DNS access question still with Mairead - determines whether a no-developer alternative to Niall's paid CAPI build is viable.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-medium">Next Period</span>
+            <h4>Heating Oil Frequency Check</h4>
+            <p>Elevated two periods running (3.72, then 4.07). Worth a closer look rather than assuming it's still settling in.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-medium">~Jul 31</span>
+            <h4>Compost Delivery Skew, Final Check</h4>
+            <p>Spend split stabilizing but not resolved. One more check before deciding this is the new normal.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-low">Jul 31</span>
+            <h4>Advantage+ Audience Test Concludes</h4>
+            <p>Sand+Stones test window ends. Compare CPA against the manual-targeting baseline before deciding on a wider rollout.</p>
+        </div>
+        <div class="next-card">
+            <span class="priority-tag priority-low">September 2026</span>
+            <h4>Heating Season Scale-Up Prep</h4>
+            <p>Gas Cylinders and Heating Oil both candidates for budget increases ahead of the seasonal ramp.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <strong>Kenny Fuels Meta Ads Report</strong> &nbsp;|&nbsp; Range Method &nbsp;|&nbsp; <a href="reporting-methodology.html">How these numbers work</a> &nbsp;|&nbsp; Generated by Josette &nbsp;|&nbsp; Confidential
+</footer>
+
+<script>
+    const ctx = document.getElementById('spendChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Gas Cylinders', 'Heating Oil', 'Sand+Stones', 'Firewood B2B', 'BOF Retargeting*', 'Compost', 'Firewood B2C'],
+            datasets: [
+                { label: 'Spend (€)', data: [778, 778, 515, 309, 647, 410, 390], backgroundColor: '#243B98', borderRadius: 3 },
+                { label: 'Revenue (€)', data: [8854, 8940, 5896, 4233, 5958, 3208, 2924], backgroundColor: '#E6211E', borderRadius: 3 },
+                { label: 'Profit (€)', data: [993, 116, 959, 750, 693, 391, 341], backgroundColor: '#1f7a4d', borderRadius: 3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': €' + context.parsed.y; } } }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { family: 'IBM Plex Mono', size: 10 }, callback: function(value) { return '€' + value; } } },
+                x: { grid: { display: false }, ticks: { font: { family: 'IBM Plex Mono', size: 10 } } }
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('attributionChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Meta Claim', 'WooCommerce Verified'],
+            datasets: [
+                { label: 'Spend (€)', data: [3828, 3828], backgroundColor: '#243B98', borderRadius: 3 },
+                { label: 'Revenue (€)', data: [40013, 3791], backgroundColor: '#E6211E', borderRadius: 3 },
+                { label: 'Profit (€)', data: [4243, -3072], backgroundColor: '#1f7a4d', borderRadius: 3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': €' + context.parsed.y; } } }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { family: 'IBM Plex Mono', size: 10 }, callback: function(value) { return '€' + value; } } },
+                x: { grid: { display: false }, ticks: { font: { family: 'IBM Plex Mono', size: 10 } } }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
