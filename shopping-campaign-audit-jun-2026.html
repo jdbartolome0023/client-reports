@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kenny Fuels – Google Shopping Audit · Updated 21 July 2026</title>
+  <title>Kenny Fuels – Google Shopping Audit · Updated 28 July 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -419,22 +419,22 @@
     <li><a href="#next-steps">Next Steps</a></li>
   </ul>
   <div class="nav-right">
-    <span class="report-date">June 2026 · Updated 21 July</span>
+    <span class="report-date">June 2026 · Updated 28 July</span>
     <button class="btn-pdf" onclick="window.print()">Print / PDF</button>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="period-badge">Originally audited June 2026 · Updated 21 July 2026 · Target Launch: 1 September 2026</div>
+  <div class="period-badge">Originally audited June 2026 · Updated 28 July 2026 · Target Launch: 1 September 2026 (at risk, see Summary)</div>
   <h1>Google Shopping<span>Readiness Audit</span></h1>
-  <p>A full review of the live Google Merchant Center account for kennyfuels.ie: what is already working, what needs to be fixed before campaigns go live, and what the campaigns will focus on. Originally audited 24 June 2026, refreshed 21 July with a month's worth of progress and a new, hard external deadline.</p>
+  <p>A full review of the live Google Merchant Center account for kennyfuels.ie: what is already working, what needs to be fixed before campaigns go live, and what the campaigns will focus on. Originally audited 24 June 2026, refreshed 21 July, refreshed again 28 July with the Shopping campaigns built and a live re-check of every number.</p>
 </div>
 
 <!-- SUMMARY -->
 <section id="summary">
   <div class="section-label">Summary</div>
   <div class="section-title">Where Things Stand</div>
-  <div class="section-desc">Full site audit against Google Shopping requirements, originally June 2026, refreshed 21 July 2026.</div>
+  <div class="section-desc">Full site audit against Google Shopping requirements, originally June 2026, refreshed 21 July 2026, refreshed again 28 July 2026 with a fresh live GMC pull.</div>
 
   <div class="scorecard">
     <div class="score-card sc-green">
@@ -445,12 +445,12 @@
     <div class="score-card sc-green">
       <div class="sc-icon">✅</div>
       <div class="sc-label">Product Feed</div>
-      <div class="sc-val">Active · 1,177 Approved</div>
+      <div class="sc-val">Active · 1,201 products, ~1,180 Approved</div>
     </div>
     <div class="score-card sc-amber">
       <div class="sc-icon">⚠️</div>
       <div class="sc-label">Quality Issues</div>
-      <div class="sc-val">16 Disapproved · 654 Images</div>
+      <div class="sc-val">21 Disapproved · 670 Images</div>
     </div>
   </div>
 
@@ -461,17 +461,17 @@
 
   <div class="alert alert-orange">
     <div class="alert-icon">📦</div>
-    <div><strong>Feed quality has not improved since June.</strong> Images under Google's minimum size went from 645 to 654. Disapprovals peaked at 22 (three of the four new ones were Kerosene SKUs added since June - see below); 7 of those (tobacco/healthcare) are now resolved via exclusion, leaving 16 live, including 1 new one found today (a local inventory data flag, not in the original breakdown). ALL CAPS titles are unchanged at 57.</div>
+    <div><strong>Update 28 July: feed quality has gotten worse, not better, across a live re-check of every number.</strong> Images under Google's minimum size: 645 (Jun 24) → 654 (Jul 21) → <strong>670 (Jul 28)</strong>. ALL CAPS titles, re-measured properly by unique affected product this time: 57 (Jun 24/Jul 21) → <strong>68 (Jul 28)</strong> - the 57 figure undercounted slightly, this is the corrected method. Shopping Ads disapprovals: 18 (Jun 24) → 23 (Jul 17) → <strong>21 (Jul 28)</strong>, roughly flat. Two of three trackable metrics are trending the wrong way a month after this was first flagged to Thea.</div>
   </div>
 
   <div class="alert alert-green">
     <div class="alert-icon">✅</div>
-    <div><strong>Real progress in three areas since June:</strong> (1) Heating oil/Kerosene is now Shopping-compatible after all - 66 new fixed-price SKUs by county are live and approved, reversing the original June finding. (2) The real shipping rate card (rates by county and product type, not the old placeholder flat free-delivery setting) has been built and is ready to go live. (3) The GA4 purchase-tracking gap that was silently broken since 22 May has been found, and a fix is published (still being verified end-to-end).</div>
+    <div><strong>Real progress since June, now four areas:</strong> (1) Heating oil/Kerosene is now Shopping-compatible after all - 66 new fixed-price SKUs by county are live and approved, reversing the original June finding. (2) The real shipping rate card (rates by county and product type) has been built and is dry-run validated, but blocked from going live by a Google-side API bug (see Actions Required). (3) The GA4 purchase-tracking gap (broken since 22 May) is now <strong>confirmed fixed as of 28 July</strong> - real, varying transaction values are flowing (e.g. €854, €273, €1,765 across different days), not just the tag firing. (4) <strong>New 28 July: the GMC return policy field, empty since the account was taken over, is now populated</strong> with the site's real published terms (14-day window, in-store, customer pays return shipping) - sourced directly from kennyfuels.ie/returns-policy/, not a guess.</div>
   </div>
 
   <div class="alert alert-blue">
     <div class="alert-icon">📅</div>
-    <div><strong>September 1 target is still realistic, but no longer has slack in it.</strong> The image fix and disapprovals are Thea-owned (in-house, per Ciaran's 8 July routing decision) and have sat untouched for a month - that's now the main risk to the date, not technical readiness on our side.</div>
+    <div><strong>Update 28 July: September 1 is now genuinely at risk, not just "no slack."</strong> Two of the five original launch prerequisites (images, disapprovals) have measurably worsened since takeover, and the two most launch-critical remaining items (real shipping costs, and now confirmed: the Merchant API migration itself) are both stuck - the shipping-settings write has failed 7 consecutive attempts with an unresolved Google-side bug, and the support case reopened 28 July with fresh evidence is still pending a reply. The 4 Shopping campaigns themselves are now fully built and ready (see Strategy and Timeline), so campaign structure is no longer the risk - the feed-quality and shipping-migration blockers are. Worth a direct conversation with Ciaran about whether Sep 1 still holds.</div>
   </div>
 </section>
 
@@ -522,17 +522,21 @@
     <div>
       <h3>In the Feed · Approved</h3>
       <table>
-        <thead><tr><th>Product</th><th>Status</th></tr></thead>
+        <thead><tr><th>Product</th><th>Status</th><th>Jul 28 Update</th></tr></thead>
         <tbody>
-          <tr class="row-green"><td>Composite Fencing Panels &amp; Kits</td><td><span class="badge badge-green">Approved</span></td></tr>
-          <tr class="row-green"><td>Premium Decking Boards</td><td><span class="badge badge-green">Approved</span></td></tr>
-          <tr class="row-green"><td>Gas Cylinders (Butane &amp; Propane)</td><td><span class="badge badge-green">Approved</span></td></tr>
-          <tr class="row-green"><td>Coal, Briquettes, Solid Fuel</td><td><span class="badge badge-green">Approved</span></td></tr>
-          <tr class="row-green"><td>Engine Oil, AdBlue, Lubricants</td><td><span class="badge badge-green">Approved</span></td></tr>
-          <tr class="row-green"><td>Hardware, Tools, Gardening</td><td><span class="badge badge-green">Approved</span></td></tr>
-          <tr class="row-green"><td>Fuel Storage Tanks &amp; Bunded Points</td><td><span class="badge badge-green">Approved</span></td></tr>
+          <tr class="row-green"><td>Composite Fencing Panels &amp; Kits</td><td><span class="badge badge-green">Approved</span></td><td>In <strong>KF - Shopping | Fencing</strong> (built, paused)</td></tr>
+          <tr class="row-green"><td>Premium Decking Boards</td><td><span class="badge badge-green">Approved</span></td><td>In <strong>KF - Shopping | Fencing</strong> (built, paused)</td></tr>
+          <tr class="row-green"><td>Gas Cylinders (Butane &amp; Propane)</td><td><span class="badge badge-green">Approved</span></td><td>In <strong>KF - Shopping | Gas</strong> (built, paused)</td></tr>
+          <tr class="row-green"><td>Coal, Briquettes, Solid Fuel</td><td><span class="badge badge-green">Approved</span></td><td>In <strong>KF - Shopping | Solid Fuel</strong> (built, paused, Maximize Clicks only - no confirmed margin yet)</td></tr>
+          <tr class="row-green"><td>Engine Oil, AdBlue, Lubricants</td><td><span class="badge badge-green">Approved</span></td><td>Folded into <strong>KF - Shopping | Hardware</strong> (built, paused)</td></tr>
+          <tr class="row-green"><td>Hardware, Tools, Gardening</td><td><span class="badge badge-green">Approved</span></td><td>In <strong>KF - Shopping | Hardware</strong> (built, paused)</td></tr>
+          <tr class="row-green"><td>Fuel Storage Tanks &amp; Bunded Points</td><td><span class="badge badge-green">Approved</span></td><td>Folded into <strong>KF - Shopping | Hardware</strong> (built, paused)</td></tr>
         </tbody>
       </table>
+      <div class="alert alert-green" style="margin-top: 16px;">
+        <div class="alert-icon">✅</div>
+        <div><strong>Update 28 July: all 4 Shopping campaigns built and verified live.</strong> Structure only, all PAUSED - correctly, given the feed-quality and shipping gaps below aren't resolved yet. Tanks and Lubricants/AdBlue folded into Hardware rather than given their own campaigns (no confirmed margin for either, same reasoning as Solid Fuel). Cross-checked against the live site to confirm two edge cases: "Composite Cladding" (site name) = "Premium Cladding" (feed's internal category label, same products), and the "Superser Radiant Heater" product (its own Search ad group) was initially missed by the Gas campaign's tree due to a one-off taxonomy variant in the feed - found and fixed same day.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -540,24 +544,24 @@
 <!-- PRODUCTS & FEED HEALTH -->
 <section id="products">
   <div class="section-label">Feed Health · Live Data</div>
-  <div class="section-title">GMC Status as of 21 July 2026</div>
-  <div class="section-desc">Pulled directly from Google Merchant Center (ID 5089910050). The feed is running from kennyfuels.ie/wp-content/uploads/woo-feed/google/xml/kennyshoppingfeed.xml and syncs automatically each day. Figures below replace the 24 June numbers; June figures are kept alongside for comparison where relevant.</div>
+  <div class="section-title">GMC Status as of 28 July 2026</div>
+  <div class="section-desc">Pulled directly from Google Merchant Center (ID 5089910050). The feed is running from kennyfuels.ie/wp-content/uploads/woo-feed/google/xml/kennyshoppingfeed.xml and syncs automatically each day. Figures below replace the 21 July numbers; earlier figures are kept alongside for comparison. The 28 July pull also fixed a real bug in how these numbers were being counted (duplicate issue entries per Shopping/Free Listings/Video Ads reporting context were being counted separately) - the corrected method counts unique affected products, not raw issue-list entries.</div>
 
   <div class="scorecard" style="margin-bottom: 32px;">
     <div class="score-card sc-green">
       <div class="sc-icon">✅</div>
       <div class="sc-label">Approved for Shopping</div>
-      <div class="sc-val">1,177 products</div>
+      <div class="sc-val">~1,180 products <span style="font-size:12px;font-weight:400;">(1,201 total in feed)</span></div>
     </div>
     <div class="score-card sc-red">
       <div class="sc-icon">🚫</div>
       <div class="sc-label">Disapproved</div>
-      <div class="sc-val">16 products <span style="font-size:12px;font-weight:400;">(peaked at 22, 7 resolved via exclusion)</span></div>
+      <div class="sc-val">21 products <span style="font-size:12px;font-weight:400;">(18 Jun 24 → 23 Jul 17 → 21 Jul 28)</span></div>
     </div>
     <div class="score-card sc-amber">
       <div class="sc-icon">⚠️</div>
       <div class="sc-label">Images Below 500px</div>
-      <div class="sc-val">654 products <span style="font-size:12px;font-weight:400;">(was 645)</span></div>
+      <div class="sc-val">670 products <span style="font-size:12px;font-weight:400;">(645 → 654 → 670)</span></div>
     </div>
   </div>
 
@@ -568,74 +572,86 @@
         <th>Products Affected</th>
         <th>Blocks Ads?</th>
         <th>Action</th>
+        <th>Jul 28 Update</th>
       </tr>
     </thead>
     <tbody>
       <tr class="row-red">
         <td><strong>Images below 500×500px</strong><span class="sub">Google has announced upcoming enforcement. Products with images under 500px will be disapproved when it kicks in. Still open since June. <a href="https://jdbartolome0023.github.io/kenny-fuels/data/kenny-fuels-small-images-jul21.csv" target="_blank" style="color: var(--black);">Full list of the 654 affected products</a>.</span></td>
-        <td>654 <span class="sub" style="display:inline">(was 645)</span></td>
+        <td>670 <span class="sub" style="display:inline">(645 → 654 → 670)</span></td>
         <td><span class="badge badge-red">Soon</span></td>
         <td>Thea to update product images in WooCommerce</td>
+        <td><span class="badge badge-red">Worse</span> Still open, still climbing. No reply since chased 21 July.</td>
       </tr>
       <tr class="row-red">
         <td><strong>Missing product price</strong><span class="sub">Products with no price value in the feed.</span></td>
         <td>5 <span class="sub" style="display:inline">(was 6)</span></td>
         <td><span class="badge badge-red">Yes</span></td>
         <td>Fix in WooCommerce product data</td>
+        <td><span class="badge badge-gray">Not re-measured</span> Folded into the overall 21-disapproval figure this pass, not broken out separately.</td>
       </tr>
       <tr class="row-red">
         <td><strong>Missing product image</strong><span class="sub">Products with no image link in the feed.</span></td>
         <td>3</td>
         <td><span class="badge badge-red">Yes</span></td>
         <td>Add images in WooCommerce</td>
+        <td><span class="badge badge-gray">Not re-measured</span> Folded into the overall 21-disapproval figure this pass.</td>
       </tr>
       <tr class="row-red">
         <td><strong>Price mismatch</strong><span class="sub">New since June. Feed price doesn't match live site price. Mostly the new Kerosene SKUs - prices update frequently and 3-4 have drifted out of sync. Flagged to Thea directly.</span></td>
         <td>4</td>
         <td><span class="badge badge-red">Yes</span></td>
         <td>Sync feed price with live site price</td>
+        <td><span class="badge badge-red">Still open</span> Re-checked live 28 July: all 3 originally-flagged Kerosene 100L SKUs (Carlow/Wicklow/Wexford) still disapproved for price_mismatch, unchanged. Nudged Thea again via WhatsApp same day.</td>
       </tr>
       <tr class="row-red">
         <td><strong>Promotional text in title</strong><span class="sub">Product title contains promotional or irrelevant text (e.g. "Sale", "Free delivery"). Not allowed by Google.</span></td>
         <td>1</td>
         <td><span class="badge badge-red">Yes</span></td>
         <td>Clean up the product title</td>
+        <td><span class="badge badge-gray">Not re-measured</span> Folded into the overall 21-disapproval figure this pass.</td>
       </tr>
       <tr class="row-red">
         <td><strong>Promotional overlay on image</strong><span class="sub">Product image has a banner or text overlay. Google prohibits promotional overlays on Shopping images.</span></td>
         <td>1</td>
         <td><span class="badge badge-red">Yes</span></td>
         <td>Replace image with a clean product photo</td>
+        <td><span class="badge badge-gray">Not re-measured</span> Folded into the overall 21-disapproval figure this pass.</td>
       </tr>
       <tr class="row-red">
         <td><strong>Product page unavailable</strong><span class="sub">Product URL is returning an error or is blocked from Google crawling.</span></td>
         <td>1</td>
         <td><span class="badge badge-red">Yes</span></td>
         <td>Fix the broken product page</td>
+        <td><span class="badge badge-gray">Not re-measured</span> Folded into the overall 21-disapproval figure this pass.</td>
       </tr>
       <tr>
         <td><strong>Tobacco policy violation</strong><span class="sub">1 product flagged (a firewood/briquettes bundle, likely a false positive). <strong>Resolved 21 July:</strong> excluded from the Shopping destination directly via API rather than waiting on a description fix. Needs periodic re-checking - the daily feed sync from WooCommerce can silently undo this kind of manual override.</span></td>
         <td>1</td>
         <td><span class="badge badge-gray">Excluded</span></td>
         <td>Monitor - re-apply if the daily sync reverts it</td>
+        <td><span class="badge badge-green">Holding</span> Still excluded as of 28 July, sync hasn't reverted it.</td>
       </tr>
       <tr>
         <td><strong>Healthcare / prescription drug flag</strong><span class="sub">Animal health products (horse supplements) misclassified by Google's automated system. <strong>Resolved 21 July:</strong> same fix as tobacco above - excluded via API, same re-check caveat applies.</span></td>
         <td>6</td>
         <td><span class="badge badge-gray">Excluded</span></td>
         <td>Monitor - re-apply if the daily sync reverts it</td>
+        <td><span class="badge badge-green">Holding</span> Still excluded as of 28 July.</td>
       </tr>
       <tr>
-        <td><strong>Titles in ALL CAPS</strong><span class="sub">Google flags excessive capitalisation. Ads still run but quality score is lower. Unchanged since June. Most are supplier SKU/model codes sitting in front of the title, not marketing text - fix may need to be in how the catalogue import formats these, not a one-by-one edit. Chased again 21 July with the full product list attached. <a href="https://jdbartolome0023.github.io/kenny-fuels/data/kenny-fuels-all-caps-titles-jul21.csv" target="_blank" style="color: var(--black);">Full list of the 57 affected products</a>.</span></td>
-        <td>57</td>
+        <td><strong>Titles in ALL CAPS</strong><span class="sub">Google flags excessive capitalisation. Ads still run but quality score is lower. Most are supplier SKU/model codes sitting in front of the title, not marketing text - fix may need to be in how the catalogue import formats these, not a one-by-one edit. Chased again 21 July with the full product list attached. <a href="https://jdbartolome0023.github.io/kenny-fuels/data/kenny-fuels-all-caps-titles-jul21.csv" target="_blank" style="color: var(--black);">Full list of the 57 affected products</a>.</span></td>
+        <td>68 <span class="sub" style="display:inline">(57 → 68, corrected counting method)</span></td>
         <td><span class="badge badge-gray">No</span></td>
         <td>Update product titles in WooCommerce to sentence case</td>
+        <td><span class="badge badge-red">Worse</span> Re-measured live 28 July with a per-product count (the 57 figure undercounted): genuinely 68 unique products now. Still open.</td>
       </tr>
       <tr>
         <td><strong>Missing unit pricing measure</strong><span class="sub">Required for liquid and weight-based products in the EU (e.g. price per litre, per kg).</span></td>
         <td>250</td>
         <td><span class="badge badge-gray">No</span></td>
         <td>Add unit pricing to applicable products in feed</td>
+        <td><span class="badge badge-gray">Not re-measured</span> Confirmed non-blocking/cosmetic in the June audit, not re-checked this pass.</td>
       </tr>
     </tbody>
   </table>
@@ -655,7 +671,7 @@
 <section id="done">
   <div class="section-label">What's Already in Place</div>
   <div class="section-title">Confirmed</div>
-  <div class="section-desc">Confirmed from account records and directly from Google Merchant Center. Website Requirements confirmed 24 June, unchanged since. Feed/Tracking/GMC column updated 21 July with a month of real progress.</div>
+  <div class="section-desc">Confirmed from account records and directly from Google Merchant Center. Website Requirements confirmed 24 June, unchanged since. Feed/Tracking/GMC column updated 21 July and again 28 July.</div>
 
   <div class="two-col">
     <div>
@@ -665,21 +681,23 @@
         <li><span class="check-icon">✅</span><div><strong>Working checkout with card payment</strong><span class="sub">Customers can buy online.</span></div></li>
         <li><span class="check-icon">✅</span><div><strong>Privacy Policy page</strong><span class="sub">Live at kennyfuels.ie/privacy-policy</span></div></li>
         <li><span class="check-icon">✅</span><div><strong>Shipping / Delivery Policy</strong><span class="sub">Covered in Terms &amp; Conditions: 1–2 working day delivery.</span></div></li>
-        <li><span class="check-icon">✅</span><div><strong>Returns / Refund Policy</strong><span class="sub">Confirmed present on site (note: the separate GMC-side return policy setting is still empty - see Actions Required).</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>Returns / Refund Policy</strong><span class="sub">Confirmed present on site at kennyfuels.ie/returns-policy/. <strong>Update 28 July: the separate GMC-side setting is now populated too</strong> - see Feed/Tracking/GMC column and Actions Required.</span></div></li>
         <li><span class="check-icon">✅</span><div><strong>Contact page</strong><span class="sub">Phone (053 937 2765), email (info@kennyfuels.ie), address listed.</span></div></li>
       </ul>
     </div>
     <div>
       <h3>Feed, Tracking &amp; GMC</h3>
       <ul class="checklist">
-        <li><span class="check-icon">✅</span><div><strong>Active product feed: 1,177 products approved</strong><span class="sub">Kenny_Google_Feed is live and syncing from WooCommerce daily.</span></div></li>
-        <li><span class="check-icon">✅</span><div><strong>Real shipping rate table built (21 July)</strong><span class="sub">Replaces the old flat free-delivery placeholder with the actual Daily Pricing rate card: rates by county and product type. Built and tested, ready to go live - holding until the Merchant API migration below is fully confirmed working.</span></div></li>
-        <li><span class="check-icon">✅</span><div><strong>Kerosene added to Shopping (21 July)</strong><span class="sub">66 fixed-price SKUs by county/volume, live and approved - see Strategy section above.</span></div></li>
-        <li><span class="check-icon">✅</span><div><strong>Merchant API migration underway (21 July)</strong><span class="sub">Google is discontinuing the old Content API on 18 August - the account has started migrating to the replacement (Merchant API) ahead of that deadline. Shipping-side migration is furthest along; product-side migration still to do.</span></div></li>
-        <li><span class="check-icon">⚠️</span><div><strong>GA4 purchase tracking - fix published, not yet fully confirmed</strong><span class="sub">Found that a May site change had silently broken purchase-event tracking since 22 May. A new tag was published 17 July and confirmed to fire, but as of 21 July it still hasn't recorded a real transaction end-to-end - actively being investigated with the developer.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>Active product feed: ~1,180 products approved</strong><span class="sub">Kenny_Google_Feed is live and syncing from WooCommerce daily. 1,201 total products in the feed as of 28 July.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>Real shipping rate table built (21 July)</strong><span class="sub">Replaces the old flat free-delivery placeholder with the actual Daily Pricing rate card: rates by county and product type. Built and dry-run validated - <strong>update 28 July: live push attempted and confirmed still blocked</strong> by a Google-side API bug (`insert_shipping_settings` returns a persistent internal error, 7 consecutive attempts, confirmed nothing partially wrote). Support case reopened same day with fresh evidence.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>Kerosene added to Shopping (21 July)</strong><span class="sub">66 fixed-price SKUs by county/volume, live and approved - see Strategy section above. <strong>Update 28 July: the 3 originally-flagged 100L-tier SKUs are still disapproved</strong> for price_mismatch, re-nudged Thea directly.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>Merchant API migration - product &amp; datasources side done, shipping side blocked (28 July)</strong><span class="sub">Google is discontinuing the old Content API on 18 August. Product reads (`get_account_info`, `list_products`, `get_product_status`, `search_products_by_title`) and datafeeds (`list_datafeeds` → Merchant API's `DataSourcesService`) are now fully migrated and live in the account's tooling, including two real bugs found and fixed along the way (a nested-field read bug that made product search silently return 0 results, and a pagination bug that fetched the entire ~1,200-product catalog on every call regardless of the requested limit). Shipping-side write remains the one blocked piece - see row above.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>GA4 purchase tracking - confirmed fixed (28 July)</strong><span class="sub">Found that a May site change had silently broken purchase-event tracking since 22 May. A new tag was published 17 July; <strong>as of 28 July, real varying transaction values are confirmed flowing</strong> (e.g. €854, €273.36, €1,765.14 across different days) - not just the tag firing, genuine end-to-end confirmation. Niall (Graphedia) independently corroborated the same root cause and made a related dataLayer fix the same week.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>Return policy populated in GMC (new, 28 July)</strong><span class="sub">Was completely empty since takeover. Found the real policy live on-site and entered it via the Merchant API: 14-day return window, in-store, item must be unused/original packaging, customer pays return shipping if incorrectly ordered, refunds processed within 7 working days. Note: Merchant Center's own UI still shows "No results" for this as of 28 July despite the API confirming the policy exists on both a list and a direct fetch - likely the same v1/Content-API-v2.1 sync gap behind the shipping-settings bug above, being folded into the same support case rather than treated as new.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>4 Shopping campaigns built in Google Ads (new, 28 July)</strong><span class="sub">Gas, Solid Fuel, Fencing, Hardware (the last one also covering Tanks and Lubricants/AdBlue). All PAUSED - correctly, given the feed-quality and shipping gaps above. See Strategy section and Timeline for full detail.</span></div></li>
         <li><span class="check-icon">✅</span><div><strong>Google Merchant Center active</strong><span class="sub">GMC ID 5089910050 live for Ireland. Site claimed.</span></div></li>
         <li><span class="check-icon">✅</span><div><strong>Google Tag Manager installed</strong><span class="sub">Container GTM-5Z97JLX is live on the site.</span></div></li>
-        <li><span class="check-icon">✅</span><div><strong>Active Google Ads campaigns running</strong><span class="sub">Heating oil, gas, hardware search campaigns all live.</span></div></li>
+        <li><span class="check-icon">✅</span><div><strong>Active Google Ads campaigns running</strong><span class="sub">Heating oil, gas, hardware search campaigns all live. Brand Search budget also raised €110→€160/day on 28 July (funded by cutting Hardware/Composite Decking search spend, which had zero verified real revenue this period) - separate from the Shopping work but same session.</span></div></li>
         <li><span class="check-icon">✅</span><div><strong>Cookie Policy &amp; Sitemap</strong><span class="sub">Unchanged since June, both confirmed live.</span></div></li>
       </ul>
     </div>
@@ -699,6 +717,7 @@
         <th>Who</th>
         <th>When</th>
         <th>Status</th>
+        <th>Jul 28 Update</th>
       </tr>
     </thead>
     <tbody>
@@ -708,20 +727,23 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>18 August - hard deadline</td>
         <td><span class="badge badge-orange">In Progress</span></td>
+        <td><span class="badge badge-orange">Partial</span> Product reads + datafeeds fully migrated and live. Shipping-settings write still blocked by a Google-side bug (7 failed attempts, support case reopened 28 July with fresh evidence). Return policy also created via the new API, though Merchant Center's UI isn't showing it yet - same underlying gap, being folded into the same case.</td>
       </tr>
       <tr>
-        <td><strong>Fix product images below 500×500px</strong><span class="sub">654 products in the current feed have images under Google's minimum size (was 645 in June). Google has announced upcoming enforcement: when it kicks in, those products will be disapproved automatically. Chased again 21 July.</span></td>
-        <td>Most urgent Thea-owned issue. 654 products at risk of disapproval when Google enforces this.</td>
+        <td><strong>Fix product images below 500×500px</strong><span class="sub">670 products in the current feed have images under Google's minimum size (was 645 in June, 654 in July). Google has announced upcoming enforcement: when it kicks in, those products will be disapproved automatically. Chased again 21 July.</span></td>
+        <td>Most urgent Thea-owned issue. 670 products at risk of disapproval when Google enforces this.</td>
         <td><span class="badge badge-owner-thea">Thea</span></td>
         <td>Due July</td>
         <td><span class="badge badge-red">Open</span></td>
+        <td><span class="badge badge-red">Worse</span> 654 → 670, re-measured live 28 July. No reply since the 21 July chase.</td>
       </tr>
       <tr>
-        <td><strong>Fix 16 disapproved products</strong><span class="sub">Current: 5 missing price, 3 missing image, 4 price mismatch (mostly Kerosene), 1 promotional title text, 1 promotional image overlay, 1 broken product page URL, plus 1 new local inventory data flag found today. Tobacco (1) and healthcare (6) flags already resolved via exclusion, see below. Specific product URLs sent 25 June. <a href="https://jdbartolome0023.github.io/kenny-fuels/data/kenny-fuels-disapproved-products-jul21.csv" target="_blank" style="color: var(--black);">Full list of the disapproved products</a>.</span></td>
+        <td><strong>Fix disapproved products</strong><span class="sub">Current: 5 missing price, 3 missing image, 4 price mismatch (mostly Kerosene), 1 promotional title text, 1 promotional image overlay, 1 broken product page URL, plus 1 new local inventory data flag found today. Tobacco (1) and healthcare (6) flags already resolved via exclusion, see below. Specific product URLs sent 25 June. <a href="https://jdbartolome0023.github.io/kenny-fuels/data/kenny-fuels-disapproved-products-jul21.csv" target="_blank" style="color: var(--black);">Full list of the disapproved products</a>.</span></td>
         <td>Disapproved products do not show on Shopping ads at all.</td>
         <td><span class="badge badge-owner-thea">Thea</span></td>
         <td>Due July</td>
         <td><span class="badge badge-red">Open</span></td>
+        <td><span class="badge badge-red">Still open</span> 21 unique products disapproved for Shopping Ads as of 28 July (23 Jul 17 → 21 Jul 28, roughly flat). The 3 Kerosene 100L SKUs specifically re-checked live and confirmed still price_mismatch-disapproved, nudged Thea again same day.</td>
       </tr>
       <tr>
         <td><strong>Tobacco &amp; healthcare policy flags</strong><span class="sub">7 products (1 tobacco, 6 animal health/equine) were being disapproved for policy reasons that don't really apply to them. Fixed differently to the rest of the table: excluded from the Shopping destination directly via API rather than waiting on a content fix.</span></td>
@@ -729,6 +751,7 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>Done 17 July, re-confirmed 21 July</td>
         <td><span class="badge badge-green">Resolved</span></td>
+        <td><span class="badge badge-green">Holding</span> Still excluded as of 28 July, daily sync hasn't reverted it.</td>
       </tr>
       <tr>
         <td><strong>Return policy settings in Merchant Center</strong><span class="sub">Confirmed completely empty (not just incomplete) as of 21 July. Needs real return window/cost terms, not something to guess at.</span></td>
@@ -736,6 +759,7 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>July</td>
         <td><span class="badge badge-orange">In Progress</span></td>
+        <td><span class="badge badge-green">Resolved</span> Found the real policy live at kennyfuels.ie/returns-policy/ and entered it via the Merchant API same day (14-day window, in-store, customer pays return shipping, 7-day refund processing). Merchant Center's UI shows "No results" still - API confirms the data exists on both list and direct fetch, likely a UI-side v1/v2.1 sync gap, not a real failure. Folding into the shipping-settings support case.</td>
       </tr>
       <tr>
         <td><strong>Verify purchase conversion tracking</strong><span class="sub">Found a bigger problem than expected: a May site change had silently broken purchase-event tracking account-wide since 22 May. A fix was published 17 July and confirmed to fire correctly, but hasn't recorded a real transaction end-to-end yet as of 21 July - being actively investigated with the developer.</span></td>
@@ -743,6 +767,7 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>Was due 30 June</td>
         <td><span class="badge badge-orange">Fix Published, Verifying</span></td>
+        <td><span class="badge badge-green">Resolved</span> Confirmed 28 July: real, varying transaction values now recording (e.g. €854, €273.36, €1,765.14 across different days) - genuine end-to-end confirmation, not just the tag firing. 8-week blackout (22 May - 17 July) fully closed out.</td>
       </tr>
       <tr>
         <td><strong>Delivery charge / shipping rate table</strong><span class="sub">Original "flat rate under €100" framing turned out too simple - the real rate card varies by county and product type. Full rate table built from Kenny Fuels' real Daily Pricing sheet (received 8 July) and tested. Holding the final go-live until the Merchant API migration above is fully confirmed.</span></td>
@@ -750,6 +775,7 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>Built, going live once migration confirmed</td>
         <td><span class="badge badge-green">Built - Not Yet Live</span></td>
+        <td><span class="badge badge-red">Still blocked</span> Live push attempted 28 July (7th attempt overall): identical `INTERNAL` 500 error, confirmed via fresh re-read that nothing changed live. This is now confirmed a genuine Google-side bug, not a request-format issue - support case reopened same day with the exact request/response/timestamp.</td>
       </tr>
       <tr>
         <td><strong>Firewood Feed: activate or remove</strong><span class="sub">A second feed called "Firewood Feed" (Google Sheets source) exists in GMC and is currently paused. Unchanged since June - no decision made yet.</span></td>
@@ -757,13 +783,15 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>Open</td>
         <td><span class="badge badge-orange">Paused / Unclear</span></td>
+        <td><span class="badge badge-gray">Unchanged</span> Confirmed still exists and still paused as of the 28 July datafeeds migration check. No decision made yet.</td>
       </tr>
       <tr>
-        <td><strong>Fix ALL CAPS product titles</strong><span class="sub">57 products, unchanged since June. Mostly supplier SKU/model codes sitting in front of the title, not marketing language - likely a catalogue-import formatting fix rather than a one-by-one title edit. Fresh product list sent 21 July.</span></td>
+        <td><strong>Fix ALL CAPS product titles</strong><span class="sub">Mostly supplier SKU/model codes sitting in front of the title, not marketing language - likely a catalogue-import formatting fix rather than a one-by-one title edit. Fresh product list sent 21 July.</span></td>
         <td>Affects quality score and how professional ads appear.</td>
         <td><span class="badge badge-owner-thea">Thea</span></td>
         <td>Open</td>
         <td><span class="badge badge-gray">Not Blocking</span></td>
+        <td><span class="badge badge-red">Worse</span> Re-measured live 28 July with a corrected per-product count: 68 unique products, up from 57 (the original figure undercounted). Still open, still not launch-blocking.</td>
       </tr>
       <tr>
         <td><strong>Google Customer Reviews registration</strong><span class="sub">A free Google programme that sends review request emails to customers after purchase. Open since June.</span></td>
@@ -771,6 +799,7 @@
         <td><span class="badge badge-owner-josette">Josette</span> + <span class="badge badge-owner-graphedia">Graphedia</span></td>
         <td>July</td>
         <td><span class="badge badge-red">Not Started</span></td>
+        <td><span class="badge badge-gray">Unchanged</span> Not touched this session - deprioritised behind the launch-blocking items above.</td>
       </tr>
       <tr>
         <td><strong>Product barcodes (GTINs) for branded items</strong><span class="sub">Not required to launch. Can be added to the feed at any point after launch.</span></td>
@@ -778,6 +807,15 @@
         <td><span class="badge badge-owner-ciaran">Ciaran</span></td>
         <td>When available</td>
         <td><span class="badge badge-gray">Optional</span></td>
+        <td><span class="badge badge-gray">Unchanged</span></td>
+      </tr>
+      <tr>
+        <td><strong>Build Shopping campaigns in Google Ads</strong><span class="sub">New row, 28 July - previously tracked only in Timeline/Next Steps below, now also here since it's done.</span></td>
+        <td>Structure needs to exist and be validated ahead of launch, even while paused.</td>
+        <td><span class="badge badge-owner-josette">Josette</span></td>
+        <td>Was: Late August</td>
+        <td><span class="badge badge-orange">Was: Not Started</span></td>
+        <td><span class="badge badge-green">Done</span> All 4 built (Gas, Solid Fuel, Fencing, Hardware incl. Tanks/Lubricants/AdBlue), verified live via GAQL, all correctly PAUSED. Confirmed against the live site to resolve two taxonomy edge cases (Cladding naming, Superser Radiant Heater). Done three weeks ahead of the original "late August" plan.</td>
       </tr>
     </tbody>
   </table>
@@ -793,13 +831,12 @@
     <div class="owner-block josette">
       <div class="owner-title">Josette · Google Ads</div>
       <ul>
-        <li><strong>New, urgent:</strong> complete the Merchant API migration before 18 August, when Google permanently shuts down the old Content API this account's tooling runs on.</li>
-        <li>Bring the real shipping rate table live once the migration above is confirmed working end-to-end.</li>
-        <li>Confirm the GA4 purchase-tracking fix (published 17 July) is recording real transactions, not just firing the tag correctly.</li>
-        <li>Complete the return policy settings in GMC: currently completely empty, needs real return window/cost terms.</li>
+        <li><strong>Still urgent:</strong> get Google to resolve the shipping-settings API bug (case reopened 28 July with fresh evidence) before 18 August, when the old Content API shuts down for good.</li>
+        <li><span class="badge badge-green" style="margin-right:6px;">Done 28 July</span>Return policy populated in GMC with the site's real terms (UI display lag being folded into the same support case).</li>
+        <li><span class="badge badge-green" style="margin-right:6px;">Done 28 July</span>GA4 purchase-tracking fix confirmed recording real transactions end-to-end, not just firing the tag.</li>
+        <li><span class="badge badge-green" style="margin-right:6px;">Done 28 July</span>Built all 4 Shopping campaigns (Gas, Solid Fuel, Fencing, Hardware incl. Tanks/Lubricants/AdBlue) - three weeks ahead of the original late-August plan.</li>
         <li>Review the Firewood Feed (still paused in GMC since June): determine if it should be removed or updated.</li>
         <li>Register Kenny Fuels for Google Customer Reviews inside Merchant Center.</li>
-        <li>Build Shopping campaigns in Google Ads once the feed quality issues are resolved.</li>
       </ul>
     </div>
 
@@ -862,33 +899,33 @@
         </div>
 
         <div class="timeline-item">
-          <div class="tl-date">⚠️ 25 June - 21 July</div>
-          <div class="tl-title">Feed Quality Issues - Chased Again 21 July</div>
-          <div class="tl-desc">Product URLs for every disapproval and the image-size issue were sent 25 June. Images actually went from 645 to 654 in the following month. Chased again 21 July with a fresh, specific list for the ALL CAPS titles issue too.</div>
+          <div class="tl-date">⚠️ 25 June - 28 July</div>
+          <div class="tl-title">Feed Quality Issues - Still Open, Getting Worse</div>
+          <div class="tl-desc">Product URLs for every disapproval and the image-size issue were sent 25 June. Images went 645 → 654 → 670 across three checks. ALL CAPS titles, re-measured properly on 28 July, are actually 68 not 57. Chased again 21 July and 28 July (Kerosene-specific nudge). No fixes landed yet.</div>
+        </div>
+
+        <div class="timeline-item done">
+          <div class="tl-date">✅ Done: 28 July</div>
+          <div class="tl-title">4 Shopping Campaigns Built, GA4 Confirmed, Return Policy Live</div>
+          <div class="tl-desc">Gas, Solid Fuel, Fencing, and Hardware (covering all 7 originally-scoped categories) all built in Google Ads, verified live, correctly PAUSED. GA4 purchase tracking confirmed fixed end-to-end with real transaction data. GMC return policy populated with the site's real published terms. Product-side and datafeeds-side Merchant API migration completed. Three weeks ahead of the original "late August" campaign-build plan.</div>
         </div>
 
         <div class="timeline-item">
           <div class="tl-date">🚨 New: by 18 August</div>
-          <div class="tl-title">Merchant API Migration - Hard Deadline</div>
-          <div class="tl-desc">Google is permanently shutting down the Content API this account's shipping/product tooling runs on. Official "final notice" received 20 July. Migration underway - shipping side is furthest along, product side still to do. This deadline now drives the whole timeline more than the original plan did.</div>
+          <div class="tl-title">Merchant API Migration - Hard Deadline, Shipping Side Blocked</div>
+          <div class="tl-desc">Google is permanently shutting down the Content API this account's shipping/product tooling runs on. Official "final notice" received 20 July. Product/datafeeds migration done 28 July. Shipping-settings write is the one piece still blocked - a Google-side bug, 7 failed attempts, support case reopened 28 July with fresh evidence.</div>
         </div>
 
         <div class="timeline-item">
           <div class="tl-date">Now through mid-August</div>
-          <div class="tl-title">Finish Migration · Push Thea on Feed Quality</div>
-          <div class="tl-desc">Complete the Merchant API migration, bring the real shipping rate table live, and get Thea's image/title/disapproval fixes actually done - these have been open since 25 June.</div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="tl-date">Late August</div>
-          <div class="tl-title">Build &amp; Review Campaigns</div>
-          <div class="tl-desc">Build Shopping campaigns in Google Ads: fencing, hardware, gas, and solid fuel. Budgets set, reviewed, ready to activate.</div>
+          <div class="tl-title">Resolve the Shipping-Settings Bug · Push Thea on Feed Quality</div>
+          <div class="tl-desc">Get Google's support case resolved (or a workaround identified) so the real shipping rate table can finally go live, and get Thea's image/title/disapproval fixes actually done - these have been open since 25 June and are trending the wrong direction, not the right one.</div>
         </div>
 
         <div class="timeline-item launch">
           <div class="tl-date">1 September 2026</div>
           <div class="tl-title">Shopping Campaigns Live</div>
-          <div class="tl-desc">Fencing, hardware, gas cylinder, and solid fuel shopping ads go live ahead of the October–March heating season.</div>
+          <div class="tl-desc">Fencing, hardware, gas cylinder, and solid fuel shopping ads go live ahead of the October–March heating season. <strong>At risk as of 28 July</strong> - campaign structure is ready, but feed quality and the shipping migration are not.</div>
         </div>
 
       </div>
@@ -907,12 +944,12 @@
         <div><strong>Fencing and decking have a June–August peak too.</strong> Launching the feed now would also capture the tail end of summer hardware demand while the algorithm is warming up.</div>
       </div>
 
-      <div class="section-label" style="margin-bottom: 12px;">Key Risks to the Timeline - Updated 21 July</div>
+      <div class="section-label" style="margin-bottom: 12px;">Key Risks to the Timeline - Updated 28 July</div>
       <ul class="checklist">
-        <li><span class="check-icon">🚨</span><div><strong>New, and now the biggest risk:</strong> the 18 August Merchant API deadline sits three weeks before launch. If migration isn't fully done by then, the account's shipping/product tooling stops working entirely.</div></li>
-        <li><span class="check-icon">⚠️</span><div><strong>Getting the catalogue fixes actioned, not technical readiness, is now the main risk to feed quality.</strong> A month has passed since the original list on images, titles, and the disapproval list - the image count went the wrong direction. This work is now routed to Thea in-house (per Ciaran's 8 July decision), re-chased 21 July with a fresh, specific product list.</div></li>
-        <li><span class="check-icon">⚠️</span><div>Return policy still completely empty in GMC - needs real terms, not just a settings toggle.</div></li>
-        <li><span class="check-icon">✅</span><div>Resolved since June: the healthcare/tobacco disapprovals no longer need catalogue-side time - excluded directly via API. The delivery-charge question is answered - real rate card built.</div></li>
+        <li><span class="check-icon">🚨</span><div><strong>Still the biggest risk, now more concrete:</strong> the shipping-settings write is confirmed blocked by a genuine Google-side bug (7 identical failures), not a fixable request-format issue. The 18 August deadline hasn't moved. Support case reopened 28 July with fresh evidence; resolution timeline is entirely in Google's hands now.</div></li>
+        <li><span class="check-icon">🚨</span><div><strong>Catalogue fixes are now confirmed trending the wrong way, not just stalled.</strong> A month after the original list, images went 645 → 654 → 670 and ALL CAPS titles (properly re-measured) are 68 not 57. Routed to Thea in-house since 8 July, re-chased 21 July and again 28 July (Kerosene-specific) - no visible progress yet.</div></li>
+        <li><span class="check-icon">✅</span><div><strong>Resolved 28 July:</strong> return policy populated in GMC (real terms, sourced from the live site). GA4 purchase tracking confirmed fixed end-to-end. All 4 Shopping campaigns built and verified - this is no longer a risk to the timeline at all, whenever the other two items above clear.</div></li>
+        <li><span class="check-icon">✅</span><div>Resolved since June: the healthcare/tobacco disapprovals no longer need catalogue-side time - excluded directly via API. The delivery-charge question is answered - real rate card built and dry-run validated, just blocked from going live by the Google bug above.</div></li>
       </ul>
     </div>
   </div>
@@ -982,6 +1019,7 @@
         <th>Owner</th>
         <th>By When</th>
         <th>Blocks Launch?</th>
+        <th>Jul 28 Update</th>
       </tr>
     </thead>
     <tbody>
@@ -991,20 +1029,23 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>18 August - hard deadline</td>
         <td><span class="badge badge-red">Yes</span></td>
+        <td><span class="badge badge-orange">Partial</span> Product + datafeeds done. Shipping write confirmed blocked by a Google bug, not our code - case reopened with evidence.</td>
       </tr>
       <tr>
         <td>2</td>
-        <td><strong>Update 654 product images to 500×500px minimum</strong>: open since 25 June, count has gone up not down. Most urgent Thea-owned item.</td>
+        <td><strong>Update product images to 500×500px minimum</strong>: open since 25 June, count has gone up not down. Most urgent Thea-owned item.</td>
         <td><span class="badge badge-owner-thea">Thea</span></td>
         <td>Open</td>
         <td><span class="badge badge-red">Yes</span></td>
+        <td><span class="badge badge-red">Worse</span> 654 → 670. Still open.</td>
       </tr>
       <tr>
         <td>3</td>
-        <td><strong>Fix remaining 16 disapproved products:</strong> missing prices, missing images, price mismatches, promotional overlay, broken page, title text issue, plus 1 new local inventory data flag found today. URLs already sent 25 June. Tobacco/healthcare flags no longer need action here (resolved separately).</td>
+        <td><strong>Fix remaining disapproved products:</strong> missing prices, missing images, price mismatches, promotional overlay, broken page, title text issue. URLs already sent 25 June. Tobacco/healthcare flags no longer need action here (resolved separately).</td>
         <td><span class="badge badge-owner-thea">Thea</span></td>
         <td>Open</td>
         <td><span class="badge badge-red">Yes</span></td>
+        <td><span class="badge badge-red">Still open</span> 21 unique products as of 28 July. Kerosene SKUs specifically re-nudged same day.</td>
       </tr>
       <tr>
         <td>4</td>
@@ -1012,6 +1053,7 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>Was due 30 June</td>
         <td><span class="badge badge-orange">In Progress</span></td>
+        <td><span class="badge badge-green">Done</span> Real transaction values confirmed flowing 28 July. Fully resolved.</td>
       </tr>
       <tr>
         <td>5</td>
@@ -1019,6 +1061,7 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>July</td>
         <td><span class="badge badge-orange">Incomplete</span></td>
+        <td><span class="badge badge-green">Done</span> Real terms found on-site and entered via API. UI display lag being folded into the shipping support case.</td>
       </tr>
       <tr>
         <td>6</td>
@@ -1026,6 +1069,7 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>Open</td>
         <td><span class="badge badge-orange">Decision Needed</span></td>
+        <td><span class="badge badge-gray">Unchanged</span></td>
       </tr>
       <tr>
         <td>7</td>
@@ -1033,13 +1077,15 @@
         <td><span class="badge badge-owner-josette">Josette</span> + <span class="badge badge-owner-graphedia">Graphedia</span></td>
         <td>July</td>
         <td><span class="badge badge-gray">No</span></td>
+        <td><span class="badge badge-gray">Unchanged</span></td>
       </tr>
       <tr>
         <td>8</td>
-        <td><strong>Build Shopping campaigns</strong> in Google Ads: fencing, hardware, gas cylinders, solid fuel. Once feed quality issues are resolved.</td>
+        <td><strong>Build Shopping campaigns</strong> in Google Ads: fencing, hardware, gas cylinders, solid fuel.</td>
         <td><span class="badge badge-owner-josette">Josette</span></td>
-        <td>Late August</td>
+        <td>Was: Late August</td>
         <td><span class="badge badge-red">Yes</span></td>
+        <td><span class="badge badge-green">Done</span> All 4 built and verified 28 July, three weeks early. Also expanded to cover Tanks/Lubricants/AdBlue within Hardware, matching the full original 7-category scope.</td>
       </tr>
       <tr>
         <td>9</td>
@@ -1047,6 +1093,7 @@
         <td><span class="badge badge-owner-ciaran">Ciaran</span></td>
         <td>When available</td>
         <td><span class="badge badge-gray">No</span></td>
+        <td><span class="badge badge-gray">Unchanged</span></td>
       </tr>
       <tr>
         <td>10</td>
@@ -1054,12 +1101,13 @@
         <td><span class="badge badge-owner-josette">Josette</span></td>
         <td>1 September</td>
         <td>N/A</td>
+        <td><span class="badge badge-orange">At risk</span> Campaign structure ready. Feed quality and shipping migration are the open blockers, both outside Josette's direct control.</td>
       </tr>
     </tbody>
   </table>
 </section>
 
-<footer>Kenny Fuels &nbsp;·&nbsp; Google Shopping Audit &nbsp;·&nbsp; Originally June 2026, updated 21 July 2026</footer>
+<footer>Kenny Fuels &nbsp;·&nbsp; Google Shopping Audit &nbsp;·&nbsp; Originally June 2026, updated 21 July 2026, updated 28 July 2026</footer>
 
 </body>
 </html>
