@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenny Fuels Meta Ads: Jul 2026 Monthly</title>
+<style>
+  :root {
+    --paper: #eeeae0;
+    --surface: #fbf9f4;
+    --surface-2: #f4f0e6;
+    --ink: #26241e;
+    --ink-2: #5c574b;
+    --ink-3: #948d7c;
+    --line: #d9d2c2;
+    --line-strong: #c4bba5;
+    --accent: #0e6e63;
+    --accent-soft: #dcebe8;
+    --accent-ink: #0a4f47;
+    --good: #2f7a4f;
+    --good-soft: #dfeee2;
+    --warn: #a8791f;
+    --warn-soft: #f3e9d2;
+    --crit: #a83f3f;
+    --crit-soft: #f3dfdc;
+    --shadow: 0 1px 2px rgba(38,36,30,0.06), 0 6px 16px rgba(38,36,30,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #17181a;
+      --surface: #1e201f;
+      --surface-2: #232522;
+      --ink: #ece8de;
+      --ink-2: #b9b2a0;
+      --ink-3: #7d7868;
+      --line: #34362f;
+      --line-strong: #454739;
+      --accent: #4fc2b0;
+      --accent-soft: #1c3733;
+      --accent-ink: #8fe0d2;
+      --good: #6bc48a;
+      --good-soft: #1f3327;
+      --warn: #e3b156;
+      --warn-soft: #3a2f1a;
+      --crit: #e2726a;
+      --crit-soft: #3a2321;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17181a; --surface: #1e201f; --surface-2: #232522;
+    --ink: #ece8de; --ink-2: #b9b2a0; --ink-3: #7d7868;
+    --line: #34362f; --line-strong: #454739;
+    --accent: #4fc2b0; --accent-soft: #1c3733; --accent-ink: #8fe0d2;
+    --good: #6bc48a; --good-soft: #1f3327;
+    --warn: #e3b156; --warn-soft: #3a2f1a;
+    --crit: #e2726a; --crit-soft: #3a2321;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"] {
+    --paper: #eeeae0; --surface: #fbf9f4; --surface-2: #f4f0e6;
+    --ink: #26241e; --ink-2: #5c574b; --ink-3: #948d7c;
+    --line: #d9d2c2; --line-strong: #c4bba5;
+    --accent: #0e6e63; --accent-soft: #dcebe8; --accent-ink: #0a4f47;
+    --good: #2f7a4f; --good-soft: #dfeee2;
+    --warn: #a8791f; --warn-soft: #f3e9d2;
+    --crit: #a83f3f; --crit-soft: #f3dfdc;
+    --shadow: 0 1px 2px rgba(38,36,30,0.06), 0 6px 16px rgba(38,36,30,0.05);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .mono, .num, td.num, .tag, .chip {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  h1, h2, h3 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+  .page {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    padding-bottom: 22px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 28px;
+  }
+  .masthead-title h1 { font-size: 28px; letter-spacing: -0.01em; }
+  .masthead-title .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 6px; }
+  .stamp {
+    flex: 0 0 auto;
+    border: 1.5px solid var(--accent);
+    color: var(--accent-ink);
+    padding: 7px 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .meta-row {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 34px;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 16px 14px;
+    box-shadow: var(--shadow);
+  }
+  .kpi .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .kpi .value {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .kpi .value.good { color: var(--good); }
+  .kpi .value.crit { color: var(--crit); }
+  .kpi .sub { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+
+  section { margin-bottom: 38px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 8px;
+  }
+  .section-head h2 { font-size: 18px; }
+  .section-note { font-size: 12.5px; color: var(--ink-3); }
+
+  .gap-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+  }
+  .gap-group { margin-bottom: 20px; }
+  .gap-group:last-child { margin-bottom: 0; }
+  .gap-group-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .gap-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .gap-row .rlabel { flex: 0 0 132px; font-size: 12px; color: var(--ink-2); }
+  .gap-row .track { flex: 1; background: var(--surface-2); border-radius: 4px; height: 20px; position: relative; overflow: hidden; }
+  .gap-row .fill { height: 100%; border-radius: 4px; display: flex; align-items: center; }
+  .gap-row .fill.verified { background: var(--good); }
+  .gap-row .fill.platform { background: var(--warn); }
+  .gap-row .rval { flex: 0 0 90px; text-align: right; font-size: 12.5px; }
+  .gap-row .rmult { flex: 0 0 56px; text-align: right; font-size: 12px; font-weight: 700; color: var(--crit); }
+  .legend-mini { display: flex; gap: 16px; font-size: 11.5px; color: var(--ink-2); margin-top: 4px; }
+  .legend-mini .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid var(--line-strong); white-space: nowrap; }
+  thead tr:first-child th { border-bottom: none; }
+  th.chgroup2 { text-align: center; font-size: 11.5px; letter-spacing: 0.06em; border-left: 1px solid var(--line-strong); }
+  th.chgroup2.prev { color: var(--ink-3); background: var(--surface-2); }
+  td.prevcol { border-left: 1px solid var(--line-strong); background: var(--surface-2); }
+  td.prevbg { background: var(--surface-2); }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; }
+  tr.total-row td { font-weight: 700; border-top: 1.5px solid var(--ink); background: var(--surface-2); }
+  .chip { font-size: 10px; padding: 2px 7px; border-radius: 20px; letter-spacing: 0.03em; font-weight: 600; }
+  .chip.range { background: var(--accent-soft); color: var(--accent-ink); }
+  .chip.watch { background: var(--warn-soft); color: var(--warn); }
+
+  .divbar-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; box-shadow: var(--shadow); }
+  .divbar-row { display: grid; grid-template-columns: 150px 1fr 100px; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .divbar-row:last-child { margin-bottom: 0; }
+  .divbar-label { font-size: 12.5px; color: var(--ink-2); }
+  .divbar-track { position: relative; height: 26px; background: var(--surface-2); border-radius: 4px; }
+  .divbar-zero { position: absolute; top: -4px; bottom: -4px; width: 1px; background: var(--ink-3); left: 50%; }
+  .divbar-fill { position: absolute; top: 3px; bottom: 3px; border-radius: 3px; }
+  .divbar-fill.pos { background: var(--good); left: 50%; }
+  .divbar-fill.neg { background: var(--crit); right: 50%; }
+  .divbar-val { font-size: 13px; text-align: right; font-weight: 600; }
+  .divbar-val.pos { color: var(--good); }
+  .divbar-val.neg { color: var(--crit); }
+  .divbar-range { font-size: 10.5px; color: var(--ink-3); text-align: right; margin-top: 1px; }
+
+  .tag { font-size: 9.5px; padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.03em; margin-left: 7px; vertical-align: 1px; }
+  .tag.verified { background: var(--good-soft); color: var(--good); }
+  .tag.platform { background: var(--warn-soft); color: var(--warn); }
+  .tag.na { background: var(--surface-2); color: var(--ink-3); }
+
+  .reco-list { display: flex; flex-direction: column; gap: 10px; counter-reset: reco; margin-bottom: 20px; }
+  .reco { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 6px; padding: 13px 16px; box-shadow: var(--shadow); counter-increment: reco; position: relative; padding-left: 46px; }
+  .reco::before { content: counter(reco); position: absolute; left: 14px; top: 13px; font-family: Georgia, serif; font-weight: 700; color: var(--accent); font-size: 16px; }
+  .reco .rtitle { font-weight: 600; font-size: 13.5px; margin-bottom: 3px; }
+  .reco .rbody { font-size: 12.8px; color: var(--ink-2); }
+  .reco.urgent { border-left-color: var(--crit); }
+  .reco.urgent::before { color: var(--crit); }
+
+  .analysis-note { display: flex; gap: 12px; background: var(--accent-soft); border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  .analysis-note .al { flex: 0 0 auto; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ink); padding-top: 2px; }
+  .analysis-note strong { color: var(--ink); }
+
+  .footer { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; font-size: 12px; color: var(--ink-2); }
+  .footer h3 { font-size: 13px; margin-bottom: 10px; color: var(--ink); }
+  .footer ul { margin: 0; padding-left: 18px; }
+  .footer li { margin-bottom: 7px; }
+  .footer .foot-meta { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 11px; color: var(--ink-3); }
+
+  .guide-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; margin-bottom: 30px; box-shadow: var(--shadow); }
+  .guide-panel .guide-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: 10px; }
+  .guide-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 12.8px; color: var(--ink-2); }
+  .guide-row:last-child { margin-bottom: 0; }
+  .guide-row .tag { margin-left: 0; flex: 0 0 auto; margin-top: 1px; }
+  .guide-row b { color: var(--ink); }
+
+  .sub-head { font-size: 13px; font-weight: 600; margin: 18px 0 8px; color: var(--ink); }
+  .sub-head:first-child { margin-top: 0; }
+  .plain-list { list-style: none; margin: 0 0 6px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .plain-list li { display: flex; gap: 10px; align-items: baseline; font-size: 13px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; }
+  .plain-list .dchip { flex: 0 0 auto; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; background: var(--surface-2); color: var(--ink-3); padding: 2px 7px; border-radius: 3px; }
+  .plain-list b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-strip .kpi:last-child { grid-column: span 2; }
+    .masthead { flex-direction: column; }
+    .divbar-row { grid-template-columns: 100px 1fr 80px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <div class="masthead-title">
+      <h1>Kenny Fuels Meta Ads</h1>
+      <div class="sub">Monthly report: real revenue and profit vs. what the platform reports</div>
+      <div class="meta-row">
+        <span>Period: <strong style="color:var(--ink)">Jul 1&ndash;31, 2026</strong></span>
+        <span>vs. previous: <strong style="color:var(--ink)">May 31&ndash;Jun 30, 2026</strong> (31-day matched window)</span>
+        <span>Prepared Aug 3, 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="label">Spend, Jul 1&ndash;31</div>
+      <div class="value">&euro;4,560.61</div>
+      <div class="sub">vs &euro;3,021.92 May 31&ndash;Jun 30 (+50.9%)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Purchases <span class="tag platform" style="margin-left:4px;">META</span></div>
+      <div class="value">125</div>
+      <div class="sub">19 <span class="tag verified">VERIFIED</span> in WooCommerce</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Account ROAS <span class="tag platform" style="margin-left:4px;">META</span></div>
+      <div class="value crit">9.69x</div>
+      <div class="sub">Real ROAS (verified): 1.05x</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Real net profit <span class="tag verified" style="margin-left:4px;">WOO</span></div>
+      <div class="value crit">&minus;&euro;3,653 to &minus;&euro;3,740</div>
+      <div class="sub">a loss, not revenue: verified profit minus spend</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Real net profit <span class="tag platform" style="margin-left:4px;">META</span></div>
+      <div class="value good">+&euro;39,642.09</div>
+      <div class="sub">Meta's own claimed profit, same spend</div>
+    </div>
+  </div>
+
+  <div class="guide-panel">
+    <div class="guide-title">How to read the tags in this report</div>
+    <div class="guide-row"><span class="tag verified">VERIFIED</span><span>Comes from your actual WooCommerce orders. This is what genuinely shipped and got paid for.</span></div>
+    <div class="guide-row"><span class="tag platform">PLATFORM</span><span>Self-reported by Meta's own dashboard. Ad spend is always platform-reported; purchase <b>value</b> from the same source is Meta's own claim, which this report checks against real orders.</span></div>
+    <div class="guide-row"><span style="width:9px;height:9px;border-radius:2px;background:var(--ink-3);display:inline-block;margin-top:5px;flex:0 0 auto;"></span><span>Every uncertain figure below shows both a floor (verified) and ceiling (Meta's claim), not a single trust-everything number.</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>Signal gap: real revenue vs. Meta-reported</h2>
+      <div class="section-note">Net Sales (ex-VAT/shipping), WooCommerce-verified, vs. Meta's own reported purchase value</div>
+    </div>
+    <div class="gap-panel">
+      <div class="gap-group">
+        <div class="gap-row">
+          <div class="rlabel">Jul 1&ndash;31 verified</div>
+          <div class="track"><div class="fill verified" style="width:10.8%"></div></div>
+          <div class="rval num">&euro;4,778.33</div>
+        </div>
+        <div class="gap-row">
+          <div class="rlabel">Jul 1&ndash;31 platform</div>
+          <div class="track"><div class="fill platform" style="width:100%"></div></div>
+          <div class="rval num">&euro;44,202.70</div>
+          <div class="rmult">9.3&times;</div>
+        </div>
+        <div class="gap-row">
+          <div class="rlabel">May 31&ndash;Jun 30 verified</div>
+          <div class="track"><div class="fill verified" style="width:2.8%"></div></div>
+          <div class="rval num">&euro;589.46</div>
+        </div>
+        <div class="gap-row">
+          <div class="rlabel">May 31&ndash;Jun 30 platform</div>
+          <div class="track"><div class="fill platform" style="width:100%"></div></div>
+          <div class="rval num">&euro;21,106.40</div>
+          <div class="rmult">35.8&times;</div>
+        </div>
+      </div>
+      <div class="legend-mini">
+        <span><span class="sw" style="background:var(--good)"></span>WooCommerce-verified (real)</span>
+        <span><span class="sw" style="background:var(--warn)"></span>Meta-reported purchase value</span>
+      </div>
+      <div class="analysis-note"><span class="al">Read</span><span><strong>The gap is narrowing sharply in ratio terms, but it's still large.</strong> Meta's overstatement improved from ~35.8&times; in the previous period to 9.3&times; this month. That's real, continued progress on measurement, but the direction hasn't changed: Meta's own reported ROAS still can't be used for budget or creative decisions. The blended real cost per verified purchase this month is &euro;240.03 (&euro;4,560.61 spend &divide; 19 WooCommerce-verified orders), against Meta's own claimed CPA of &euro;36.48, a very different number to plan a budget around.</span></div>
+      <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Why this gap exists</span><span><strong>This is an overstatement problem, not a missing-events problem.</strong> Meta's pixel is actively receiving and recording events, it just can't distinguish genuine purchases from other signals for consent-declined visitors, so it reports too many. <strong>Permanent, not a bug, and not solvable by CAPI either:</strong> visitors who decline marketing cookies cannot legally be tracked for ad attribution under Irish ePrivacy/GDPR rules (Graphedia confirmed Jul 7). CAPI (see Going Into Next Period) only improves match quality for visitors who already consented, it cannot recover anyone who declined, that part of the gap has no technical fix. This isn't purely consent-decline either, it includes unrelated non-Meta traffic too: only 19 of 447 total site orders this period carry any Meta or paid-social attribution tag at all. The verified figure is also a floor, not an exact count: WooCommerce's own attribution engine is itself consent-gated, so some genuine Meta-driven purchases may be mistagged as Direct or Organic. The true number sits somewhere between the two lines above, closer to the verified side.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Campaign performance: this period vs. previous period</h2>
+      <div class="section-note">Spend, purchases, and CPA/ROAS are Meta's own reported figures, WooCommerce doesn't attribute by individual campaign</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Campaign</th>
+            <th colspan="4" class="chgroup2">Jul 1&ndash;31 (this period)</th>
+            <th colspan="4" class="chgroup2 prev">May 31&ndash;Jun 30 (previous)</th>
+          </tr>
+          <tr>
+            <th class="num">Spend</th><th class="num">Purch.</th><th class="num">CPA</th><th class="num">ROAS</th>
+            <th class="num">Spend</th><th class="num">Purch.</th><th class="num">CPA</th><th class="num">ROAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Gas Cylinders</td><td class="num mono">&euro;830.71</td><td class="num mono">22</td><td class="num mono">&euro;37.76</td><td class="num mono">11.00x</td><td class="num mono prevcol">&euro;243.08</td><td class="num mono prevbg">6</td><td class="num mono prevbg">&euro;40.51</td><td class="num mono prevbg">4.94x</td></tr>
+          <tr><td>Heating Oil <span class="chip watch">freq. watch</span></td><td class="num mono">&euro;1,002.17</td><td class="num mono">27</td><td class="num mono">&euro;37.12</td><td class="num mono">9.84x</td><td class="num mono prevcol">&euro;193.59</td><td class="num mono prevbg">4</td><td class="num mono prevbg">&euro;48.40</td><td class="num mono prevbg">8.60x</td></tr>
+          <tr><td>Sand+Stones</td><td class="num mono">&euro;569.18</td><td class="num mono">23</td><td class="num mono">&euro;24.75</td><td class="num mono">11.48x</td><td class="num mono prevcol">&euro;701.46</td><td class="num mono prevbg">18</td><td class="num mono prevbg">&euro;38.97</td><td class="num mono prevbg">7.49x</td></tr>
+          <tr><td>Firewood B2B</td><td class="num mono">&euro;404.62</td><td class="num mono">13</td><td class="num mono">&euro;31.12</td><td class="num mono">10.86x</td><td class="num mono prevcol">&euro;357.87</td><td class="num mono prevbg">8</td><td class="num mono prevbg">&euro;44.73</td><td class="num mono prevbg">5.12x</td></tr>
+          <tr><td>BOF Retargeting <span class="chip watch">freq. watch</span></td><td class="num mono">&euro;771.07</td><td class="num mono">20</td><td class="num mono">&euro;38.55</td><td class="num mono">9.79x</td><td class="num mono prevcol">&euro;543.02</td><td class="num mono prevbg">12</td><td class="num mono prevbg">&euro;45.25</td><td class="num mono prevbg">7.39x</td></tr>
+          <tr><td>Compost</td><td class="num mono">&euro;483.88</td><td class="num mono">15</td><td class="num mono">&euro;32.26</td><td class="num mono">7.87x</td><td class="num mono prevcol">&euro;702.30</td><td class="num mono prevbg">22</td><td class="num mono prevbg">&euro;31.92</td><td class="num mono prevbg">8.83x</td></tr>
+          <tr><td>Firewood B2C</td><td class="num mono">&euro;498.98</td><td class="num mono">5</td><td class="num mono">&euro;99.80</td><td class="num mono">5.86x</td><td class="num mono prevcol">&euro;280.60</td><td class="num mono prevbg">6</td><td class="num mono prevbg">&euro;46.77</td><td class="num mono prevbg">3.36x</td></tr>
+          <tr class="total-row"><td>Total</td><td class="num mono">&euro;4,560.61</td><td class="num mono">125</td><td class="num mono">&euro;36.48</td><td class="num mono">9.69x</td><td class="num mono prevcol">&euro;3,021.92</td><td class="num mono prevbg">76</td><td class="num mono prevbg">&euro;39.76</td><td class="num mono prevbg">6.98x</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:8px;">Frequency check: BOF Retargeting (7.52) and Heating Oil (4.23) are both above the 3.0 threshold on a full-period average, and both rose from the previous period (5.82 and 1.88 respectively). Neither is settling on its own.</div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>Every campaign grew purchases this month except Compost, which fell (22 &rarr; 15) even as its CPA held roughly flat.</strong> Gas Cylinders and Heating Oil both had their strongest month yet on Meta's own numbers (11.00x and 9.84x ROAS), continuing the ramp visible since launch. Firewood B2C is the weakest campaign on Meta's own numbers this month, CPA nearly doubled (&euro;46.77 &rarr; &euro;99.80) on a small base of 5 purchases.</span></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Real profit by campaign: this period vs. previous period</h2>
+      <div class="section-note">Verified orders only, floor vs. ceiling reasoning applies at the account level above</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Campaign</th>
+            <th colspan="2" class="chgroup2">Jul 1&ndash;31 (this period)</th>
+            <th colspan="2" class="chgroup2 prev">May 31&ndash;Jun 30 (previous)</th>
+            <th rowspan="2">Note</th>
+          </tr>
+          <tr>
+            <th class="num">Verified orders</th><th class="num">Verified revenue</th>
+            <th class="num">Verified orders</th><th class="num">Verified revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Heating Oil</td><td class="num mono">4</td><td class="num mono">&euro;1,898.68</td><td class="num mono prevcol">1</td><td class="num mono prevbg">&euro;255.51</td><td>Best-evidenced campaign this period, real orders quadrupled</td></tr>
+          <tr><td>Firewood (B2B or B2C, can't distinguish)</td><td class="num mono">6</td><td class="num mono">&euro;1,620.70</td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00</td><td>Zero verified orders previous period, real evidence only appears this period</td></tr>
+          <tr><td>Compost</td><td class="num mono">5</td><td class="num mono">&euro;535.00</td><td class="num mono prevcol">1</td><td class="num mono prevbg">&euro;89.00</td><td>Real orders grew even as Meta's own reported purchases fell</td></tr>
+          <tr><td>Sand+Stones</td><td class="num mono">1</td><td class="num mono">&euro;105.69</td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00</td><td>Only 1 <span class="tag verified" style="margin-left:0;">WOO</span> order against 23 <span class="tag platform" style="margin-left:0;">META</span> claimed purchases</td></tr>
+          <tr><td>Gas Cylinders</td><td class="num mono">1</td><td class="num mono">&euro;38.52</td><td class="num mono prevcol">1</td><td class="num mono prevbg">&euro;244.95</td><td>1 <span class="tag verified" style="margin-left:0;">WOO</span> order vs. 22 <span class="tag platform" style="margin-left:0;">META</span> claimed purchases this period, over 20x what's verified</td></tr>
+          <tr class="total-row"><td>BOF Retargeting</td><td class="num mono">0</td><td class="num mono">&euro;0.00</td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00</td><td>Zero independent verification in either period, structurally can't be verified: reuses other campaigns' creative</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>Verified evidence broadened this month, not just grew within existing campaigns.</strong> Firewood and Sand+Stones both went from zero verified orders in the previous period to at least one this month. Heating Oil is the strongest story: real orders quadrupled (1 &rarr; 4) alongside Meta's own reported purchases growing too, the closest thing to agreement between the two data sources this period.</span></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Real net profit, spend against gross profit</h2>
+      <div class="section-note">Verified gross profit (midpoint of range where one applies) minus Meta-reported ad spend</div>
+    </div>
+    <div class="divbar-panel">
+      <div class="divbar-row">
+        <div class="divbar-label">Jul 1&ndash;31</div>
+        <div>
+          <div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill neg" style="width:45.6%"></div></div>
+          <div class="divbar-range">range &minus;&euro;3,740 to &minus;&euro;3,653</div>
+        </div>
+        <div class="divbar-val neg num">&minus;&euro;3,696.24</div>
+      </div>
+      <div class="divbar-row">
+        <div class="divbar-label">May 31&ndash;Jun 30</div>
+        <div>
+          <div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill neg" style="width:48.4%"></div></div>
+          <div class="divbar-range">exact, no range</div>
+        </div>
+        <div class="divbar-val neg num">&minus;&euro;2,925.13</div>
+      </div>
+    </div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>On real numbers, this month's loss was larger than last period's, in absolute euros, despite verified revenue growing more than 8x.</strong> On Meta's own claimed numbers it looks comfortably profitable (+&euro;39,642.09). The honest answer to "was this month profitable" is: on Meta's dashboard, clearly yes; on what WooCommerce can independently verify, no, and the gap between the two pictures is still enormous.</span></div>
+    <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Why the loss widened even as verification improved</span><span><strong>Spend grew faster than verified revenue could catch up from its very small base.</strong> Spend rose 50.9% (&euro;3,021.92 &rarr; &euro;4,560.61) while verified revenue, though up 710% in percentage terms, only grew from &euro;589.46 to &euro;4,778.33 in cash terms. A near-8x improvement on a tiny base still isn't enough to outrun a 51% spend increase. Both sides of this loss figure carry a caveat, not just Meta's: the gap is permanent, not a bug, but the &euro;4,778.33 "verified" figure is itself a floor, not an exact count, since WooCommerce's own attribution engine is consent-gated the same way Meta's pixel is. The real loss is very likely somewhere between this floor and Meta's claimed profit, but far closer to the loss shown here than to Meta's number.</span></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Period comparison</h2>
+      <div class="section-note">Each figure tagged by trust level individually</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Metric</th><th class="num">Jul 1&ndash;31</th><th class="num">May 31&ndash;Jun 30</th><th class="num">Change</th></tr></thead>
+        <tbody>
+          <tr><td>Ad spend</td><td class="num mono">&euro;4,560.61<span class="tag platform">PLATFORM</span></td><td class="num mono">&euro;3,021.92<span class="tag platform">PLATFORM</span></td><td class="num mono">+50.9%</td></tr>
+          <tr><td>Platform-reported revenue</td><td class="num mono">&euro;44,202.70<span class="tag platform">PLATFORM</span></td><td class="num mono">&euro;21,106.40<span class="tag platform">PLATFORM</span></td><td class="num mono">+109.4%</td></tr>
+          <tr><td>Real revenue (verified)</td><td class="num mono">&euro;4,778.33<span class="tag verified">VERIFIED</span></td><td class="num mono">&euro;589.46<span class="tag verified">VERIFIED</span></td><td class="num mono">+710.5%</td></tr>
+          <tr><td>Real net (verified)</td><td class="num mono">&minus;&euro;3,653 to &minus;&euro;3,740<span class="tag verified">VERIFIED</span></td><td class="num mono">&minus;&euro;2,925.13<span class="tag verified">VERIFIED</span></td><td class="num mono">loss widened</td></tr>
+          <tr class="total-row"><td>Overstatement multiple</td><td class="num mono">9.3&times;</td><td class="num mono">35.8&times;</td><td class="num mono">narrowing sharply</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:8px;">Verified revenue grew over 8x and the claimed-vs-verified gap narrowed sharply, real signs of measurement quality improving. But real net loss grew in absolute euros even as spend rose 50.9%, because real revenue, though up sharply in percentage terms, is still growing off a base too small to keep pace.</div>
+    <div class="section-note" style="margin-top:8px;">Site-wide new vs returning customers: 196 new (43.8%) / 251 returning (56.2%) this period, vs 136 new (37.6%) / 226 returning (62.4%) previous period. Whole-site figures (all channels), WooCommerce doesn't split this by ad platform. Year-over-year comparison: checked directly via a live Jul 2025 pull, not shown as a comparison. The only campaign running that month was a brand-awareness video campaign with no purchase tracking, no equivalent to any of this period's 7 sales campaigns, so a same-month-last-year comparison wouldn't be meaningful. This month becomes the reference point for Jul 2027 instead.</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Going into next period</h2>
+      <div class="section-note">What to do next, what's being watched, and what's still open</div>
+    </div>
+
+    <div class="sub-head">Recommendations</div>
+    <div class="reco-list">
+      <div class="reco urgent">
+        <div class="rtitle">Don't use Meta's platform-reported ROAS for any budget or creative call this month</div>
+        <div class="rbody">The real floor is &euro;4,778.33 against a platform claim of &euro;44,202.70: a 9.3&times; gap that's narrowing in ratio but still translates to a widening real loss in cash terms. Wait for CAPI before trusting Meta's own numbers again.</div>
+      </div>
+      <div class="reco urgent">
+        <div class="rtitle">CAPI access is now fully unblocked, implementation is the last piece</div>
+        <div class="rbody">Token delivered and Events Manager/Test Events access granted to Niall on Jul 29. No confirmation yet that CAPI is actually live. This has been the single highest-priority open item since early July and remains it.</div>
+      </div>
+      <div class="reco">
+        <div class="rtitle">Compost is the one campaign moving the wrong way on Meta's own numbers</div>
+        <div class="rbody">Purchases fell from 22 to 15 and ROAS dropped (8.83x &rarr; 7.87x), the opposite direction from every other campaign, even though real verified orders actually grew (1 &rarr; 5). Worth a closer creative/delivery look next period.</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <div style="font-weight:600; font-size:14px; color:var(--ink);">Recommendations: Ranked by Real Net, Not ROAS</div>
+      <div class="section-note" style="margin-top:3px;">Ranked by real net profit this period, least loss to most loss (every campaign is a real loss this period, see Real Net Profit section above). BOF Retargeting's 22.5% margin is an estimate, flagged where it applies.</div>
+    </div>
+    <div class="table-wrap" style="margin-bottom:20px;">
+      <table>
+        <thead><tr><th>Campaign</th><th>Real Net (Verified)</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td>Compost</td><td class="num mono">&minus;&euro;350.13</td><td>Smallest real loss in the account. Real orders grew even as Meta's dashboard shows a decline. Hold, worth a creative/delivery review rather than a budget change.</td></tr>
+          <tr><td>Firewood (B2B/B2C combined)</td><td class="num mono">&minus;&euro;498.43</td><td>Real evidence appeared for the first time this period (zero verified orders previous period). Hold current budget, don't scale on Meta's claimed +&euro;6,910.06 (B2B+B2C combined) alone.</td></tr>
+          <tr><td>Sand+Stones</td><td class="num mono">&minus;&euro;542.76</td><td>Only 1 <span class="tag verified" style="margin-left:0;">WOO</span>-verified order against 23 <span class="tag platform" style="margin-left:0;">META</span>-claimed purchases. Don't scale on Meta's number.</td></tr>
+          <tr><td>BOF Retargeting*</td><td class="num mono">&minus;&euro;771.07</td><td>Structurally can't be verified with current attribution data (reuses other campaigns' creative). Hold: lowest-confidence figure in the account. Frequency also elevated (7.52).</td></tr>
+          <tr><td>Heating Oil</td><td class="num mono">&minus;&euro;812.30</td><td>Best-evidenced campaign this period (4 real orders), still a real loss but the smallest real-evidence gap in the account. Hold current budget.</td></tr>
+          <tr><td>Gas Cylinders</td><td class="num mono">&minus;&euro;823.01</td><td>Meta's dashboard calls this a strong performer (22 <span class="tag platform" style="margin-left:0;">META</span>-claimed purchases, 11.00x ROAS), but only 1 <span class="tag verified" style="margin-left:0;">WOO</span>-verified order backs it up.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:-10px; margin-bottom:20px;">Real net = verified gross profit (real category margin on verified orders only) minus Meta-reported spend. *BOF Retargeting margin (22.5%) is estimated, not confirmed by Ciaran.</div>
+
+    <div class="sub-head">Monitoring &amp; scheduled checks</div>
+    <ul class="plain-list">
+      <li><span class="dchip">Now</span><span><b>CAPI implementation.</b> Access fully unblocked Jul 29 (token + Events Manager/Test Events access delivered to Niall). Watch for confirmation it's actually live.</span></li>
+      <li><span class="dchip">Now</span><span><b>BOF Retargeting frequency.</b> Rose to 7.52 this period from 5.82 previous, both above the 3.0 threshold and moving the wrong way.</span></li>
+      <li><span class="dchip">Now</span><span><b>Heating Oil frequency.</b> Rose to 4.23 from 1.88 previous. Worth a closer look given purchases are also growing, could be healthy reach expansion or early saturation.</span></li>
+      <li><span class="dchip">Ongoing</span><span><b>Cloudflare DNS / Conversions API Gateway access.</b> Still with Mairead, evaluates a no-developer alternative to Niall's CAPI build.</span></li>
+      <li><span class="dchip">Ongoing</span><span><b>Firewood overstock sale.</b> Was slated to run to ~Aug 1 per Ciaran's estimate. Worth confirming whether it's continuing before the next budget review.</span></li>
+    </ul>
+
+    <div class="sub-head">Open items</div>
+    <ul class="plain-list">
+      <li><span class="dchip">Open</span><span>CAPI: access unblocked Jul 29 (token delivered, Events Manager/Test Events granted), implementation itself still unconfirmed.</span></li>
+      <li><span class="dchip">Open</span><span>Cloudflare DNS / Conversions API Gateway: still with Mairead, no reply.</span></li>
+      <li><span class="dchip">Closed</span><span>Firewood Mairead video: chase stopped Jul 23 after 4 fix attempts all produced the identical error. Ad delivers normally on Facebook regardless.</span></li>
+      <li><span class="dchip">Closed</span><span>Compost ad delivery skew: resolved Jul 28, underperforming ad paused, remaining ad runs solo.</span></li>
+      <li><span class="dchip">Closed</span><span>Sand+Stones Advantage+ Audience test: concluded Jul 31, kept live after beating the manual-targeting baseline on both CPA and ROAS.</span></li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    <h3>Methodology &amp; caveats</h3>
+    <ul>
+      <li><strong>Real revenue basis:</strong> WooCommerce "Net Sales" column (ex-VAT, ex-shipping), 447 completed orders Jul 1&ndash;31, 362 May 31&ndash;Jun 30. Both periods span exactly 31 calendar days. Refunded orders (7-8 per period) excluded entirely: WooCommerce's export lists each as two rows (an original-sale row and a separate negative reversal row), so including them would have double-counted rather than netting to zero.</li>
+      <li><strong>Channel attribution:</strong> orders tagged "Source: [DV]..." (campaign-name tags), "Source: Paid+Social", "Source: Fb"/"Ig", or a Facebook/Instagram referral domain counted as Meta-verified. Organic, Direct, and other referral traffic excluded, even where it happens to mention Meta or Facebook.</li>
+      <li><strong>Blended cost per purchase:</strong> spend &divide; WooCommerce-verified order count (&euro;240.03 this period, &euro;1,007.31 previous), not total site orders and not Meta's own reported purchase count. This is the number that actually reflects what a Meta-driven sale costs.</li>
+      <li><strong>Permanent limitation:</strong> visitors who decline marketing cookies cannot legally be tracked by any method under GDPR/ePrivacy rules. No fix exists for this specific piece, including CAPI. CAPI (Conversions API, still in progress with Graphedia) only improves match quality for visitors who already consented, it's a separate, smaller improvement, not a resolution to the consent-decline gap.</li>
+      <li><strong>Live platform data:</strong> pulled fresh via Meta's own reporting API for the exact Jul 1&ndash;31 / May 31&ndash;Jun 30 windows.</li>
+    </ul>
+    <div class="foot-meta">Kenny Fuels Meta Ads &middot; Prepared by Josette</div>
+  </div>
+
+</div>
+</body>
+</html>
