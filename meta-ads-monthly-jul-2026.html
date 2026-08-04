@@ -189,7 +189,11 @@
   .legend-mini .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
 
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); scrollbar-width: thin; scrollbar-color: var(--line-strong) var(--surface-2); }
+  .table-wrap::-webkit-scrollbar { height: 9px; }
+  .table-wrap::-webkit-scrollbar-track { background: var(--surface-2); border-radius: 0 0 10px 10px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 5px; }
+  .scroll-hint { font-size: 11.5px; color: var(--ink-3); margin-top: 4px; display: flex; align-items: center; gap: 4px; }
   th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid var(--line-strong); white-space: nowrap; }
   thead tr:first-child th { border-bottom: none; }
   th.chgroup2 { text-align: center; font-size: 11.5px; letter-spacing: 0.06em; border-left: 1px solid var(--line-strong); }
@@ -382,6 +386,7 @@
         </tbody>
       </table>
     </div>
+    <div class="scroll-hint">&#8596; scroll table sideways to see the full previous-period columns</div>
     <div class="section-note" style="margin-top:8px;">Frequency check: BOF Retargeting (7.52) and Heating Oil (4.23) are both above the 3.0 threshold on a full-period average, and both rose from the previous period (5.82 and 1.88 respectively). Neither is settling on its own.</div>
     <div class="analysis-note"><span class="al">Read</span><span><strong>Every campaign grew purchases this month except Compost, which fell (22 &rarr; 15) even as its CPA held roughly flat.</strong> Gas Cylinders and Heating Oil both had their strongest month yet on Meta's own numbers (11.00x and 9.84x ROAS), continuing the ramp visible since launch. Firewood B2C is the weakest campaign on Meta's own numbers this month, CPA nearly doubled (&euro;46.77 &rarr; &euro;99.80) on a small base of 5 purchases.</span></div>
   </section>
@@ -415,6 +420,7 @@
         </tbody>
       </table>
     </div>
+    <div class="scroll-hint">&#8596; scroll table sideways to see the Note column</div>
     <div class="analysis-note"><span class="al">Read</span><span><strong>Verified evidence broadened this month, not just grew within existing campaigns.</strong> Firewood and Sand+Stones both went from zero verified orders in the previous period to at least one this month. Heating Oil is the strongest story: real orders quadrupled (1 &rarr; 4) alongside Meta's own reported purchases growing too, the closest thing to agreement between the two data sources this period.</span></div>
   </section>
 
