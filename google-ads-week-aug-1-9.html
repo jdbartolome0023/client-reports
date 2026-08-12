@@ -284,7 +284,7 @@
         <span><span class="sw" style="background:var(--good)"></span>WooCommerce-verified (real)</span>
         <span><span class="sw" style="background:var(--warn)"></span>Google-reported conversion value</span>
       </div>
-      <div class="analysis-note" style="background:var(--crit-soft);"><span class="al" style="color:var(--crit);">Read</span><span><strong>This gap widened this period, reversing the trend from the last few reports.</strong> Real revenue fell to 30.7% of platform-reported (from 73.9% last comparison), and the overstatement multiple more than doubled, from 1.35&times; to 3.26&times;. This is not the same fixable UTM-tagging issue flagged in earlier reports (that fix is still in place and working: the resolution rate on named categories actually improved this period, see below). The likely driver is a genuine drop in real Google-tagged order volume rather than a tracking regression, but it hasn't been confirmed yet - see Recommendations.</span></div>
+      <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Read</span><span><strong>This gap widened this period, reversing the trend from the last few reports, but it's now mostly explained.</strong> Real revenue fell to 30.7% of platform-reported (from 73.9% last comparison), and the overstatement multiple more than doubled, from 1.35&times; to 3.26&times;. This is not the same fixable UTM-tagging issue flagged in earlier reports (that fix is still in place and working: the resolution rate on named categories actually improved this period, see below). Investigated this period: most of the drop traces to an unusual demand spike in the Jul 1-9 comparison baseline itself (Jul 8-9 alone carried roughly half that window's orders, consistent with a heating-oil bulk-fill pattern), not a genuine August collapse. A real but moderate decline of roughly 40% remains in the Google-tagged channel once the spike is adjusted for, see Recommendations.</span></div>
       <div class="analysis-note" style="background:var(--accent-soft);"><span class="al">What's not the cause</span><span><strong>Not a measurement-quality problem this time.</strong> Only 12.5% of this period's Google-tagged orders had a blank Product field (vs. 66% last comparison) - the resolution rate genuinely improved. The gap widened because the underlying real order volume dropped, not because more orders became unclassifiable.</span></div>
     </div>
   </section>
@@ -401,7 +401,7 @@
       </table>
     </div>
     <div class="section-note" style="margin-top:8px;">*Google's headline platform conv. value excludes Kenergy Solar's synthetic &euro;12,000/lead ADD rule (3 conversions this period). Not a like-for-like figure either period, shown ex-Solar above instead.</div>
-    <div class="analysis-note" style="background:var(--crit-soft);"><span class="al" style="color:var(--crit);">Read</span><span><strong>Every real metric moved the wrong way this period, while the platform stayed comfortably positive.</strong> Real revenue fell 67.4%, real net swung from a profit range to a loss range, and the attribution gap widened rather than narrowed. Site-wide order volume also nearly halved on an exact 9-day matched comparison (90 orders vs. 167), so this may be broader than a Google-specific issue - see Recommendations.</span></div>
+    <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Read</span><span><strong>Every real metric moved the wrong way this period, while the platform stayed comfortably positive.</strong> Real revenue fell 67.4%, real net swung from a profit range to a loss range, and the attribution gap widened rather than narrowed. Site-wide order volume also nearly halved on an exact 9-day matched comparison (90 orders vs. 167). Investigated this period: mostly a comparison-baseline artifact, an unusual Jul 8-9 demand spike (heating-oil bulk-fill pattern) inflated the Jul 1-9 side of the comparison. Excluding those two days, site-wide daily order rates are within 8-19% of each other, not the ~46% the raw comparison suggested. A genuine, moderate decline of roughly 40% remains in the Google-tagged channel specifically - see Recommendations.</span></div>
   </section>
 
   <section>
@@ -412,9 +412,9 @@
 
     <div class="sub-head">Recommendations</div>
     <div class="reco-list">
-      <div class="reco urgent">
-        <div class="rtitle">Real net loss on Google, new this period - worth a targeted check before the next report</div>
-        <div class="rbody">Real revenue fell 67.4% against only a 6.3% spend reduction, and it's not a measurement-quality issue (blank-Product resolution actually improved). Whole-site order volume also nearly halved on an exact matched 9-day comparison, so this may reflect genuine August demand softening rather than a Google-specific problem - not yet root-caused.</div>
+      <div class="reco">
+        <div class="rtitle">Real net loss on Google, investigated this period, mostly a comparison-baseline artifact</div>
+        <div class="rbody">Real revenue fell 67.4% against only a 6.3% spend reduction, and it's not a measurement-quality issue (blank-Product resolution actually improved). Root cause checked: an unusual Jul 8-9 demand spike inside the Jul 1-9 comparison window (heating-oil bulk-fill pattern) accounts for most of the swing. A genuine but moderate decline of roughly 40% remains in the Google-tagged channel once adjusted for the spike. No further urgent action, folded into normal monitoring.</div>
       </div>
       <div class="reco">
         <div class="rtitle">Brand Search budget raise confirmed working over its full 2-week window</div>
@@ -444,7 +444,7 @@
 
     <div class="sub-head">Monitoring &amp; scheduled checks</div>
     <ul class="plain-list">
-      <li><span class="dchip">Now</span><span><b>Real net loss on Google.</b> New this period - investigate whether it's genuine August seasonality or a tracking issue before/at the next report.</span></li>
+      <li><span class="dchip">Ongoing</span><span><b>Real net loss on Google.</b> Investigated this period, mostly a Jul 8-9 comparison-baseline artifact. Watch whether the remaining ~40% spike-adjusted decline in the Google-tagged channel persists or recovers.</span></li>
       <li><span class="dchip">Now</span><span><b>Composite Decking bidding review.</b> Confounded by the concurrent Jul 28 budget cut to &euro;5/day holding - no clean signal yet, hold current settings.</span></li>
       <li><span class="dchip">Ongoing</span><span><b>Brand Search budget constraint.</b> Budget lost IS down to 29.1% (from 38-40%) - hold at &euro;160/day, watch for drift back up.</span></li>
       <li><span class="dchip">Aug 18</span><span><b>Content API v2.1 shutdown.</b> Merchant API migration still blocked on a Google-side `shippingSettings.insert` error, support case open.</span></li>
@@ -453,7 +453,7 @@
 
     <div class="sub-head">Open items</div>
     <ul class="plain-list">
-      <li><span class="dchip">Open</span><span>Real net loss on Google: needs a root-cause check (seasonality vs. tracking) before the next report.</span></li>
+      <li><span class="dchip">Closed</span><span>Real net loss on Google: investigated, mostly a Jul 8-9 comparison-baseline artifact (heating-oil demand spike). A genuine, moderate ~40% decline remains in the Google-tagged channel, folded into normal monitoring.</span></li>
       <li><span class="dchip">Open</span><span>Google Merchant Center support case: shippingSettings.insert still failing, Aug 18 deadline approaching.</span></li>
       <li><span class="dchip">Open</span><span>Kenergy Solar &euro;12,000 install value: confirmed by Ciaran via WhatsApp, never checked against an actual closed deal.</span></li>
       <li><span class="dchip">Open</span><span>Google Customer Reviews: still not set up, needed for Shopping launch readiness.</span></li>
