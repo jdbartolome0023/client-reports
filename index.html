@@ -3,185 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kenny Fuels – Google Ads Reports</title>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<title>Kenny Fuels Ads Reports</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Lato', sans-serif; background: #f9f9f9; color: #1a1a1a; font-size: 15px; }
-  nav { background: #243B98; display: flex; align-items: center; padding: 0 40px; height: 56px; }
-  .nav-brand { font-weight: 900; font-size: 15px; color: white; text-decoration: none; letter-spacing: 0.5px; }
-  .header { padding: 80px 40px 60px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid #e0e0e0; }
-  .header h1 { font-weight: 900; font-size: 72px; line-height: 1; letter-spacing: 1px; margin-bottom: 8px; }
-  .header h1 span { color: #E6211E; display: block; }
-  .header p { font-size: 16px; color: #777; max-width: 520px; margin-top: 20px; line-height: 1.6; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
-  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #E6211E; margin-bottom: 20px; }
-  .section-block { margin-bottom: 48px; }
-  .reports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-  .report-card { background: white; border: 1px solid #e0e0e0; padding: 24px; text-decoration: none; color: inherit; display: block; transition: box-shadow 0.15s; }
-  .report-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
-  .report-card .type { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; display: inline-block; margin-bottom: 14px; }
-  .type-weekly { background: #e8f0fe; color: #243B98; }
-  .type-monthly { background: #ffebee; color: #E6211E; }
-  .type-meta { background: #f3e5f5; color: #7b1fa2; }
-  .report-card h3 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
-  .report-card .period { font-size: 12px; color: #777; margin-bottom: 10px; }
-  .report-card .desc { font-size: 13px; color: #777; line-height: 1.6; }
-  .report-card .arrow { margin-top: 16px; font-size: 13px; color: #243B98; font-weight: 700; }
-  footer { background: #243B98; text-align: center; color: rgba(255,255,255,0.6); font-size: 12px; padding: 32px; }
+  :root {
+    --paper: #eeeae0;
+    --surface: #fbf9f4;
+    --surface-2: #f4f0e6;
+    --ink: #26241e;
+    --ink-2: #5c574b;
+    --ink-3: #948d7c;
+    --line: #d9d2c2;
+    --line-strong: #c4bba5;
+    --accent: #0e6e63;
+    --accent-soft: #dcebe8;
+    --accent-ink: #0a4f47;
+    --good: #2f7a4f;
+    --good-soft: #dfeee2;
+    --warn: #a8791f;
+    --warn-soft: #f3e9d2;
+    --crit: #a83f3f;
+    --crit-soft: #f3dfdc;
+    --purple: #6b3fa0;
+    --purple-soft: #ece3f5;
+    --shadow: 0 1px 2px rgba(38,36,30,0.06), 0 6px 16px rgba(38,36,30,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #17181a; --surface: #1e201f; --surface-2: #232522;
+      --ink: #ece8de; --ink-2: #b9b2a0; --ink-3: #7d7868;
+      --line: #34362f; --line-strong: #454739;
+      --accent: #4fc2b0; --accent-soft: #1c3733; --accent-ink: #8fe0d2;
+      --good: #6bc48a; --good-soft: #1f3327;
+      --warn: #e3b156; --warn-soft: #3a2f1a;
+      --crit: #e2726a; --crit-soft: #3a2321;
+      --purple: #b79ce0; --purple-soft: #2c2438;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .mono { font-family: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; }
+  h1, h2, h3 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+  .page { max-width: 940px; margin: 0 auto; padding: 40px 24px 80px; }
+  .masthead { padding-bottom: 22px; border-bottom: 2px solid var(--ink); margin-bottom: 34px; }
+  .masthead h1 { font-size: 32px; letter-spacing: -0.01em; }
+  .masthead .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 560px; }
+
+  section { margin-bottom: 40px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line-strong); padding-bottom: 8px; }
+  .section-head h2 { font-size: 18px; }
+  .section-note { font-size: 12px; color: var(--ink-3); }
+
+  .report-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .report-item { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 6px; padding: 14px 18px; box-shadow: var(--shadow); transition: box-shadow 0.15s, border-color 0.15s; }
+  .report-item:hover { box-shadow: 0 2px 10px rgba(38,36,30,0.12); border-left-color: var(--accent-ink); }
+  .report-item.meta { border-left-color: var(--purple); }
+  .report-item.meta:hover { border-left-color: var(--purple); }
+  .report-item .row1 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .report-item h3 { font-size: 15.5px; }
+  .report-item .period { font-family: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace; font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+  .report-item .desc { font-size: 13px; color: var(--ink-2); margin-top: 6px; }
+  .tag { font-size: 9.5px; padding: 1px 7px; border-radius: 3px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
+  .tag.good { background: var(--good-soft); color: var(--good); }
+  .tag.crit { background: var(--crit-soft); color: var(--crit); }
+  .tag.warn { background: var(--warn-soft); color: var(--warn); }
+  .tag.na { background: var(--surface-2); color: var(--ink-3); }
+
+  footer { text-align: center; color: var(--ink-3); font-size: 12px; padding: 32px 0 0; border-top: 1px solid var(--line); margin-top: 20px; }
+
+  @media (max-width: 600px) {
+    .report-item .row1 { flex-direction: column; gap: 4px; }
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="index.html">KENNY FUELS</a>
-</nav>
+<div class="page">
 
-<div class="header">
-  <h1>Kenny Fuels<span>Google Ads Reports</span></h1>
-  <p>Weekly and monthly performance reports. Prepared by Outposter.</p>
+  <div class="masthead">
+    <h1>Kenny Fuels Ads Reports</h1>
+    <div class="sub">Weekly and monthly Google Ads and Meta Ads performance reports, prepared by Josette at Outposter. Every report links back to the real, WooCommerce-verified revenue behind the platform numbers: see the methodology page below for how that's calculated.</div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>Reference</h2>
+    </div>
+    <ul class="report-list">
+      <li>
+        <a class="report-item" href="reporting-methodology.html">
+          <div class="row1"><h3>How the Reporting Numbers Work</h3><span class="period mono">STANDING REFERENCE</span></div>
+          <div class="desc">How attribution, verification, and real profit are calculated across every report, for any period. Updated in place as methods change, not tied to one period.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="profitability-update-jul-2026.html">
+          <div class="row1"><h3>Profitability Update: Jul 1&ndash;26 vs Jun 1&ndash;26</h3><span class="period mono">SPECIAL UPDATE</span></div>
+          <div class="desc">A deeper look at real, verified revenue and profit across Google Ads and Meta Ads together, month-over-month. Not a regular weekly/monthly report.</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Google Ads: Weekly / Period Reports</h2>
+      <span class="section-note">Most recent first</span>
+    </div>
+    <ul class="report-list">
+      <li>
+        <a class="report-item" href="google-ads-week-aug-1-23.html">
+          <div class="row1"><h3>Aug 1&ndash;23, 2026 <span class="tag good">Verified 52.5%</span></h3><span class="period mono">24 DAYS</span></div>
+          <div class="desc">16.83x account ROAS. Real net profit: +&euro;1,235 to +&euro;1,688, the best result of any check so far: the Aug 14 AI Max fix and Aug 21 brand ad-group split compounding.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-aug-1-16.html">
+          <div class="row1"><h3>Aug 1&ndash;16, 2026 <span class="tag warn">Verified 33.4%</span></h3><span class="period mono">16 DAYS</span></div>
+          <div class="desc">12.00x ROAS. Real net: -&euro;1,833 to -&euro;173. Confirmed twice now as mostly a Jul 8-9 comparison-baseline artifact, not a real decline.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-aug-1-9.html">
+          <div class="row1"><h3>Aug 1&ndash;9, 2026 <span class="tag warn">Verified 30.7%</span></h3><span class="period mono">9 DAYS</span></div>
+          <div class="desc">11.04x ROAS. Real net loss: -&euro;1,095 to -&euro;1,243, later found to be mostly a comparison-baseline artifact rather than a genuine drop.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-jul-1-26.html">
+          <div class="row1"><h3>Jul 1&ndash;26, 2026 <span class="tag good">Verified 75.4%</span></h3><span class="period mono">26 DAYS</span></div>
+          <div class="desc">12.66x ROAS. Real net profit: +&euro;23 to +&euro;7,420, a real verified profit range against orders, not just platform value.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-jul-1-19.html">
+          <div class="row1"><h3>Jul 1&ndash;19, 2026</h3><span class="period mono">19 DAYS &middot; MTD</span></div>
+          <div class="desc">Real, WooCommerce-verified revenue &euro;42,772.64 vs the platform's &euro;147,819 headline: 65% of that headline is Kenergy Solar's synthetic &euro;12k/lead bidding value, another 35% is flat ~&euro;220/call values, not real transactions.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-jul-1-12.html">
+          <div class="row1"><h3>Jul 1&ndash;12, 2026</h3><span class="period mono">12 DAYS &middot; TRANSITIONAL</span></div>
+          <div class="desc">153.4 conversions, &euro;2,839 spend, 27.7x blended ROAS, mostly Kenergy Solar's synthetic &euro;12k/lead bidding value, not literal revenue. Bridges the Mon-Sun cadence change.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-jul-1-7.html">
+          <div class="row1"><h3>Jul 1&ndash;7, 2026</h3><span class="period mono">7 DAYS &middot; WEEK 1</span></div>
+          <div class="desc">66.97 conversions, &euro;1,725 spend, 21.3x account ROAS. First week of the new Mon-Sun cadence; ROAS inflated by Kenergy Solar's synthetic &euro;12,000 bidding value per lead.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-jun-12-18.html">
+          <div class="row1"><h3>Jun 12&ndash;18, 2026</h3><span class="period mono">7 DAYS</span></div>
+          <div class="desc">43 conv, &euro;1,588 spend, 5.7x ROAS. Gas Bottle campaign fully restructured, Kenergy Solar launched, HHO order system confirmed live.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="google-ads-week-jun-5-11.html">
+          <div class="row1"><h3>Jun 5&ndash;11, 2026</h3><span class="period mono">7 DAYS</span></div>
+          <div class="desc">50 conv, &euro;1,479 spend, 7.6x ROAS. Brand Search tROAS raised to 6x, Gas Bottle tROAS raised to 3x, Hardware budget raised to &euro;70/day (Ciaran approved).</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Google Ads: Monthly Reports</h2>
+    </div>
+    <ul class="report-list">
+      <li>
+        <a class="report-item" href="report-jul-2026.html">
+          <div class="row1"><h3>July 2026 <span class="tag good">Verified 71.7%</span></h3><span class="period mono">FULL MONTH</span></div>
+          <div class="desc">12.50x ROAS. Real net profit for the month: +&euro;775 to +&euro;7,427, still limited by the blank-Product(s) data gap on unresolved orders.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="report-jun-2026.html">
+          <div class="row1"><h3>June 2026</h3><span class="period mono">FULL MONTH</span></div>
+          <div class="desc">273 conversions, &euro;71,706 tracked value, 11.0x ROAS (9.3x ex-Solar). Solar launched Jun 17, Gas Bottle fully restructured, Hardware Gardening &amp; Landscaping scaled.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="report-may-2026.html">
+          <div class="row1"><h3>May 2026</h3><span class="period mono">FULL MONTH</span></div>
+          <div class="desc">Conversion tracking corrected from May 18. Clean window (May 18-31): 12.5x blended ROAS. Full month: 149 conversions, &euro;34,782 tracked value.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="report-apr-2026.html">
+          <div class="row1"><h3>April 2026</h3><span class="period mono">FULL MONTH</span></div>
+          <div class="desc">Account transition month: critical fixes applied, bidding strategies corrected, conversion tracking fixed, 69 dead ad groups removed.</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Google Ads: Audits &amp; Plans</h2>
+    </div>
+    <ul class="report-list">
+      <li>
+        <a class="report-item" href="shopping-campaign-audit-jun-2026.html">
+          <div class="row1"><h3>Shopping Campaign Readiness Audit</h3><span class="period mono">JUN 2026 &middot; PRE-LAUNCH</span></div>
+          <div class="desc">Full website audit for the Google Shopping launch. Strategy pivot: Shopping campaigns focus on fencing, hardware, gas cylinders, and solid fuel. Sept 1 target on track.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item" href="hardware-campaign-plan.html">
+          <div class="row1"><h3>Hardware Campaign Plan</h3><span class="period mono">2026 &middot; ACTIVE</span></div>
+          <div class="desc">Detailed campaign plan for the Kenny Fuels hardware product range, including fencing, decking, and gardening products.</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Meta Ads: Weekly / Period Reports</h2>
+      <span class="section-note">Most recent first</span>
+    </div>
+    <ul class="report-list">
+      <li>
+        <a class="report-item meta" href="meta-ads-week-aug-1-23.html">
+          <div class="row1"><h3>Aug 1&ndash;23, 2026 <span class="tag crit">Real ROAS 1.34&ndash;2.13x</span></h3><span class="period mono">24 DAYS</span></div>
+          <div class="desc">15.07x platform ROAS. Real net: -&euro;2,656 to -&euro;1,973. Still the same flat real-vs-platform gap seen since mid-July, unaffected so far by CAPI going live.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-aug-1-16.html">
+          <div class="row1"><h3>Aug 1&ndash;16, 2026 <span class="tag crit">Real ROAS 0.57x</span></h3><span class="period mono">16 DAYS</span></div>
+          <div class="desc">9.88x platform ROAS. Real net loss: -&euro;2,094 to -&euro;2,028.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-aug-1-9.html">
+          <div class="row1"><h3>Aug 1&ndash;9, 2026 <span class="tag crit">Real ROAS 0.68x</span></h3><span class="period mono">9 DAYS</span></div>
+          <div class="desc">9.31x platform ROAS. Real net loss: -&euro;1,099 to -&euro;1,234.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-jul-1-26.html">
+          <div class="row1"><h3>Jul 1&ndash;26, 2026 <span class="tag crit">Real ROAS 0.99x</span></h3><span class="period mono">26 DAYS</span></div>
+          <div class="desc">10.45x platform ROAS. Real net loss: -&euro;2,928 to -&euro;3,217, held roughly steady in absolute euros even as spend rose 62.9%.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-jul-1-19.html">
+          <div class="row1"><h3>Jul 1&ndash;19, 2026</h3><span class="period mono">19 DAYS &middot; MTD</span></div>
+          <div class="desc">85 purchases, &euro;31,713 revenue on Meta's own claim, 11.40x ROAS on &euro;2,781 spend. Real WooCommerce data confirms only 7 orders (&euro;2,233) can be matched this period. Real net loss deepened to -&euro;1,475 to -&euro;2,511 as spend nearly doubled.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-jul-1-12.html">
+          <div class="row1"><h3>Jul 1&ndash;12, 2026</h3><span class="period mono">12 DAYS &middot; TRANSITIONAL</span></div>
+          <div class="desc">52 purchases, &euro;18,541 revenue on Meta's own claim, 10.55x ROAS on &euro;1,758 spend. Real WooCommerce data confirms only 6 orders this period can be matched.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-jul-1-7.html">
+          <div class="row1"><h3>Jul 1&ndash;7, 2026</h3><span class="period mono">7 DAYS &middot; WEEK 1</span></div>
+          <div class="desc">28 purchases, &euro;6,805 revenue on Meta's own claim, 6.93x ROAS on &euro;982 spend. First report to use the floor-to-ceiling range method for uncertain figures.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-jun-12-18.html">
+          <div class="row1"><h3>Jun 12&ndash;18, 2026</h3><span class="period mono">7 DAYS &middot; WEEK 3</span></div>
+          <div class="desc">8 purchases, &euro;1,694 revenue, 2.84x ROAS. Compost creative fatigue was the main story. Gas Cylinders and Heating Oil campaigns built and ready for July launch.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-jun-5-11.html">
+          <div class="row1"><h3>Jun 5&ndash;11, 2026</h3><span class="period mono">7 DAYS &middot; WEEK 2</span></div>
+          <div class="desc">21 purchases, &euro;6,849 revenue, 11.0x ROAS. Compost standout at 21.8x, Sand+Stones recovered after the geo fix, BOF frequency issue resolved.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-week-jun-1-5.html">
+          <div class="row1"><h3>Jun 1&ndash;5, 2026</h3><span class="period mono">TAKEOVER WEEK</span></div>
+          <div class="desc">First week of Meta Ads management. Audit completed, June strategy approved, BOF retargeting reactivated, Compost creative split fixed.</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Meta Ads: Monthly Reports</h2>
+    </div>
+    <ul class="report-list">
+      <li>
+        <a class="report-item meta" href="meta-ads-monthly-jul-2026.html">
+          <div class="row1"><h3>July 2026 <span class="tag crit">Real ROAS 1.05x</span></h3><span class="period mono">FULL MONTH</span></div>
+          <div class="desc">9.69x platform ROAS. Real net loss for the month: -&euro;3,653 to -&euro;3,740, growing in absolute euros even as spend rose 50.9%.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-monthly-jun-2026.html">
+          <div class="row1"><h3>June 2026</h3><span class="period mono">FIRST FULL MONTH</span></div>
+          <div class="desc">First full month under Outposter management. 75 purchases, &euro;20,793 revenue, 7.0x ROAS across 7 campaigns. Gas Cylinders launched Jun 25, Heating Oil launched Jun 26.</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Meta Ads: Audits &amp; Briefs</h2>
+    </div>
+    <ul class="report-list">
+      <li>
+        <a class="report-item meta" href="meta-ads-audit-jun-2026.html">
+          <div class="row1"><h3>3-Month Audit &amp; June Strategy</h3><span class="period mono">MAR 1 &ndash; MAY 31, 2026</span></div>
+          <div class="desc">Full 3-month audit at takeover. Monthly trend, campaign breakdown, creative performance, findings, and proposed June strategy including budget reallocation.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-baseline-may-2026.html">
+          <div class="row1"><h3>Baseline Audit: May 2026</h3><span class="period mono">JAN 1 &ndash; MAY 26, 2026</span></div>
+          <div class="desc">Full pre-takeover baseline audit. YTD, quarterly, and 90-day performance, campaign inventory, creative analysis, and recommended takeover strategy.</div>
+        </a>
+      </li>
+      <li>
+        <a class="report-item meta" href="meta-ads-brief-gas-heating-oil-jul-2026.html">
+          <div class="row1"><h3>Gas and Heating Oil Campaign Brief</h3><span class="period mono">LAUNCHED JUL 1, 2026</span></div>
+          <div class="desc">Campaign proposal for Gas Cylinders and Home Heating Oil: two campaigns, four ad sets, &euro;60/day additional budget, launched to build algorithm signal before September heating season.</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>Kenny Fuels &nbsp;&middot;&nbsp; Ads Reports &nbsp;&middot;&nbsp; Prepared by Josette at Outposter</footer>
+
 </div>
-
-<div class="container">
-
-  <div class="section-block">
-    <div class="section-label">Google Ads — Audits &amp; Plans</div>
-    <div class="reports-grid">
-      <a href="shopping-campaign-audit-jun-2026.html" class="report-card">
-        <span class="type type-weekly">Google Ads · Audit</span>
-        <h3>Shopping Campaign Readiness Audit</h3>
-        <div class="period">June 2026 · Pre-Launch</div>
-        <div class="desc">Full website audit for Google Shopping launch. Strategy pivot confirmed: heating oil is a restricted product — shopping campaigns to focus on fencing, hardware, gas cylinders, and solid fuel. Sept 1 target on track with 5 actions outstanding.</div>
-        <div class="arrow">View audit →</div>
-      </a>
-      <a href="hardware-campaign-plan.html" class="report-card">
-        <span class="type type-weekly">Google Ads · Plan</span>
-        <h3>Hardware Campaign Plan</h3>
-        <div class="period">2026 · Active</div>
-        <div class="desc">Detailed campaign plan for the Kenny Fuels hardware product range including fencing, decking, and gardening products.</div>
-        <div class="arrow">View plan →</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section-block">
-    <div class="section-label">Meta Ads Reports</div>
-    <div class="reports-grid">
-      <a href="meta-ads-week-jun-12-18.html" class="report-card">
-        <span class="type type-meta">Meta Ads · Weekly</span>
-        <h3>Week of June 12-18, 2026</h3>
-        <div class="period">June 12 - June 18, 2026 · Week 3</div>
-        <div class="desc">8 purchases, €1,694 revenue, 2.84x ROAS. Compost creative fatigue is the main story. Sand+Stones, B2B Firewood, and BOF Retargeting all delivering. Gas Cylinders and Heating Oil campaigns built and ready for July launch.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="meta-ads-week-jun-5-11.html" class="report-card">
-        <span class="type type-meta">Meta Ads · Weekly</span>
-        <h3>Week of June 5-11, 2026</h3>
-        <div class="period">June 5 - June 11, 2026 · Week 2</div>
-        <div class="desc">21 purchases, €6,849 revenue, 11.0x ROAS. Compost standout at 21.8x. Sand+Stones recovered after geo fix. BOF frequency issue resolved. Gas and Heating Oil budget approved by Ciaran.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="meta-ads-week-jun-1-5.html" class="report-card">
-        <span class="type type-meta">Meta Ads · Weekly</span>
-        <h3>Week of June 1-5, 2026</h3>
-        <div class="period">June 1 - June 5, 2026 · Takeover Week</div>
-        <div class="desc">First week of Meta Ads management. Audit completed, June strategy approved and implemented. Budget changes, BOF retargeting reactivated, Compost creative split fixed, geography expanded.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="meta-ads-brief-gas-heating-oil-jul-2026.html" class="report-card">
-        <span class="type type-meta">Meta Ads · Brief</span>
-        <h3>Gas and Heating Oil Campaign Brief</h3>
-        <div class="period">Launch July 1, 2026 · Pending approval</div>
-        <div class="desc">Campaign proposal for Gas Cylinders and Home Heating Oil. Two campaigns, four ad sets, €60/day additional budget. Launch July 1 to build algorithm signal before September heating season.</div>
-        <div class="arrow">View brief →</div>
-      </a>
-      <a href="meta-ads-audit-jun-2026.html" class="report-card">
-        <span class="type type-meta">Meta Ads · Audit</span>
-        <h3>3-Month Audit &amp; June Strategy</h3>
-        <div class="period">Mar 1 – May 31, 2026 · June 1, 2026</div>
-        <div class="desc">Full 3-month audit at takeover. Monthly trend, campaign breakdown, creative performance, findings, and proposed June strategy including budget reallocation. Pending client approval.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="meta-ads-baseline-may-2026.html" class="report-card">
-        <span class="type type-meta">Meta Ads · Baseline</span>
-        <h3>Baseline Audit — May 2026</h3>
-        <div class="period">Jan 1 – May 26, 2026 · Pre-takeover</div>
-        <div class="desc">Full pre-takeover baseline audit. YTD, Q1, Q2, and 90-day performance. Campaign inventory, creative analysis, issues found, and recommended takeover strategy.</div>
-        <div class="arrow">View report →</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section-block">
-    <div class="section-label">Meta Ads — Monthly Reports</div>
-    <div class="reports-grid">
-      <a href="meta-ads-monthly-jun-2026.html" class="report-card">
-        <span class="type type-meta">Meta Ads · Monthly</span>
-        <h3>June 2026</h3>
-        <div class="period">Jun 1 – Jun 30, 2026 · First full month</div>
-        <div class="desc">First full month under Outposter management (takeover Jun 1). 75 purchases, €20,793 revenue, 7.0x ROAS across 7 campaigns. Gas Cylinders launched Jun 25, Heating Oil launched Jun 26. Off-season context: Compost leads at 9.0x, Firewood B2B at 5.3x.</div>
-        <div class="arrow">View report →</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section-block">
-    <div class="section-label">Google Ads — Monthly Reports</div>
-    <div class="reports-grid">
-      <a href="report-jun-2026.html" class="report-card">
-        <span class="type type-monthly">Monthly</span>
-        <h3>June 2026</h3>
-        <div class="period">Jun 1 – Jun 30, 2026 · Google Ads</div>
-        <div class="desc">273 conversions, €71,706 tracked value, 11.0x ROAS (9.3x ex-Solar). Solar launched Jun 17. Gas Bottle fully restructured. Hardware G&amp;L scaled. First full month of clean conversion data across all 5 campaigns.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="report-may-2026.html" class="report-card">
-        <span class="type type-monthly">Monthly</span>
-        <h3>May 2026</h3>
-        <div class="period">May 1 – May 31, 2026 · Google Ads</div>
-        <div class="desc">Conversion tracking corrected from May 18. Clean window (May 18–31): 12.5x blended ROAS. Full month: 149 conversions, €34,782 tracked value. Brand Search and HHO bid strategy review completed.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="report-apr-2026.html" class="report-card">
-        <span class="type type-monthly">Monthly</span>
-        <h3>April 2026</h3>
-        <div class="period">Apr 1 – Apr 30, 2026 · Google Ads</div>
-        <div class="desc">Full month summary. Account transition: critical fixes applied, bidding strategies corrected, conversion tracking fixed, 69 dead ad groups removed.</div>
-        <div class="arrow">View report →</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section-block">
-    <div class="section-label">Google Ads — Weekly Reports</div>
-    <div class="reports-grid">
-      <a href="google-ads-week-jun-12-18.html" class="report-card">
-        <span class="type type-weekly">Weekly</span>
-        <h3>Week of Jun 12 – Jun 18</h3>
-        <div class="period">Jun 12 – Jun 18, 2026 (7 days)</div>
-        <div class="desc">43 conv, €1,588 spend, 5.7x ROAS. Gas Bottle campaign fully restructured, Kenergy Solar launched, HHO order system confirmed live. Optimisation-heavy week.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="google-ads-week-jun-5-11.html" class="report-card">
-        <span class="type type-weekly">Weekly</span>
-        <h3>Week of Jun 5 – Jun 11</h3>
-        <div class="period">Jun 5 – Jun 11, 2026 (7 days)</div>
-        <div class="desc">50 conv, €1,479 spend, 7.6x ROAS. Brand Search tROAS raised to 6x, Gas Bottle tROAS raised to 3x, Hardware budget raised to €70/day (Ciaran approved), Solar approved.</div>
-        <div class="arrow">View report →</div>
-      </a>
-      <a href="google-ads-weekly.html" class="report-card">
-        <span class="type type-weekly">Weekly</span>
-        <h3>Week of Apr 23 – Apr 30</h3>
-        <div class="period">Apr 23 – Apr 30, 2026 (7 days)</div>
-        <div class="desc">Conversion tracking fixed, Home Heating Oil Search rebuilt, 7 ad groups rewritten, budget reduced, competitor negatives added.</div>
-        <div class="arrow">View report →</div>
-      </a>
-    </div>
-  </div>
-
-</div>
-
-<footer>Kenny Fuels &nbsp;·&nbsp; Google Ads Reports &nbsp;·&nbsp; Outposter</footer>
 
 </body>
 </html>
