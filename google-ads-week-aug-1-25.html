@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenny Fuels Google Ads: Aug 1-25, 2026</title>
+<style>
+  :root {
+    --paper: #eeeae0;
+    --surface: #fbf9f4;
+    --surface-2: #f4f0e6;
+    --ink: #26241e;
+    --ink-2: #5c574b;
+    --ink-3: #948d7c;
+    --line: #d9d2c2;
+    --line-strong: #c4bba5;
+    --accent: #0e6e63;
+    --accent-soft: #dcebe8;
+    --accent-ink: #0a4f47;
+    --good: #2f7a4f;
+    --good-soft: #dfeee2;
+    --warn: #a8791f;
+    --warn-soft: #f3e9d2;
+    --crit: #a83f3f;
+    --crit-soft: #f3dfdc;
+    --shadow: 0 1px 2px rgba(38,36,30,0.06), 0 6px 16px rgba(38,36,30,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #17181a;
+      --surface: #1e201f;
+      --surface-2: #232522;
+      --ink: #ece8de;
+      --ink-2: #b9b2a0;
+      --ink-3: #7d7868;
+      --line: #34362f;
+      --line-strong: #454739;
+      --accent: #4fc2b0;
+      --accent-soft: #1c3733;
+      --accent-ink: #8fe0d2;
+      --good: #6bc48a;
+      --good-soft: #1f3327;
+      --warn: #e3b156;
+      --warn-soft: #3a2f1a;
+      --crit: #e2726a;
+      --crit-soft: #3a2321;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17181a; --surface: #1e201f; --surface-2: #232522;
+    --ink: #ece8de; --ink-2: #b9b2a0; --ink-3: #7d7868;
+    --line: #34362f; --line-strong: #454739;
+    --accent: #4fc2b0; --accent-soft: #1c3733; --accent-ink: #8fe0d2;
+    --good: #6bc48a; --good-soft: #1f3327;
+    --warn: #e3b156; --warn-soft: #3a2f1a;
+    --crit: #e2726a; --crit-soft: #3a2321;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"] {
+    --paper: #eeeae0; --surface: #fbf9f4; --surface-2: #f4f0e6;
+    --ink: #26241e; --ink-2: #5c574b; --ink-3: #948d7c;
+    --line: #d9d2c2; --line-strong: #c4bba5;
+    --accent: #0e6e63; --accent-soft: #dcebe8; --accent-ink: #0a4f47;
+    --good: #2f7a4f; --good-soft: #dfeee2;
+    --warn: #a8791f; --warn-soft: #f3e9d2;
+    --crit: #a83f3f; --crit-soft: #f3dfdc;
+    --shadow: 0 1px 2px rgba(38,36,30,0.06), 0 6px 16px rgba(38,36,30,0.05);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .mono, .num, td.num, .tag, .chip {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  h1, h2, h3 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+  .page { max-width: 940px; margin: 0 auto; padding: 40px 24px 80px; }
+  .masthead { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 22px; border-bottom: 2px solid var(--ink); margin-bottom: 28px; }
+  .masthead-title h1 { font-size: 28px; letter-spacing: -0.01em; }
+  .masthead-title .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 6px; }
+  .meta-row { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; font-size: 12.5px; color: var(--ink-3); }
+
+  .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 34px; }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 16px 14px; box-shadow: var(--shadow); }
+  .kpi .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin-bottom: 8px; }
+  .kpi .value { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
+  .kpi .value.good { color: var(--good); }
+  .kpi .value.crit { color: var(--crit); }
+  .kpi .sub { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+
+  section { margin-bottom: 38px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line-strong); padding-bottom: 8px; }
+  .section-head h2 { font-size: 18px; }
+  .section-note { font-size: 12.5px; color: var(--ink-3); }
+
+  .gap-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; box-shadow: var(--shadow); }
+  .gap-group { margin-bottom: 20px; }
+  .gap-group:last-child { margin-bottom: 0; }
+  .gap-group-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .gap-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .gap-row .rlabel { flex: 0 0 132px; font-size: 12px; color: var(--ink-2); }
+  .gap-row .track { flex: 1; background: var(--surface-2); border-radius: 4px; height: 20px; position: relative; overflow: hidden; }
+  .gap-row .fill { height: 100%; border-radius: 4px; display: flex; align-items: center; }
+  .gap-row .fill.verified { background: var(--good); }
+  .gap-row .fill.platform { background: var(--warn); }
+  .gap-row .rval { flex: 0 0 90px; text-align: right; font-size: 12.5px; }
+  .gap-row .rmult { flex: 0 0 56px; text-align: right; font-size: 12px; font-weight: 700; color: var(--crit); }
+  .legend-mini { display: flex; gap: 16px; font-size: 11.5px; color: var(--ink-2); margin-top: 4px; }
+  .legend-mini .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid var(--line-strong); white-space: nowrap; }
+  thead tr:first-child th { border-bottom: none; }
+  th.chgroup2 { text-align: center; font-size: 11.5px; letter-spacing: 0.06em; border-left: 1px solid var(--line-strong); }
+  th.chgroup2.prev { color: var(--ink-3); background: var(--surface-2); }
+  td.prevcol { border-left: 1px solid var(--line-strong); background: var(--surface-2); }
+  td.prevbg { background: var(--surface-2); }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; }
+  tr.total-row td { font-weight: 700; border-top: 1.5px solid var(--ink); background: var(--surface-2); }
+  .chip { font-size: 10px; padding: 2px 7px; border-radius: 20px; letter-spacing: 0.03em; font-weight: 600; }
+  .chip.range { background: var(--accent-soft); color: var(--accent-ink); }
+  .chip.watch { background: var(--warn-soft); color: var(--warn); }
+  .chip.excl { background: var(--warn-soft); color: var(--warn); }
+  tr.excluded td { color: var(--ink-3); }
+  tr.excluded td.catname { text-decoration: line-through; text-decoration-color: var(--ink-3); }
+
+  .divbar-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; box-shadow: var(--shadow); }
+  .divbar-row { display: grid; grid-template-columns: 150px 1fr 100px; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .divbar-row:last-child { margin-bottom: 0; }
+  .divbar-label { font-size: 12.5px; color: var(--ink-2); }
+  .divbar-track { position: relative; height: 26px; background: var(--surface-2); border-radius: 4px; }
+  .divbar-zero { position: absolute; top: -4px; bottom: -4px; width: 1px; background: var(--ink-3); left: 50%; }
+  .divbar-fill { position: absolute; top: 3px; bottom: 3px; border-radius: 3px; }
+  .divbar-fill.pos { background: var(--good); left: 50%; }
+  .divbar-fill.neg { background: var(--crit); right: 50%; }
+  .divbar-val { font-size: 13px; text-align: right; font-weight: 600; }
+  .divbar-val.pos { color: var(--good); }
+  .divbar-val.neg { color: var(--crit); }
+  .divbar-range { font-size: 10.5px; color: var(--ink-3); text-align: right; margin-top: 1px; }
+
+  .tag { font-size: 9.5px; padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.03em; margin-left: 7px; vertical-align: 1px; }
+  .tag.verified { background: var(--good-soft); color: var(--good); }
+  .tag.platform { background: var(--warn-soft); color: var(--warn); }
+  .tag.na { background: var(--surface-2); color: var(--ink-3); }
+
+  .reco-list { display: flex; flex-direction: column; gap: 10px; counter-reset: reco; margin-bottom: 20px; }
+  .reco { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 6px; padding: 13px 16px; box-shadow: var(--shadow); counter-increment: reco; position: relative; padding-left: 46px; }
+  .reco::before { content: counter(reco); position: absolute; left: 14px; top: 13px; font-family: Georgia, serif; font-weight: 700; color: var(--accent); font-size: 16px; }
+  .reco .rtitle { font-weight: 600; font-size: 13.5px; margin-bottom: 3px; }
+  .reco .rbody { font-size: 12.8px; color: var(--ink-2); }
+  .reco.urgent { border-left-color: var(--crit); }
+  .reco.urgent::before { color: var(--crit); }
+
+  .analysis-note { display: flex; gap: 12px; background: var(--accent-soft); border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  .analysis-note .al { flex: 0 0 auto; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ink); padding-top: 2px; }
+  .analysis-note strong { color: var(--ink); }
+
+  .footer { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; font-size: 12px; color: var(--ink-2); }
+  .footer h3 { font-size: 13px; margin-bottom: 10px; color: var(--ink); }
+  .footer ul { margin: 0; padding-left: 18px; }
+  .footer li { margin-bottom: 7px; }
+  .footer .foot-meta { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 11px; color: var(--ink-3); }
+
+  .guide-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; margin-bottom: 30px; box-shadow: var(--shadow); }
+  .guide-panel .guide-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: 10px; }
+  .guide-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 12.8px; color: var(--ink-2); }
+  .guide-row:last-child { margin-bottom: 0; }
+  .guide-row .tag { margin-left: 0; flex: 0 0 auto; margin-top: 1px; }
+  .guide-row b { color: var(--ink); }
+
+  .sub-head { font-size: 13px; font-weight: 600; margin: 18px 0 8px; color: var(--ink); }
+  .sub-head:first-child { margin-top: 0; }
+  .plain-list { list-style: none; margin: 0 0 6px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .plain-list li { display: flex; gap: 10px; align-items: baseline; font-size: 13px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; }
+  .plain-list .dchip { flex: 0 0 auto; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; background: var(--surface-2); color: var(--ink-3); padding: 2px 7px; border-radius: 3px; }
+  .plain-list b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-strip .kpi:last-child { grid-column: span 2; }
+    .masthead { flex-direction: column; }
+    .divbar-row { grid-template-columns: 100px 1fr 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="masthead">
+    <div class="masthead-title">
+      <h1>Kenny Fuels Google Ads</h1>
+      <div class="sub">Month-to-date period report: real revenue and profit vs. what the platform reports</div>
+      <div class="meta-row">
+        <span>Period: <strong style="color:var(--ink)">Aug 1&ndash;25, 2026</strong></span>
+        <span>vs. previous: <strong style="color:var(--ink)">Jul 1&ndash;25, 2026</strong> (25-day matched window)</span>
+        <span>Prepared Aug 26, 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="label">Spend, Aug 1&ndash;25 (ex-Solar)</div>
+      <div class="value">&euro;4,927.11</div>
+      <div class="sub">vs &euro;5,546.44 Jul (-11.2%)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Conversions <span class="tag platform" style="margin-left:4px;">GOOGLE</span></div>
+      <div class="value">329.8</div>
+      <div class="sub">vs 351.1 Jul (-6.1%)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Account ROAS <span class="tag platform" style="margin-left:4px;">GOOGLE</span></div>
+      <div class="value good">18.68x</div>
+      <div class="sub">Real vs. platform: 60.3% verified</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Real net profit <span class="tag verified" style="margin-left:4px;">WOO</span></div>
+      <div class="value good">+&euro;3,010 to +&euro;4,107</div>
+      <div class="sub">a real profit, verified against real orders</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Real net profit <span class="tag platform" style="margin-left:4px;">GOOGLE</span></div>
+      <div class="value good">+&euro;7,793.32</div>
+      <div class="sub">Google's own reported profit, ex-Solar</div>
+    </div>
+  </div>
+
+  <div class="guide-panel">
+    <div class="guide-title">How to read the tags in this report</div>
+    <div class="guide-row"><span class="tag verified">VERIFIED</span><span>Comes from your actual WooCommerce orders. This is what genuinely shipped and got paid for.</span></div>
+    <div class="guide-row"><span class="tag platform">PLATFORM</span><span>Self-reported by Google Ads' own dashboard. Ad spend is always platform-reported; conversion <b>value</b> from the same source is Google's own claim, which this report checks against real orders.</span></div>
+    <div class="guide-row"><span class="tag na">N/A</span><span>Not a fair comparison: Kenergy Solar's &euro;12,000/lead value is a manual estimate, not an observed transaction, always shown separately.</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>Ad spend, answered directly</h2>
+    </div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>Google spend actually came down this period, not up.</strong> &euro;4,927.11 (ex-Solar) over 25 days, 11.2% below the same 25 days in July. Combined with Meta, total spend across both platforms averaged &euro;355 a day against the &euro;425 a day approved budget, and real net profit on Google alone cleared spend with room to spare: between &euro;3,010 and &euro;4,107.</span></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Signal gap: real revenue vs. Google-reported</h2>
+      <div class="section-note">Net Sales (ex-VAT/shipping), WooCommerce-verified, vs. Google's own reported conversion value (ex-Solar)</div>
+    </div>
+    <div class="gap-panel">
+      <div class="gap-group">
+        <div class="gap-row">
+          <div class="rlabel">Aug 1&ndash;25 verified</div>
+          <div class="track"><div class="fill verified" style="width:60.3%"></div></div>
+          <div class="rval num">&euro;55,513.23</div>
+        </div>
+        <div class="gap-row">
+          <div class="rlabel">Aug 1&ndash;25 platform</div>
+          <div class="track"><div class="fill platform" style="width:100%"></div></div>
+          <div class="rval num">&euro;92,016.36</div>
+          <div class="rmult">1.66&times;</div>
+        </div>
+        <div class="gap-row">
+          <div class="rlabel">Jul 1&ndash;25 verified</div>
+          <div class="track"><div class="fill verified" style="width:71.5%"></div></div>
+          <div class="rval num">&euro;55,240.59</div>
+        </div>
+        <div class="gap-row">
+          <div class="rlabel">Jul 1&ndash;25 platform</div>
+          <div class="track"><div class="fill platform" style="width:100%"></div></div>
+          <div class="rval num">&euro;77,253.83</div>
+          <div class="rmult">1.40&times;</div>
+        </div>
+      </div>
+      <div class="legend-mini">
+        <span><span class="sw" style="background:var(--good)"></span>WooCommerce-verified (real)</span>
+        <span><span class="sw" style="background:var(--warn)"></span>Google-reported conversion value</span>
+      </div>
+      <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Read</span><span><strong>Real revenue held essentially flat (&euro;55,240.59 to &euro;55,513.23, +0.5%) while Google's own reported value grew faster (+19.1%), which is why the overstatement multiple widened from 1.40x to 1.66x.</strong> This is a reporting-side trend, not a real drop in performance: real spend is also down 11.2% period over period, so real profit per euro spent genuinely improved. I'm treating the widening multiple as something to watch, not yet a fix to chase.</span></div>
+      <div class="analysis-note"><span class="al">What's not the cause</span><span><strong>Not a measurement-quality problem.</strong> The blank-Product(s) resolution approach was applied consistently to both periods; the gap reflects Google's own reporting drifting from real orders, not a tagging regression on the WooCommerce side.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Campaign performance: this period vs. previous period</h2>
+      <div class="section-note">Spend, conversions, and ROAS are Google's own reported figures</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Campaign</th>
+            <th colspan="3" class="chgroup2">Aug 1&ndash;25 (this period)</th>
+            <th colspan="3" class="chgroup2 prev">Jul 1&ndash;25 (previous)</th>
+          </tr>
+          <tr>
+            <th class="num">Spend</th><th class="num">Conv.</th><th class="num">ROAS</th>
+            <th class="num">Spend</th><th class="num">Conv.</th><th class="num">ROAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Brand Search</td><td class="num mono">&euro;3,152.28</td><td class="num mono">206.1</td><td class="num mono">19.07x</td><td class="num mono prevcol">&euro;2,641.46</td><td class="num mono prevbg">203.9</td><td class="num mono prevbg">17.94x</td></tr>
+          <tr><td>Home Heating Oil</td><td class="num mono">&euro;575.99</td><td class="num mono">51.3</td><td class="num mono">41.50x</td><td class="num mono prevcol">&euro;597.09</td><td class="num mono prevbg">63.5</td><td class="num mono prevbg">37.39x</td></tr>
+          <tr><td>Firewood <span class="chip watch">budget raised Aug 19</span></td><td class="num mono">&euro;476.29</td><td class="num mono">18.1</td><td class="num mono">5.85x</td><td class="num mono prevcol">&euro;500.44</td><td class="num mono prevbg">13.0</td><td class="num mono prevbg">2.35x</td></tr>
+          <tr><td>Hardware</td><td class="num mono">&euro;374.33</td><td class="num mono">31.3</td><td class="num mono">7.73x</td><td class="num mono prevcol">&euro;1,513.10</td><td class="num mono prevbg">49.7</td><td class="num mono prevbg">2.95x</td></tr>
+          <tr><td>Gas Bottle &amp; Cylinders</td><td class="num mono">&euro;212.11</td><td class="num mono">13.9</td><td class="num mono">7.06x</td><td class="num mono prevcol">&euro;240.95</td><td class="num mono prevbg">19.0</td><td class="num mono prevbg">7.10x</td></tr>
+          <tr><td>Composite Decking</td><td class="num mono">&euro;110.04</td><td class="num mono">8.0</td><td class="num mono">6.54x</td><td class="num mono prevcol">&euro;53.40</td><td class="num mono prevbg">2.0</td><td class="num mono prevbg">3.42x</td></tr>
+          <tr><td>DEWALT Boa Boots Shopping <span class="chip watch">new, launched Aug 20</span></td><td class="num mono">&euro;26.07</td><td class="num mono">1.1</td><td class="num mono">3.46x</td><td class="num mono prevcol">&ndash;</td><td class="num mono prevbg">&ndash;</td><td class="num mono prevbg">&ndash;</td></tr>
+          <tr class="total-row"><td>Total (ex-Solar)</td><td class="num mono">&euro;4,927.11</td><td class="num mono">329.8</td><td class="num mono">18.68x</td><td class="num mono prevcol">&euro;5,546.44</td><td class="num mono prevbg">351.1</td><td class="num mono prevbg">13.93x</td></tr>
+          <tr class="excluded"><td class="catname">Kenergy Solar</td><td class="num mono">&euro;109.04</td><td class="num mono">11.0</td><td class="num mono">773.6x*</td><td class="num mono prevcol">&euro;284.71</td><td class="num mono prevbg">9.0</td><td class="num mono prevbg">379.4x*</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:8px;">*Solar's ROAS is inflated by the synthetic &euro;12,000/lead value, excluded from every total above.</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Real revenue &amp; profit by category: this period vs. previous period</h2>
+      <div class="section-note">WooCommerce can't attribute orders to individual Google campaigns, only to product category</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">Category</th>
+            <th rowspan="2" class="num">Margin</th>
+            <th colspan="2" class="chgroup2">Aug 1&ndash;25</th>
+            <th colspan="2" class="chgroup2 prev">Jul 1&ndash;25</th>
+          </tr>
+          <tr>
+            <th class="num">Orders</th><th class="num">Revenue</th>
+            <th class="num">Orders</th><th class="num">Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="catname">Heating oil</td><td class="num mono">10%</td><td class="num mono">64</td><td class="num mono">&euro;31,220.68</td><td class="num mono prevcol">66</td><td class="num mono prevbg">&euro;33,957.73</td></tr>
+          <tr><td class="catname">Firewood</td><td class="num mono">25%</td><td class="num mono">38</td><td class="num mono">&euro;14,414.31</td><td class="num mono prevcol">19</td><td class="num mono prevbg">&euro;12,057.29</td></tr>
+          <tr><td class="catname">Gas (cylinders)</td><td class="num mono">20%</td><td class="num mono">11</td><td class="num mono">&euro;1,901.84</td><td class="num mono prevcol">8</td><td class="num mono prevbg">&euro;730.53</td></tr>
+          <tr><td class="catname">Hardware</td><td class="num mono">15%</td><td class="num mono">4</td><td class="num mono">&euro;661.79</td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00</td></tr>
+          <tr class="range-row"><td class="catname">Unclassified <span class="chip range">range</span></td><td class="num mono">10&ndash;25%</td><td class="num mono">17</td><td class="num mono">&euro;7,314.61</td><td class="num mono prevcol">18</td><td class="num mono prevbg">&euro;8,495.04</td></tr>
+          <tr class="total-row"><td>Total (valid, in-scope)</td><td></td><td class="num mono">134</td><td class="num mono">&euro;55,513.23</td><td class="num mono prevcol">111</td><td class="num mono prevbg">&euro;55,240.59</td></tr>
+          <tr class="excluded"><td class="catname">Sand &amp; stones (Google-tagged)</td><td class="num mono">-</td><td class="num mono">9</td><td class="num mono">&euro;903.85 <span class="chip excl">excluded</span></td><td class="num mono prevcol">18</td><td class="num mono prevbg">&euro;2,251.34 <span class="chip excl">excluded</span></td></tr>
+          <tr class="excluded"><td class="catname">Compost (Google-tagged)</td><td class="num mono">-</td><td class="num mono">5</td><td class="num mono">&euro;696.37 <span class="chip excl">excluded</span></td><td class="num mono prevcol">11</td><td class="num mono prevbg">&euro;1,926.23 <span class="chip excl">excluded</span></td></tr>
+          <tr class="excluded"><td class="catname">Coal / solid fuel (Google-tagged)</td><td class="num mono">-</td><td class="num mono">2</td><td class="num mono">&euro;1,136.04 <span class="chip excl">excluded</span></td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00 <span class="chip excl">excluded</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:8px;">Excluded rows: no Google campaign targets Compost, Sand+Stones, or Coal/solid fuel, so any "Source: Google" order in these categories is confirmed misattribution, not real Google-driven revenue (standing rule).</div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>Firewood is now the second-largest real category, not just Heating Oil.</strong> Firewood orders doubled (19 to 38) and revenue grew 19.6% (&euro;12,057.29 to &euro;14,414.31), the clearest result yet from the Aug 19 budget increase. At 25% margin, Firewood contributed &euro;3,603.58 of this period's real profit, close behind Heating Oil's &euro;3,122.07 despite far fewer orders.</span></div>
+    <div class="sub-head">New vs. returning customers</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Period</th><th class="num">New</th><th class="num">Returning</th><th class="num">Total (Google-tagged)</th></tr></thead>
+        <tbody>
+          <tr><td>Aug 1&ndash;25</td><td class="num mono">46 (30.7%)</td><td class="num mono">104 (69.3%)</td><td class="num mono">150</td></tr>
+          <tr><td>Jul 1&ndash;25</td><td class="num mono">52 (37.1%)</td><td class="num mono">88 (62.9%)</td><td class="num mono">140</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:8px;">Counts are of all orders tagged "Source: Google" (before category filtering above), from WooCommerce's own Customer type field.</div>
+  </section>
+
+  <section id="firewood-budget">
+    <div class="section-head">
+      <h2>Firewood budget change</h2>
+    </div>
+    <div class="reco-list">
+      <div class="reco">
+        <div class="rtitle">Daily budget raised from &euro;20 to &euro;30 on August 19, funded by cutting Kenergy Solar from &euro;15 to &euro;5</div>
+        <div class="rbody">Solar was losing the large majority of its impressions to rank, not budget: it was averaging only around &euro;2.37 of its old &euro;15 daily cap, so the extra room wasn't being used. Firewood, by contrast, was budget-capped and converting well above breakeven. Moving &euro;10 a day from Solar to Firewood put spend where it was actually constrained. The category table above confirms it: Firewood orders doubled and real profit grew to &euro;3,603.58 this period. Holding at &euro;30 a day for a few more days to confirm the trend continues before considering a further increase.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Real net profit, spend against gross profit</h2>
+      <div class="section-note">Verified gross profit (midpoint of range where one applies) minus Google-reported ad spend (ex-Solar)</div>
+    </div>
+    <div class="divbar-panel">
+      <div class="divbar-row">
+        <div class="divbar-label">Aug 1&ndash;25</div>
+        <div>
+          <div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill pos" style="width:26.6%"></div></div>
+          <div class="divbar-range">range +&euro;3,010 to +&euro;4,107</div>
+        </div>
+        <div class="divbar-val pos num">+&euro;3,558.22</div>
+      </div>
+      <div class="divbar-row">
+        <div class="divbar-label">Jul 1&ndash;25</div>
+        <div>
+          <div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill pos" style="width:16.9%"></div></div>
+          <div class="divbar-range">range +&euro;1,859 to +&euro;3,134</div>
+        </div>
+        <div class="divbar-val pos num">+&euro;2,496.40</div>
+      </div>
+    </div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>Both periods are genuinely profitable on verified numbers, and this period is the stronger one on both ends of the range.</strong> Real spend came down 11.2% while real gross profit held essentially flat, so real net profit improved on both the low and high end of the range: from +&euro;1,859 to +&euro;3,134 in July, to +&euro;3,010 to +&euro;4,107 in August.</span></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Period comparison</h2>
+      <div class="section-note">Each figure tagged by trust level individually</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Metric</th><th class="num">Aug 1&ndash;25</th><th class="num">Jul 1&ndash;25</th><th class="num">Change</th></tr></thead>
+        <tbody>
+          <tr><td>Ad spend (ex-Solar)</td><td class="num mono">&euro;4,927.11<span class="tag platform">PLATFORM</span></td><td class="num mono">&euro;5,546.44<span class="tag platform">PLATFORM</span></td><td class="num mono">-11.2%</td></tr>
+          <tr><td>Platform-reported conv. value</td><td class="num mono">&euro;92,016.36<span class="tag na">N/A*</span></td><td class="num mono">&euro;77,253.83<span class="tag na">N/A*</span></td><td class="num mono">+19.1%</td></tr>
+          <tr><td>Real revenue (verified)</td><td class="num mono">&euro;55,513.23<span class="tag verified">VERIFIED</span></td><td class="num mono">&euro;55,240.59<span class="tag verified">VERIFIED</span></td><td class="num mono">+0.5%</td></tr>
+          <tr><td>Real net (verified)</td><td class="num mono">+&euro;3,010 to +&euro;4,107<span class="tag verified">VERIFIED</span></td><td class="num mono">+&euro;1,859 to +&euro;3,134<span class="tag verified">VERIFIED</span></td><td class="num mono">improved both ends</td></tr>
+          <tr class="total-row"><td>Overstatement multiple</td><td class="num mono">1.66&times;</td><td class="num mono">1.40&times;</td><td class="num mono">widened, see note</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:8px;">*Google's headline platform conv. value excludes Kenergy Solar's synthetic &euro;12,000/lead ADD rule.</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Going into next period</h2>
+      <div class="section-note">What to do next, what's being watched, and what's still open</div>
+    </div>
+
+    <div class="sub-head">Recommendations</div>
+    <div class="reco-list">
+      <div class="reco">
+        <div class="rtitle">Firewood: hold at &euro;30/day a few more days, then reassess a further increase</div>
+        <div class="rbody">Real profit has already grown 19% period over period on the new budget. I'd like a few more days of confirmed results at this level before recommending another step up, so any further increase is grounded in solid data rather than a single strong period.</div>
+      </div>
+      <div class="reco">
+        <div class="rtitle">Google's reporting gap widened slightly, worth watching</div>
+        <div class="rbody">The real-vs-platform multiple moved from 1.40x to 1.66x even though real results held steady. I'll flag in the next report whether this continues to widen or comes back in line.</div>
+      </div>
+      <div class="reco">
+        <div class="rtitle">Hardware spend down sharply, still real-profit positive</div>
+        <div class="rbody">Hardware spend fell from &euro;1,513.10 to &euro;374.33 period over period following the Aug 13 geo pivot to counties Kenny Fuels can deliver to cheaply. Real Hardware revenue held at a small but genuine &euro;661.79 this period.</div>
+      </div>
+    </div>
+
+    <div class="sub-head">Monitoring &amp; scheduled checks</div>
+    <ul class="plain-list">
+      <li><span class="dchip">Ongoing</span><span><b>Firewood &euro;30/day raise.</b> Confirm real profit continues to hold before considering a further increase.</span></li>
+      <li><span class="dchip">Next report</span><span><b>Reporting gap.</b> Watching whether the 1.66x real-vs-platform multiple continues widening or corrects.</span></li>
+      <li><span class="dchip">September 2026</span><span><b>Google Shopping launch preparation.</b> Shipping rate table, image fixes, and disapprovals still outstanding.</span></li>
+    </ul>
+
+    <div class="sub-head">Open items</div>
+    <ul class="plain-list">
+      <li><span class="dchip">Open</span><span>Home Heating Oil landing page: real root cause found (page vs. product structure), fix now with the SEO/site-content team.</span></li>
+      <li><span class="dchip">Open</span><span>Google Merchant Center shipping settings: still being finalized ahead of the Sep 1 Shopping launch.</span></li>
+      <li><span class="dchip">Open</span><span>Kenergy Solar &euro;12,000 install value: ADD rule paused, still no confirmed closed deal as of this report.</span></li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    <h3>Methodology &amp; caveats</h3>
+    <ul>
+      <li><strong>Real revenue basis:</strong> WooCommerce "Net Sales" column (ex-VAT, ex-shipping), 391 valid orders Aug 1&ndash;25, 384 Jul 1&ndash;25 (refunded/cancelled/failed orders excluded from both counts).</li>
+      <li><strong>Channel attribution:</strong> orders tagged exactly "Source: Google" counted as Google-verified. "Organic: Google" (unpaid search) is never summed into this total, under any framing, since organic traffic has nothing to do with Google Ads spend.</li>
+      <li><strong>Standing exclusion:</strong> Compost, Sand+Stones, and Coal/solid fuel revenue tagged "Source: Google" is excluded from Google's real-revenue total: no Google Ads campaign targets any of these categories, so this is confirmed misattribution.</li>
+      <li><strong>One honest caveat:</strong> about a third of orders (125 of 391 this period) don't carry product details in the export, so category-level margin figures carry some real uncertainty. The channel split (Google vs Meta vs Direct) is solid regardless, that part doesn't depend on product data.</li>
+      <li><strong>Category fingerprinting:</strong> blank-Product(s) orders matched to a named category only where corroborated by a signal (the `kenny10` coupon code for Heating Oil, or a non-overlapping value range against 3+ known orders in the same category and period).</li>
+      <li><strong>Kenergy Solar:</strong> excluded from all real-profit math and every Google real-vs-platform ratio. It's a quote-based install service, not a WooCommerce checkout product, so it has zero orders to verify against. Its &euro;12,000-per-conversion ADD rule remains paused pending a real closed-deal confirmation.</li>
+      <li><strong>Live platform data:</strong> pulled fresh via Google Ads' own reporting API (GAQL) for the exact Aug 1&ndash;25 / Jul 1&ndash;25 windows.</li>
+    </ul>
+    <div class="foot-meta">Kenny Fuels Google Ads &middot; Prepared by Josette</div>
+  </div>
+
+</div>
+</body>
+</html>
