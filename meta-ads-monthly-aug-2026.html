@@ -342,13 +342,13 @@
   <section>
     <div class="section-head">
       <h2>Real profit by campaign: this month vs. last month</h2>
-      <div class="section-note">Verified orders only, floor vs. ceiling reasoning applies at the account level above</div>
+      <div class="section-note">Verified orders mapped to a campaign line, floor vs. ceiling reasoning applies at the account level above</div>
     </div>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th rowspan="2">Campaign</th>
+            <th rowspan="2">Campaign line</th>
             <th colspan="2" class="chgroup2">Aug 1&ndash;31 (this month)</th>
             <th colspan="2" class="chgroup2 prev">Jul 1&ndash;31 (last month)</th>
             <th rowspan="2">Note</th>
@@ -359,16 +359,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Firewood B2B</td><td class="num mono">8</td><td class="num mono">&euro;2,257.35</td><td class="num mono prevcol">3</td><td class="num mono prevbg">&euro;966.96</td><td>The only campaign with consistent real evidence both months, and again the strongest</td></tr>
-          <tr><td>Firewood B2C</td><td class="num mono">3</td><td class="num mono">&euro;769.16</td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00</td><td>Real evidence this month, none last month</td></tr>
-          <tr><td>Compost</td><td class="num mono">0</td><td class="num mono">&euro;0.00</td><td class="num mono prevcol">3</td><td class="num mono prevbg">&euro;268.00</td><td>Had evidence last month, none this month</td></tr>
-          <tr><td>Sand+Stones</td><td class="num mono">0</td><td class="num mono">&euro;0.00</td><td class="num mono prevcol">1</td><td class="num mono prevbg">&euro;105.69</td><td>Had evidence last month, none this month</td></tr>
-          <tr class="total-row"><td>BOF, Gas Cylinders, Heating Oil, DEWALT</td><td class="num mono">0</td><td class="num mono">&euro;0.00</td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00</td><td>Zero independent verification in either month</td></tr>
+          <tr><td>Heating Oil</td><td class="num mono">6</td><td class="num mono">&euro;3,946.26</td><td class="num mono prevcol">4</td><td class="num mono prevbg">&euro;1,898.68</td><td>Mapped by product and by the KENNY10 code. A share could be the Heating Oil ad inside BOF Retargeting rather than the Heating Oil campaign</td></tr>
+          <tr><td>Firewood B2B</td><td class="num mono">8</td><td class="num mono">&euro;2,257.35</td><td class="num mono prevcol">3</td><td class="num mono prevbg">&euro;966.96</td><td>Exact campaign tag. The strongest verified line, and the only one identified at ad-set level in both months</td></tr>
+          <tr><td>Firewood B2C</td><td class="num mono">3</td><td class="num mono">&euro;769.16</td><td class="num mono prevcol">0</td><td class="num mono prevbg">&euro;0.00</td><td>Exact campaign tag. Real evidence this month</td></tr>
+          <tr><td>Firewood, ad set not identified</td><td class="num mono">1</td><td class="num mono">&euro;447.58</td><td class="num mono prevcol">3</td><td class="num mono prevbg">&euro;653.74</td><td>Firewood product, generic tag. B2B or B2C not resolvable from this export</td></tr>
+          <tr><td>DEWALT Boots</td><td class="num mono">2</td><td class="num mono">&euro;235.79</td><td class="num mono prevcol">&ndash;</td><td class="num mono prevbg">&ndash;</td><td>New this month</td></tr>
+          <tr><td>Gas Cylinders</td><td class="num mono">1</td><td class="num mono">&euro;186.75</td><td class="num mono prevcol">1</td><td class="num mono prevbg">&euro;38.52</td><td>Thin both months</td></tr>
+          <tr><td>Compost</td><td class="num mono">1</td><td class="num mono">&euro;109.00</td><td class="num mono prevcol">5</td><td class="num mono prevbg">&euro;535.00</td><td>Slowed this month</td></tr>
+          <tr><td>Sand+Stones</td><td class="num mono">0</td><td class="num mono">&euro;0.00</td><td class="num mono prevcol">1</td><td class="num mono prevbg">&euro;105.69</td><td>No verified order this month</td></tr>
+          <tr><td>Not resolved</td><td class="num mono">2</td><td class="num mono">&euro;1,045.82</td><td class="num mono prevcol">2</td><td class="num mono prevbg">&euro;579.74</td><td>No product detail, no coupon, no value match</td></tr>
+          <tr class="total-row"><td>Total (verified Meta)</td><td class="num mono">24</td><td class="num mono">&euro;8,997.71</td><td class="num mono prevcol">19</td><td class="num mono prevbg">&euro;4,778.33</td><td>Matches the account-wide verified floor above</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="section-note" style="margin-top:8px;">Not shown above: 13 orders / &euro;5,971.20 (Aug) and 12 orders / &euro;3,437.68 (Jul) tagged generic "Source: Paid+Social" or a platform-only tag (Fb, Ig, or a facebook.com referral) with no campaign-specific tag, can't be mapped to one campaign. Included in the account-wide real revenue totals above but excluded from this per-campaign breakdown.</div>
-    <div class="analysis-note"><span class="al">Read</span><span><strong>Firewood B2B remains the only campaign with real evidence in both months, and it more than doubled (&euro;966.96 to &euro;2,257.35).</strong> Firewood B2C now has real evidence too. Every campaign Meta calls a top platform performer this month (Heating Oil, BOF Retargeting) still has zero independent confirmation in either month, so I don't scale budget on their platform numbers alone.</span></div>
+    <div class="section-note" style="margin-top:8px;">How the mapping works: orders carrying a campaign tag (Firewood B2B and B2C) are placed exactly. The rest carry only a generic "paid social" tag, so they are placed by product category, the KENNY10 coupon (Heating Oil), or a non-overlapping order-value range. What this export cannot resolve: the B2B versus B2C split for firewood orders without a campaign tag, and whether a category order came from that category's own campaign or from BOF Retargeting, which rotates ads across several categories. Two orders each month carry no signal at all.</div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>Firewood B2B is the strongest verified line and the only one identified at ad-set level in both months, and it more than doubled (&euro;966.96 to &euro;2,257.35).</strong> Heating Oil now shows real verified orders once product and coupon signals are used (6 in August, &euro;3,946.26), a genuine improvement, though some of those could be the Heating Oil ad running inside BOF Retargeting rather than the Heating Oil campaign itself. BOF Retargeting still has no order that can be pinned to it specifically. I do not scale budget on Meta's platform numbers alone for any of these lines.</span></div>
   </section>
 
   <section>
