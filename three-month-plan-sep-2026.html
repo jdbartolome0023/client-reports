@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenny Fuels: Results and Three-Month Plan, September 2026</title>
+<style>
+  :root {
+    --paper: #eeeae0;
+    --surface: #fbf9f4;
+    --surface-2: #f4f0e6;
+    --ink: #26241e;
+    --ink-2: #5c574b;
+    --ink-3: #948d7c;
+    --line: #d9d2c2;
+    --line-strong: #c4bba5;
+    --accent: #0e6e63;
+    --accent-soft: #dcebe8;
+    --accent-ink: #0a4f47;
+    --good: #2f7a4f;
+    --good-soft: #dfeee2;
+    --warn: #a8791f;
+    --warn-soft: #f3e9d2;
+    --crit: #a83f3f;
+    --crit-soft: #f3dfdc;
+    --shadow: 0 1px 2px rgba(38,36,30,0.06), 0 6px 16px rgba(38,36,30,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #17181a;
+      --surface: #1e201f;
+      --surface-2: #232522;
+      --ink: #ece8de;
+      --ink-2: #b9b2a0;
+      --ink-3: #7d7868;
+      --line: #34362f;
+      --line-strong: #454739;
+      --accent: #4fc2b0;
+      --accent-soft: #1c3733;
+      --accent-ink: #8fe0d2;
+      --good: #6bc48a;
+      --good-soft: #1f3327;
+      --warn: #e3b156;
+      --warn-soft: #3a2f1a;
+      --crit: #e2726a;
+      --crit-soft: #3a2321;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17181a; --surface: #1e201f; --surface-2: #232522;
+    --ink: #ece8de; --ink-2: #b9b2a0; --ink-3: #7d7868;
+    --line: #34362f; --line-strong: #454739;
+    --accent: #4fc2b0; --accent-soft: #1c3733; --accent-ink: #8fe0d2;
+    --good: #6bc48a; --good-soft: #1f3327;
+    --warn: #e3b156; --warn-soft: #3a2f1a;
+    --crit: #e2726a; --crit-soft: #3a2321;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"] {
+    --paper: #eeeae0; --surface: #fbf9f4; --surface-2: #f4f0e6;
+    --ink: #26241e; --ink-2: #5c574b; --ink-3: #948d7c;
+    --line: #d9d2c2; --line-strong: #c4bba5;
+    --accent: #0e6e63; --accent-soft: #dcebe8; --accent-ink: #0a4f47;
+    --good: #2f7a4f; --good-soft: #dfeee2;
+    --warn: #a8791f; --warn-soft: #f3e9d2;
+    --crit: #a83f3f; --crit-soft: #f3dfdc;
+    --shadow: 0 1px 2px rgba(38,36,30,0.06), 0 6px 16px rgba(38,36,30,0.05);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .mono, .num, td.num, .tag, .chip {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  h1, h2, h3 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+  .page { max-width: 940px; margin: 0 auto; padding: 40px 24px 80px; }
+  .masthead { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 22px; border-bottom: 2px solid var(--ink); margin-bottom: 28px; }
+  .masthead-title h1 { font-size: 28px; letter-spacing: -0.01em; }
+  .masthead-title .sub { color: var(--ink-2); font-size: 14.5px; margin-top: 6px; }
+  .meta-row { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; font-size: 12.5px; color: var(--ink-3); }
+
+  .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 34px; }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 16px 14px; box-shadow: var(--shadow); }
+  .kpi .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin-bottom: 8px; }
+  .kpi .value { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
+  .kpi .value.good { color: var(--good); }
+  .kpi .value.crit { color: var(--crit); }
+  .kpi .sub { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+
+  section { margin-bottom: 38px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line-strong); padding-bottom: 8px; }
+  .section-head h2 { font-size: 18px; }
+  .section-note { font-size: 12.5px; color: var(--ink-3); }
+
+  .gap-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; box-shadow: var(--shadow); }
+  .gap-group { margin-bottom: 20px; }
+  .gap-group:last-child { margin-bottom: 0; }
+  .gap-group-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .gap-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .gap-row .rlabel { flex: 0 0 132px; font-size: 12px; color: var(--ink-2); }
+  .gap-row .track { flex: 1; background: var(--surface-2); border-radius: 4px; height: 20px; position: relative; overflow: hidden; }
+  .gap-row .fill { height: 100%; border-radius: 4px; display: flex; align-items: center; }
+  .gap-row .fill.verified { background: var(--good); }
+  .gap-row .fill.platform { background: var(--warn); }
+  .gap-row .rval { flex: 0 0 90px; text-align: right; font-size: 12.5px; }
+  .gap-row .rmult { flex: 0 0 56px; text-align: right; font-size: 12px; font-weight: 700; color: var(--crit); }
+  .legend-mini { display: flex; gap: 16px; font-size: 11.5px; color: var(--ink-2); margin-top: 4px; }
+  .legend-mini .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid var(--line-strong); white-space: nowrap; }
+  thead tr:first-child th { border-bottom: none; }
+  th.chgroup2 { text-align: center; font-size: 11.5px; letter-spacing: 0.06em; border-left: 1px solid var(--line-strong); }
+  th.chgroup2.prev { color: var(--ink-3); background: var(--surface-2); }
+  td.prevcol { border-left: 1px solid var(--line-strong); background: var(--surface-2); }
+  td.prevbg { background: var(--surface-2); }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; }
+  tr.total-row td { font-weight: 700; border-top: 1.5px solid var(--ink); background: var(--surface-2); }
+  .chip { font-size: 10px; padding: 2px 7px; border-radius: 20px; letter-spacing: 0.03em; font-weight: 600; }
+  .chip.range { background: var(--accent-soft); color: var(--accent-ink); }
+  .chip.watch { background: var(--warn-soft); color: var(--warn); }
+  .chip.excl { background: var(--warn-soft); color: var(--warn); }
+  tr.excluded td { color: var(--ink-3); }
+  tr.excluded td.catname { text-decoration: line-through; text-decoration-color: var(--ink-3); }
+
+  .divbar-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; box-shadow: var(--shadow); }
+  .divbar-row { display: grid; grid-template-columns: 150px 1fr 100px; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .divbar-row:last-child { margin-bottom: 0; }
+  .divbar-label { font-size: 12.5px; color: var(--ink-2); }
+  .divbar-track { position: relative; height: 26px; background: var(--surface-2); border-radius: 4px; }
+  .divbar-zero { position: absolute; top: -4px; bottom: -4px; width: 1px; background: var(--ink-3); left: 50%; }
+  .divbar-fill { position: absolute; top: 3px; bottom: 3px; border-radius: 3px; }
+  .divbar-fill.pos { background: var(--good); left: 50%; }
+  .divbar-fill.neg { background: var(--crit); right: 50%; }
+  .divbar-val { font-size: 13px; text-align: right; font-weight: 600; }
+  .divbar-val.pos { color: var(--good); }
+  .divbar-val.neg { color: var(--crit); }
+  .divbar-range { font-size: 10.5px; color: var(--ink-3); text-align: right; margin-top: 1px; }
+
+  .tag { font-size: 9.5px; padding: 1px 6px; border-radius: 3px; font-weight: 700; letter-spacing: 0.03em; margin-left: 7px; vertical-align: 1px; }
+  .tag.verified { background: var(--good-soft); color: var(--good); }
+  .tag.platform { background: var(--warn-soft); color: var(--warn); }
+  .tag.na { background: var(--surface-2); color: var(--ink-3); }
+
+  .reco-list { display: flex; flex-direction: column; gap: 10px; counter-reset: reco; margin-bottom: 20px; }
+  .reco { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 6px; padding: 13px 16px; box-shadow: var(--shadow); counter-increment: reco; position: relative; padding-left: 46px; }
+  .reco::before { content: counter(reco); position: absolute; left: 14px; top: 13px; font-family: Georgia, serif; font-weight: 700; color: var(--accent); font-size: 16px; }
+  .reco .rtitle { font-weight: 600; font-size: 13.5px; margin-bottom: 3px; }
+  .reco .rbody { font-size: 12.8px; color: var(--ink-2); }
+  .reco.urgent { border-left-color: var(--crit); }
+  .reco.urgent::before { color: var(--crit); }
+
+  .analysis-note { display: flex; gap: 12px; background: var(--accent-soft); border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  .analysis-note .al { flex: 0 0 auto; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ink); padding-top: 2px; }
+  .analysis-note strong { color: var(--ink); }
+
+  .footer { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; font-size: 12px; color: var(--ink-2); }
+  .footer h3 { font-size: 13px; margin-bottom: 10px; color: var(--ink); }
+  .footer ul { margin: 0; padding-left: 18px; }
+  .footer li { margin-bottom: 7px; }
+  .footer .foot-meta { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 11px; color: var(--ink-3); }
+
+  .guide-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; margin-bottom: 30px; box-shadow: var(--shadow); }
+  .guide-panel .guide-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); margin-bottom: 10px; }
+  .guide-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 12.8px; color: var(--ink-2); }
+  .guide-row:last-child { margin-bottom: 0; }
+  .guide-row .tag { margin-left: 0; flex: 0 0 auto; margin-top: 1px; }
+  .guide-row b { color: var(--ink); }
+
+  .sub-head { font-size: 13px; font-weight: 600; margin: 18px 0 8px; color: var(--ink); }
+  .sub-head:first-child { margin-top: 0; }
+  .plain-list { list-style: none; margin: 0 0 6px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .plain-list li { display: flex; gap: 10px; align-items: baseline; font-size: 13px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; }
+  .plain-list .dchip { flex: 0 0 auto; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; background: var(--surface-2); color: var(--ink-3); padding: 2px 7px; border-radius: 3px; }
+  .plain-list b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-strip .kpi:last-child { grid-column: span 2; }
+    .masthead { flex-direction: column; }
+    .divbar-row { grid-template-columns: 100px 1fr 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="masthead">
+    <div class="masthead-title">
+      <h1>Kenny Fuels: Results &amp; Three-Month Plan</h1>
+      <div class="sub">Where the account stands on real, verified numbers, and the plan for September through November</div>
+      <div class="meta-row">
+        <span>Prepared for the review on <strong style="color:var(--ink)">Sep 10, 2026</strong></span>
+        <span>Covers: Jul &amp; Aug results, Sep&ndash;Nov plan</span>
+        <span>First draft Sep 1, figures updated with early-September data before the meeting</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="label">Combined real net, August</div>
+      <div class="value good">+&euro;1,800 to +&euro;3,700</div>
+      <div class="sub">a real profit, verified against orders</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Combined real net, July</div>
+      <div class="value">&minus;&euro;340 to &minus;&euro;2,370</div>
+      <div class="sub">a small real loss</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Google real net, August</div>
+      <div class="value good">+&euro;5,000 to +&euro;6,200</div>
+      <div class="sub">13.8x real return on ad spend</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Meta real net, August</div>
+      <div class="value crit">&minus;&euro;2,500 to &minus;&euro;3,200</div>
+      <div class="sub">loss narrowing, the piece to fix</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Direction</div>
+      <div class="value good">loss &rarr; profit</div>
+      <div class="sub">breakeven in July, profit in August</div>
+    </div>
+  </div>
+
+  <div class="guide-panel">
+    <div class="guide-title">The one thing to get straight first: which "ROAS"</div>
+    <div class="guide-row"><span class="tag platform">PLATFORM</span><span>What the Google and Meta dashboards show (about 28x and 19x in August). <b>This is not a real number.</b> Google counts phone calls at a flat 90 to 220 euro each, and until mid-August it counted solar leads at 12,000 euro each. Meta over-reports purchases by roughly ten times because of the cookie-consent tracking gap. A high platform figure sitting next to "we lost money" is this mismatch, not a contradiction.</span></div>
+    <div class="guide-row"><span class="tag verified">REAL</span><span>Verified revenue from your actual WooCommerce orders, divided by what was spent on ads. In August that was <b>13.8x on Google</b> and <b>1.9x on Meta</b>.</span></div>
+    <div class="guide-row"><span class="tag verified">NET</span><span>The only figure that answers whether the account is making money: real verified revenue, at your real product margins, minus the ad spend. Everything in this report is built on this.</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>Where the account stands</h2>
+      <div class="section-note">Real net profit or loss, verified against WooCommerce orders. Real-profit tracking became reliable from mid-July, once the site tracking was rebuilt.</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Month</th><th class="num">Google real net</th><th class="num">Meta real net</th><th class="num">Combined</th></tr></thead>
+        <tbody>
+          <tr><td>July 2026</td><td class="num mono">+&euro;1,400 to +&euro;2,800</td><td class="num mono">&minus;&euro;3,100 to &minus;&euro;3,700</td><td class="num mono">&minus;&euro;340 to &minus;&euro;2,370</td></tr>
+          <tr class="total-row"><td>August 2026</td><td class="num mono">+&euro;5,000 to +&euro;6,200</td><td class="num mono">&minus;&euro;2,500 to &minus;&euro;3,200</td><td class="num mono">+&euro;1,800 to +&euro;3,700</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>Overall, the account is not losing money.</strong> July was roughly breakeven, August was a genuine profit. Google has made real money every month it has been measurable and is growing quickly. Meta has run at a real loss every month, but the loss is narrowing. The story of the account is: Google carries it, Meta is the problem to solve.</span></div>
+    <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Honest caveat on the Meta figure</span><span><strong>Meta's loss is shown as a floor, not an exact number.</strong> The cookie-consent gap means WooCommerce cannot see every Meta-driven sale; some land tagged as Direct or Google. So Meta's true result is somewhere between the loss shown here and Meta's own claim, but much closer to the loss. Best honest read: Meta is currently somewhere between breakeven and a real loss of about 3,000 euro a month.</span></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>The two channels, side by side</h2>
+      <div class="section-note">August figures, real and verified</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Metric</th><th class="num">Google</th><th class="num">Meta</th></tr></thead>
+        <tbody>
+          <tr><td>Ad spend</td><td class="num mono">&euro;5,705</td><td class="num mono">&euro;4,718</td></tr>
+          <tr><td>Platform-reported revenue</td><td class="num mono">&euro;158,817</td><td class="num mono">&euro;91,316</td></tr>
+          <tr><td>Real verified revenue</td><td class="num mono">&euro;78,995</td><td class="num mono">&euro;8,998</td></tr>
+          <tr><td>Real revenue, change vs July</td><td class="num mono">+28.9%</td><td class="num mono">+88%</td></tr>
+          <tr><td>Real return on ad spend</td><td class="num mono">13.8x</td><td class="num mono">1.9x</td></tr>
+          <tr class="total-row"><td>Real net profit</td><td class="num mono">+&euro;5,000 to +&euro;6,200</td><td class="num mono">&minus;&euro;2,500 to &minus;&euro;3,200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="analysis-note"><span class="al">Google</span><span><strong>Working well and improving.</strong> Real verified revenue up 28.9 percent month over month while spend came down 16 percent. Heating oil is the largest real category and is turning with the season. The main watch item is a technical one: the firewood search campaign stopped serving on August 23 and I am working through it with Google.</span></div>
+    <div class="analysis-note"><span class="al">Meta</span><span><strong>Losing money on what can be verified, but the trend is right.</strong> Real revenue nearly doubled month over month on flat spend, which is why the loss narrowed. The one campaign line with real verified evidence every month is Firewood, which grew again. Heating Oil shows real orders once product and coupon data is used, but a share of those could be the retargeting campaign rather than the Heating Oil campaign. The rest of Meta has no independent confirmation yet, which is a measurement problem before it is a performance one.</span></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>What changed on September 1</h2>
+      <div class="section-note">All three approved by Ciaran on September 1</div>
+    </div>
+    <div class="reco-list">
+      <div class="reco">
+        <div class="rtitle">Google Shopping launched, small</div>
+        <div class="rbody">Shopping ads for gas, solid fuel, fencing and hardware went live at a combined 45 euro a day. This advertises product ranges that the search campaigns do not cover at all. It starts deliberately small so only the parts that produce real orders get scaled.</div>
+      </div>
+      <div class="reco">
+        <div class="rtitle">Home Heating Oil budget restored to 50 euro a day</div>
+        <div class="rbody">Back to its normal in-season level after the summer. Even at 25 euro a day it was losing nearly half its available impressions to budget in August as demand started to turn. This is the largest real-revenue category.</div>
+      </div>
+      <div class="reco">
+        <div class="rtitle">Firewood on Meta raised to 25 and 20 euro a day</div>
+        <div class="rbody">Both firewood ad sets were hitting their daily cap every day, demand is strong, and a major local firewood competitor is in difficulty. Firewood is also the one Meta line with real verified evidence every month.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>The plan: September to November</h2>
+      <div class="section-note">Spend, expected real result, and the decision point on Meta. Numbers firmed up with early-September data before the meeting.</div>
+    </div>
+
+    <div class="sub-head">Ad spend by month</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Channel</th><th class="num">Aug actual</th><th class="num">Sep plan</th><th class="num">Oct plan</th></tr></thead>
+        <tbody>
+          <tr><td>Google (search + shopping)</td><td class="num mono">&euro;5,816</td><td class="num mono">~&euro;8,500</td><td class="num mono">~&euro;9,000</td></tr>
+          <tr><td>Meta</td><td class="num mono">&euro;4,718</td><td class="num mono">~&euro;4,900</td><td class="num mono">~&euro;4,900 or lower</td></tr>
+          <tr class="total-row"><td>Combined</td><td class="num mono">&euro;10,534</td><td class="num mono">~&euro;13,400</td><td class="num mono">~&euro;13,900</td></tr>
+          <tr><td>Per day</td><td class="num mono">&euro;340</td><td class="num mono">~&euro;430</td><td class="num mono">~&euro;450</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-note" style="margin-top:8px;">The agreed budget is 425 euro a day. September lands right on it as the heating season ramps. Any month over that will be flagged and agreed first, not done quietly.</div>
+
+    <div class="sub-head">Expected real net result</div>
+    <div class="divbar-panel">
+      <div class="divbar-row">
+        <div class="divbar-label">August actual</div>
+        <div><div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill pos" style="width:34%"></div></div><div class="divbar-range">+&euro;1,800 to +&euro;3,700</div></div>
+        <div class="divbar-val pos num">profit</div>
+      </div>
+      <div class="divbar-row">
+        <div class="divbar-label">September expected</div>
+        <div><div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill pos" style="width:30%"></div></div><div class="divbar-range">roughly +&euro;1,000 to +&euro;4,000</div></div>
+        <div class="divbar-val pos num">profit</div>
+      </div>
+      <div class="divbar-row">
+        <div class="divbar-label">October expected</div>
+        <div><div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill pos" style="width:45%"></div></div><div class="divbar-range">higher, if heating season and the Meta decision go to plan</div></div>
+        <div class="divbar-val pos num">profit</div>
+      </div>
+    </div>
+    <div class="analysis-note"><span class="al">Read</span><span><strong>The plan is to stay in real net profit every month.</strong> Google is expected to grow its real profit through the heating season on the restored budgets. September's combined figure is a range rather than a point because Shopping is unproven and the Meta decision below is not yet made. October should be the strongest month if heating oil peaks as expected and Meta is either fixed or trimmed.</span></div>
+
+    <div class="sub-head">The decision point on Meta</div>
+    <div class="reco-list">
+      <div class="reco urgent">
+        <div class="rtitle">By the end of September: fix the measurement, or restructure the spend</div>
+        <div class="rbody">Meta's loss is partly real and partly that the site cannot currently record every Meta-driven sale. The fix that would settle which is a website-side change on the Conversions API, with Niall at Graphedia since early August. <b>If it lands and confirms Meta is actually profitable</b>, the plan is to hold and scale the verified winners. <b>If it does not land, or it lands and Meta is still a verified loss</b>, the plan is to cut Meta back to the parts that are independently confirmed to make money (Firewood, which has real evidence every month) and stop the rest until the measurement is trustworthy. Either way, no more months of an unexplained Meta loss.</div>
+      </div>
+    </div>
+
+    <div class="sub-head">Step by step</div>
+    <ul class="plain-list">
+      <li><span class="dchip">Sep, week 1</span><span>Shopping campaigns in learning. Confirm the firewood search campaign is serving again. Budget changes bedding in.</span></li>
+      <li><span class="dchip">Sep, week 2</span><span>First real read on Shopping against actual orders: scale the campaigns producing real orders, cut or hold the ones that are not. This review with Ciaran (Sep 10).</span></li>
+      <li><span class="dchip">Sep, weeks 3&ndash;4</span><span>Heating season ramp. Check the Conversions API status with Niall. Confirm the firewood Meta raise is landing real orders at a workable cost.</span></li>
+      <li><span class="dchip">End of Sep</span><span>Make the Meta decision (fix confirmed, or restructure). Set the October budget.</span></li>
+      <li><span class="dchip">Oct</span><span>Heating oil at seasonal peak: may warrant a further heating oil budget increase, agreed first. Solid fuel and coal Shopping into their peak season. Execute the Meta decision. Bring back Acoustic Wall Panels advertising if the landing page is fixed by then.</span></li>
+      <li><span class="dchip">Nov</span><span>Hold the profitable structure through peak heating season. Review the quarter against this plan.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Risks and dependencies</h2>
+    </div>
+    <ul class="plain-list">
+      <li><span class="dchip">Dependency</span><span><b>The Conversions API fix (Niall / Graphedia).</b> This is the single biggest unknown. It is the difference between knowing Meta's real result and guessing at it. It has been open since early August.</span></li>
+      <li><span class="dchip">Technical</span><span><b>Firewood search on Google stopped serving August 23.</b> A bid-setup change was made on September 1 that should restore it. If it does not recover in a couple of days I will take it to Google support directly.</span></li>
+      <li><span class="dchip">Market</span><span><b>Heating season demand.</b> The plan assumes a normal seasonal increase from September into winter. A mild autumn would soften heating oil and solid fuel.</span></li>
+      <li><span class="dchip">Unproven</span><span><b>Google Shopping.</b> New channel, no track record on this account. The plan is to scale only what produces real orders, so the downside is capped at the small starting budget.</span></li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    <h3>How the numbers are worked out</h3>
+    <ul>
+      <li><strong>Real revenue:</strong> WooCommerce "Net Sales" (excluding VAT and shipping), matched to the channel by the site's own attribution tags, product category, and coupon codes.</li>
+      <li><strong>Real net profit:</strong> real verified revenue multiplied by your real product margins (heating oil 10 percent, gas 20 percent, hardware and fencing 15 percent, firewood and compost 25 percent), minus the platform-reported ad spend.</li>
+      <li><strong>Ranges, not single numbers:</strong> about a third of orders do not carry product detail in the export, so category margins carry some uncertainty. The channel split (Google versus Meta versus Direct) is solid regardless.</li>
+      <li><strong>Kenergy Solar</strong> is excluded from all profit maths: it is a quote-based install service with no online checkout to verify against.</li>
+      <li><strong>Full monthly detail:</strong> the August Google Ads and Meta Ads reports carry the campaign-level breakdown behind these totals.</li>
+    </ul>
+    <div class="foot-meta">Kenny Fuels &middot; Prepared by Josette</div>
+  </div>
+
+</div>
+</body>
+</html>
