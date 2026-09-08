@@ -224,8 +224,8 @@
     </div>
     <div class="kpi">
       <div class="label">Real revenue <span class="tag verified" style="margin-left:4px;">WOO</span></div>
-      <div class="value">&euro;856.38</div>
-      <div class="sub">floor. Meta claims &euro;27,709.80 (ceiling).</div>
+      <div class="value">&euro;856 to ~&euro;3,000</div>
+      <div class="sub">verified &euro;856.38; Meta's &euro;27,709.80 claim is not credible (see below).</div>
     </div>
     <div class="kpi">
       <div class="label">Real net <span class="tag verified" style="margin-left:4px;">WOO</span></div>
@@ -263,7 +263,7 @@
   <section>
     <div class="section-head">
       <h2>Signal gap: real revenue vs. Meta-reported</h2>
-      <div class="section-note">WooCommerce-verified Meta-attributed orders (floor) vs. Meta's own reported purchase value (ceiling)</div>
+      <div class="section-note">WooCommerce-verified Meta-attributed orders vs. Meta's own reported purchase value</div>
     </div>
     <div class="gap-panel">
       <div class="gap-group">
@@ -294,8 +294,20 @@
         <span><span class="sw" style="background:var(--good)"></span>WooCommerce-verified floor (real)</span>
         <span><span class="sw" style="background:var(--warn)"></span>Meta-reported purchase value</span>
       </div>
-      <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Why this gap exists</span><span><strong>This is an overstatement problem, not a missing-events problem.</strong> Meta's pixel is receiving events, it just can't tell genuine purchases from other signals for consent-declined visitors. The gap is unusually wide this period because the Compost campaign alone claimed &euro;11,533 of value on &euro;55 of spend, almost all of it view-through (someone saw an ad, didn't click, bought later anyway). <strong>Partly permanent, not fully solvable even by the Conversions API:</strong> visitors who decline marketing cookies cannot legally be tracked for ad attribution under Irish ePrivacy/GDPR rules. The verified figure is also a floor, not an exact count: WooCommerce's own attribution is consent-gated too, so some genuine Meta-driven purchases may sit mistagged as Direct, Organic, or another channel entirely, not only consent-declined ones.</span></div>
-      <div class="analysis-note"><span class="al">Full context</span><span>Total website sales for the period, all sources, were <strong>&euro;57,747.03</strong> across 136 orders. Of that, &euro;856.38 (2 orders) is verified as Meta-driven, both from new customers. Cost per verified Meta order this period was <strong>&euro;307.93</strong> (&euro;615.86 &divide; 2), against &euro;233.29 in Aug 1&ndash;6 (&euro;933.17 &divide; 4, 3 new / 1 returning). This blended cost-per-order, not Meta's own reported figure, is the one to judge against category margins.</span></div>
+      <div class="analysis-note" style="background:var(--warn-soft);"><span class="al" style="color:var(--warn);">Why this gap exists</span><span><strong>Meta's claim isn't an upper bound, it's not physically possible.</strong> The table below compares what Meta says each category earned against what that category actually earned across every channel combined (Google, direct, email, referral, organic, everything). For Compost, Meta claims almost seven times the entire category's real revenue. That is view-through counting: someone saw an ad, did not click, bought later anyway (or did not buy at all), and Meta credits itself.</span></div>
+      <div class="table-wrap" style="margin-top:12px;">
+        <table>
+          <thead><tr><th>Category</th><th class="num">Meta claims it earned</th><th class="num">Whole category earned<br>(all channels)</th><th class="num">Meta's claim as a share</th></tr></thead>
+          <tbody>
+            <tr><td>Compost</td><td class="num mono">&euro;11,532.65</td><td class="num mono">&euro;1,660.27</td><td class="num mono" style="color:var(--crit);font-weight:700;">695%</td></tr>
+            <tr><td>Sand &amp; stones</td><td class="num mono">&euro;553.00</td><td class="num mono">&euro;666.67</td><td class="num mono" style="color:var(--crit);font-weight:700;">83%</td></tr>
+            <tr><td>Firewood</td><td class="num mono">&euro;4,976.95</td><td class="num mono">&euro;8,824.57</td><td class="num mono" style="color:var(--warn);font-weight:700;">56%</td></tr>
+            <tr><td>Heating oil</td><td class="num mono">&euro;8,561.00</td><td class="num mono">&euro;41,430.61</td><td class="num mono">21%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="section-note" style="margin-top:8px;">Any figure at or above 100% is impossible by definition: Meta can't have driven more revenue than the category earned in total. Only Heating oil (21%) sits in a range that could be real, and even that is generous.</div>
+      <div class="analysis-note"><span class="al">The honest range</span><span>The verified floor is <strong>&euro;856.38</strong> (2 orders, both new customers). Building up from there: on the three full-spend days, the direct and referral orders in categories Meta advertised are almost all returning customers coming straight to the site, and none can be tied to Meta specifically. A generous read adds maybe three to five possible orders, so Meta's realistic contribution this period is somewhere around <strong>&euro;856 to &euro;3,000</strong>, not &euro;27,710. Cost per verified Meta order was &euro;307.93 (&euro;615.86 &divide; 2), against &euro;233.29 in Aug 1&ndash;6 (&euro;933.17 &divide; 4). <strong>Permanent limitation:</strong> visitors who decline marketing cookies cannot legally be tracked for ad attribution under Irish ePrivacy/GDPR rules, and WooCommerce's own attribution is consent-gated the same way, so a small number of genuine Meta orders may sit mistagged as Direct or Organic.</span></div>
     </div>
   </section>
 
@@ -344,7 +356,7 @@
         <div class="divbar-label">Sep 1&ndash;6</div>
         <div>
           <div class="divbar-track"><div class="divbar-zero"></div><div class="divbar-fill neg" style="width:30%"></div></div>
-          <div class="divbar-range">verified floor; ceiling not credible this period (view-through)</div>
+          <div class="divbar-range">on the &euro;856 verified floor; even the generous &euro;3,000 revenue estimate still leaves a loss</div>
         </div>
         <div class="divbar-val neg num">&minus;&euro;492</div>
       </div>
